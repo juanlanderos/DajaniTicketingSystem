@@ -20,7 +20,4 @@ class DepartmentRepositoryTest {
                 .build();
         deptRepo.save(dept);
     }
-
-
-
 }

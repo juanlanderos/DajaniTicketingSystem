@@ -12,6 +12,7 @@ import java.time.Instant;
 @Entity
 @Table(name = "ticket")
 public class Ticket {
+
     @Id
     //auto-increments primary key per new entry
     @SequenceGenerator(
