@@ -22,18 +22,18 @@ public class Department {
             strategy = GenerationType.SEQUENCE,
             generator = "department_sequence"
     )
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Column(name = "department_id", nullable = false)
+    private Integer departmentId;
 
-    @Column(name = "name", length = 45)
+    @Column(name = "department_name", length = 45)
     private String name;
 
-    public Integer getId() {
-        return id;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getName() {

@@ -23,8 +23,8 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -37,15 +37,15 @@ public class User {
     @Column(name = "agent")
     private Integer agent;
 
-    @Column(name = "requestor")
-    private Integer requestor;
+    @Column(name = "requester")
+    private Integer requester;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Department getDepartment() {
@@ -72,12 +72,12 @@ public class User {
         this.agent = agent;
     }
 
-    public Integer getRequestor() {
-        return requestor;
+    public Integer getRequester() {
+        return requester;
     }
 
-    public void setRequestor(Integer requestor) {
-        this.requestor = requestor;
+    public void setRequester(Integer requester) {
+        this.requester = requester;
     }
 
 }

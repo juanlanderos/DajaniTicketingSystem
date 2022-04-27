@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,12 +28,10 @@ public class Ticket {
             strategy = GenerationType.SEQUENCE,
             generator = "ticket_sequence"
     )
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    private Integer ticketId;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id", referencedColumnName = "departmentId" )
     private Department department;
 
     @Column(name = "created_at")
@@ -43,26 +44,30 @@ public class Ticket {
     private Instant completedAt;
 
     @Column(name = "status_ID")
-    private Integer statusId;
-
-    @Column(name = "user_ID")
-    private Integer userId;
+    private String statusId;
 
     @Column(name = "assignee_ID")
     private Integer assigneeId;
 
-    @Column(name = "dept_ID")
-    private Integer deptId;
 
     @Column(name = "requester_ID")
     private Integer requesterId;
 
-    public Integer getId() {
-        return id;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "ticket"
+    )
+    @Column(name = "comment_id")
+    private List<Comment> commentList;
+
+//------------------Modifiers Past This Point ----------------------------
+
+    public Integer getTicketId() {
+        return ticketId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTicketId(Integer ticketId) {
+        this.ticketId = ticketId;
     }
 
     public Department getDepartment() {
@@ -97,20 +102,12 @@ public class Ticket {
         this.completedAt = completedAt;
     }
 
-    public Integer getStatusId() {
+    public String getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(Integer statusId) {
+    public void setStatusId(String statusId) {
         this.statusId = statusId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getAssigneeId() {
@@ -119,14 +116,6 @@ public class Ticket {
 
     public void setAssigneeId(Integer assigneeId) {
         this.assigneeId = assigneeId;
-    }
-
-    public Integer getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
     }
 
     public Integer getRequesterId() {

@@ -26,23 +26,29 @@ public class Comment {
             strategy = GenerationType.SEQUENCE,
             generator = "comment_sequence"
     )
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Column(name = "comment_id", nullable = false)
+    private Integer commentId;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID", nullable = false)
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "ticket_id",
+            referencedColumnName = "ticketId",
+            nullable = false
+    )
     private Ticket ticket;
+
 
     @Lob
     @Column(name = "content")
     private String content;
 
+
     @Column(name = "user_ID", length = 45)
     private String userId;
-
-    @Column(name = "ticket_ID")
-    private Integer ticketId;
 
     @Column(name = "created_at")
     private Instant createdAt;
@@ -50,12 +56,13 @@ public class Comment {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    public Integer getId() {
-        return id;
+    //------------------------Modifiers------------------------
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
     public Ticket getTicket() {
@@ -80,14 +87,6 @@ public class Comment {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public Integer getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(Integer ticketId) {
-        this.ticketId = ticketId;
     }
 
     public Instant getCreatedAt() {
