@@ -30,9 +30,9 @@ public class Ticket {
     )
     private Integer ticketId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id", referencedColumnName = "departmentId" )
-    private Department department;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id", referencedColumnName = "department_id" )
+    private List<Department> departmentList;
 
     @Column(name = "created_at")
     private Instant createdAt;
@@ -49,16 +49,15 @@ public class Ticket {
     @Column(name = "assignee_ID")
     private Integer assigneeId;
 
-
     @Column(name = "requester_ID")
     private Integer requesterId;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "ticket"
-    )
-    @Column(name = "comment_id")
-    private List<Comment> commentList;
+    @OneToMany(mappedBy = "ticket")
+    private List<Comment> commentList = new ArrayList<>();
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
 
 //------------------Modifiers Past This Point ----------------------------
 
@@ -68,14 +67,6 @@ public class Ticket {
 
     public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Instant getCreatedAt() {
@@ -125,5 +116,8 @@ public class Ticket {
     public void setRequesterId(Integer requesterId) {
         this.requesterId = requesterId;
     }
+    public List<Department> getDepartmentList() {return departmentList;}
+
+    public void setDepartmentList(List<Department> departmentList) {this.departmentList = departmentList;}
 
 }

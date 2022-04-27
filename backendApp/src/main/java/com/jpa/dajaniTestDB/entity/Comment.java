@@ -29,11 +29,7 @@ public class Comment {
     @Column(name = "comment_id", nullable = false)
     private Integer commentId;
 
-    @ManyToOne(
-            fetch = FetchType.LAZY,
-            optional = false,
-            cascade = CascadeType.ALL
-    )
+    @ManyToOne
     @JoinColumn(
             name = "ticket_id",
             referencedColumnName = "ticketId",
