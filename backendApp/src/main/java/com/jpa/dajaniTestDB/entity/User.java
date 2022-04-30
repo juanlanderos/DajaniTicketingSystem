@@ -29,11 +29,13 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "department_id", nullable = false)
-    private Department department;
-
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "user_ticket",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "ticket_id") }
+    )
+    private List<Ticket> tickets = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Comment> commentList = new ArrayList<>();
@@ -54,14 +56,6 @@ public class User {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Integer getAdmin() {
@@ -91,5 +85,9 @@ public class User {
     public List<Comment> getCommentList() {return commentList;}
 
     public void setCommentList(List<Comment> commentList) {this.commentList = commentList;}
+
+    public List<Ticket> getTickets(){ return tickets;}
+
+    public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
 
 }

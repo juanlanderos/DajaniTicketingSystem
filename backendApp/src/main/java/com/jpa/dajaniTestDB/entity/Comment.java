@@ -33,7 +33,7 @@ public class Comment {
     @JoinColumn(
             name = "ticket_id",
             referencedColumnName = "ticketId",
-            nullable = false
+            nullable = true
     )
     private Ticket ticket;
 
