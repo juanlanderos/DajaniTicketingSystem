@@ -38,6 +38,10 @@ public class Ticket {
     )
     private Department department;
 
+    //ask for input on this
+    @ManyToMany(mappedBy = "tickets")
+    private List<User> users = new ArrayList<>();
+
     @Column(name = "created_at")
     private Instant createdAt;
 
