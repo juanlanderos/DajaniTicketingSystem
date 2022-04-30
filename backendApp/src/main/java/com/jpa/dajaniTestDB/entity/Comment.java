@@ -42,9 +42,13 @@ public class Comment {
     @Column(name = "content")
     private String content;
 
-
-    @Column(name = "user_ID", length = 45)
-    private String userId;
+    @ManyToOne
+    @JoinColumn(
+            name = "user_id",
+            referencedColumnName = "user_id",
+            nullable = true
+    )
+    private User user;
 
     @Column(name = "created_at")
     private Instant createdAt;
@@ -77,14 +81,6 @@ public class Comment {
         this.content = content;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public Instant getCreatedAt() {
         return createdAt;
     }
@@ -100,5 +96,9 @@ public class Comment {
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public User getUser() {return user;}
+
+    public void setUser(User user) {this.user = user;}
 
 }

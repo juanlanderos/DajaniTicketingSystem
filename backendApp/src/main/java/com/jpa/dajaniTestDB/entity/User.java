@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,10 +29,14 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-    @MapsId
+
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID", nullable = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> commentList = new ArrayList<>();
 
     @Column(name = "admin")
     private Integer admin;
@@ -40,6 +47,7 @@ public class User {
     @Column(name = "requester")
     private Integer requester;
 
+    //----------------Accessors and Modifiers Past this-----------
     public Integer getUserId() {
         return userId;
     }
@@ -79,5 +87,9 @@ public class User {
     public void setRequester(Integer requester) {
         this.requester = requester;
     }
+
+    public List<Comment> getCommentList() {return commentList;}
+
+    public void setCommentList(List<Comment> commentList) {this.commentList = commentList;}
 
 }
