@@ -30,9 +30,9 @@ public class Ticket {
     )
     private Integer ticketId;
 
-    //ask for input on this
-    @ManyToMany(mappedBy = "tickets")
-    private List<User> users = new ArrayList<>();
+//    //ask for input on this
+//    @ManyToMany(mappedBy = "tickets")
+//    private List<User> users = new ArrayList<>();
 
     @Column(name = "created_at")
     private Instant createdAt;

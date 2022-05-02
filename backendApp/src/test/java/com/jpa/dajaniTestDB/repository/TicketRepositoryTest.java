@@ -9,6 +9,10 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import java.time.Instant;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -73,6 +77,40 @@ class TicketRepositoryTest {
 
         System.out.println("tickets = " + tickets);
 
+    }
+
+
+    @Test
+    public void updateTicketStatusTest(){
+        ticketRepository.updateTicketStatus(
+                "Completed",
+                3
+        );
+    }
+
+    @Test
+    public void updateCompletedAtTest(){
+        ticketRepository.updateCompletedAt(
+                Instant.now(),
+                2
+        );
+
+    }
+
+    @Test
+    public void updateUpdatedAtTest(){
+        ticketRepository.updateUpdatedAt(
+                Instant.now(),
+                2
+        );
+
+    }
+
+    @Test
+    public void deleteTicketByIdTest(){
+        ticketRepository.deleteTicketById(
+                3
+        );
     }
 
 }
