@@ -34,10 +34,6 @@ public class Ticket {
     @ManyToMany(mappedBy = "tickets")
     private List<User> users = new ArrayList<>();
 
-    //ask for input on this
-    @ManyToMany(mappedBy = "tickets")
-    private List<User> users = new ArrayList<>();
-
     @Column(name = "created_at")
     private Instant createdAt;
 
