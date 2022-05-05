@@ -46,7 +46,6 @@ class CommentRepositoryTest {
 
     }
 
-
     @Test
     public void printCommentById(){
 
@@ -56,5 +55,17 @@ class CommentRepositoryTest {
 
     }
 
+    @Test
+    public void updateCommentById() {
+        Comment comment = commentRepository.findByCommentId(Integer.parseInt ("1"));
+        comment.setContent("");
+        System.out.print("Comment has been updated." + comment);
+        commentRepository.save(comment);
+    }
 
+    @Test
+    public void deleteCommentById() {
+        commentRepository.deleteById(Integer.parseInt ("1")); //deletes comment ID #1
+        System.out.print("Comment has been Deleted.");
+    }
 }
