@@ -1,5 +1,6 @@
 package com.jpa.dajaniTestDB.entity;
 
+import com.jpa.dajaniTestDB.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -89,5 +90,6 @@ public class User {
     public List<Ticket> getTickets(){ return tickets;}
 
     public void setTickets(List<Ticket> tickets) {this.tickets = tickets;}
+
 
 }
