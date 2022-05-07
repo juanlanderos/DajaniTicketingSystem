@@ -1,5 +1,6 @@
 package com.jpa.dajaniTestDB.repository;
 
+import com.jpa.dajaniTestDB.entity.Comment;
 import com.jpa.dajaniTestDB.entity.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -40,6 +41,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true
     )
     int updateRequester( Integer user_id );
+
+    public List<User> findByAdmin(Integer role);
+
+    public List<User> findByAgent(Integer role);
+
+    public List<User> findByRequester(Integer role);
 
 
 }

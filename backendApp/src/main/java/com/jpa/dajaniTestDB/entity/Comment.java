@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
+
 @Builder
 @Entity
 @AllArgsConstructor
@@ -56,6 +58,19 @@ public class Comment {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    /* @Column
+    @Temporal(TemporalType.DATE)
+    Date publicationDate;
+
+    @Column
+    @Temporal(TemporalType.TIME)
+    Date publicationTime;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    Date creationDateTime;
+    */
+
     //------------------------Modifiers------------------------
     public Integer getCommentId() {
         return commentId;
@@ -101,4 +116,28 @@ public class Comment {
 
     public void setUser(User user) {this.user = user;}
 
+    /*public Date getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate() {
+        this.publicationDate = publicationDate;
+    }
+
+    public Date getPublicationTime() {
+        return publicationTime;
+    }
+
+    public void setPublicationTime() {
+        this.publicationTime = publicationTime;
+    }
+
+    public Date getCreationDateTime() {
+        return getCreationDateTime();
+    }
+
+    public void setCreationDateTime() {
+        this.creationDateTime = creationDateTime;
+    }
+     */
 }
