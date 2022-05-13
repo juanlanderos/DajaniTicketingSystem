@@ -61,4 +61,22 @@ class UserRepositoryTest {
         user.setRequester(0);
         userRepository.save(user);
     }
+
+    @Test
+    public void findByAdmin(){
+        List<User> users= userRepository.findByAdmin(1);
+        System.out.println(users);
+    }
+
+    @Test
+    public void findByAgent(){
+        List<User> users= userRepository.findByAgent(1);
+        System.out.println(users);
+    }
+
+    @Test
+    public void findByRequester(){
+        List<User> users= userRepository.findByRequester(1);
+        System.out.println(users);
+    }
 }
