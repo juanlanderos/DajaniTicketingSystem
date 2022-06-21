@@ -1,6 +1,5 @@
 package com.jpa.dajaniTestDB.entity;
 
-import com.jpa.dajaniTestDB.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
