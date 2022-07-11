@@ -4,7 +4,7 @@ pipeline {
         stage('compile') {
 	   steps {
                 echo 'compiling..'
-		git 'https://github.com/juanlanderos/shadowRepository'
+		git 'https://github.com/juanlanderos/DajaniTicketingSystem'
 		sh script: '/opt/maven/bin/mvn compile'
            }
         }
