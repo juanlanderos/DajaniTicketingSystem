@@ -7,5 +7,6 @@ pipeline {
 		git 'https://github.com/juanlanderos/DajaniTicketingSystem'
 		sh script: '/opt/maven/bin/mvn compile'
            }
-        }
+    	}
+    }
 }
