@@ -1,7 +1,8 @@
+/*
 package com.jpa.dajaniTestDB.service;
 
-import com.jpa.dajaniTestDB.entity.Ticket;
-import com.jpa.dajaniTestDB.repository.TicketRepository;
+import com.jpa.dajaniTestDB.entity.TicketEntity;
+import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +14,18 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     //POST methods
-    public Ticket saveTicket(Ticket ticket){
-        return ticketRepository.save(ticket);
+    public TicketEntity saveTicket(TicketEntity ticketEntity){
+        return ticketRepository.save(ticketEntity);
     }
 
-    //doesn't make sense to save a LIST of tickets in our case
+    //doesn't make sense to save a LIST of ticketEntities in our case
 
     //GET methods
-    public Ticket getTicketById(int id){
+    public TicketEntity getTicketById(int id){
         return ticketRepository.findById(id).orElse(null);
     }
 
-    public List<Ticket> getTicketsById(int id){
+    public List<TicketEntity> getTicketsById(int id){
         return ticketRepository.findAll();
     }
 
@@ -33,3 +34,4 @@ public class TicketService {
     //DELETE methods - get input before implementing
 
 }
+*/

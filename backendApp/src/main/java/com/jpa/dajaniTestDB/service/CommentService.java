@@ -1,7 +1,8 @@
+/*
 package com.jpa.dajaniTestDB.service;
 
 import com.jpa.dajaniTestDB.entity.Comment;
-import com.jpa.dajaniTestDB.repository.CommentRepository;
+import com.jpa.dajaniTestDB.service.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,3 +31,4 @@ public class CommentService {
         //return commentRepository.findByUser(id);
     //}
 }
+*/
