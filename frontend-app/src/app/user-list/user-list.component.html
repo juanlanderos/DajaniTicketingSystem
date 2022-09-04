@@ -1,0 +1,23 @@
+<h2 class="text-primary text-left px-5 py-5">Users</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-primary px-2 py-3">User ID</th>
+            <th class="text-primary px-2 py-3">Admin</th>
+            <th class="text-primary px-2 py-3">Agent</th>
+            <th class="text-primary px-2 py-3">Requester</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let user of users">
+            <td> {{user.userId}} </td>
+            <td> {{user.admin}} </td>
+            <td> {{user.agent}} </td>
+            <td> {{user.requester}} </td>
+            <td>
+                <button (click) = "updateUser(user.userId)" class = "btn btn-info" >Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+ 

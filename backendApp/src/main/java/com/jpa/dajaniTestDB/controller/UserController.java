@@ -1,11 +1,13 @@
 package com.jpa.dajaniTestDB.controller;
 
+import com.azure.core.exception.ResourceNotFoundException;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.h2.engine.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,5 +58,17 @@ public class UserController {
         UserModel tempUserModel = null;
         tempUserModel = userService.getUserById(id);
         return ResponseEntity.ok(tempUserModel);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserModel> updateUser(@PathVariable int id, @RequestBody UserModel updatedUser){
+        UserModel tempUser = userService.getUserById(id);
+
+        tempUser.setAdmin(updatedUser.getAdmin());
+        tempUser.setAgent(updatedUser.getAgent());
+        tempUser.setRequester(updatedUser.getRequester());
+
+        UserModel savedUser = userService.saveUser(tempUser);
+        return ResponseEntity.ok(savedUser);
     }
 }
