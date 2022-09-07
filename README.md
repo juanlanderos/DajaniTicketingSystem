@@ -10,9 +10,9 @@ Project is created with:
 * Java 11
 * Spring Boot 2.6.6
 * MySQL 8.0.26
-* Angular + Bootstrap
-* AWS Cognito
-* Microsoft Graph/Azure
+* Angular 14 + Bootstrap 5 CSS
+* AWS Cognito + Microsoft Azure Active Directory
+* AWS CodePipeline, CodeBuild, Elastic Beanstalk
 
 ## Timeline
 - Setup a CI/CD pipeline: Add Docker and other DevOps dependencies
@@ -25,7 +25,7 @@ Project is created with:
 - Maven as build tool
 
 ## Developer Instructions
-- add developer instructions
+- Security: replace oauth client ID and secret in application.properties with your client ID/secret
 
 ## Documentation
 - [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)

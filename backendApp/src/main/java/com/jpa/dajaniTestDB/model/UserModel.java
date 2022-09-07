@@ -12,4 +12,7 @@ public class UserModel {
     private Integer admin;
     private Integer agent;
     private Integer requester;
+    private String firstName;
+    private String lastName;
+    private String email;
 }

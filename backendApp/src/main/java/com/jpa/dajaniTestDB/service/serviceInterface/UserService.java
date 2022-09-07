@@ -10,4 +10,12 @@ public interface UserService {
     List<UserModel> getAllUsers();
 
     UserModel getUserById(int id);
+
+    List<UserModel> getUsersByFirstName(String firstName);
+
+    List<UserModel> getUsersByLastName(String lastName);
+
+    List<UserModel> getUsersByFullName(String firstName, String lastName);
+
+    UserModel getUserByEmail(String email);
 }

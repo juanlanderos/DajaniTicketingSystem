@@ -1,6 +1,7 @@
 package com.jpa.dajaniTestDB.service.repository;
 
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import org.h2.engine.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     //public List<User>
-
     //Update Admin
     @Modifying
     @Transactional
@@ -45,4 +45,13 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     public List<UserEntity> findByAgent(Integer role);
 
     public List<UserEntity> findByRequester(Integer role);
+
+    public List<UserEntity> findByFirstName(String firstName);
+
+    public List<UserEntity> findByLastName(String lastName);
+
+    public List<UserEntity> findByFullName(String firstName, String lastName);
+
+    public UserEntity findByEmail(String email);
+
 }

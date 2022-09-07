@@ -24,7 +24,7 @@ public class TicketEntity {
     )
     private Integer ticketId;
 
-    //wtf is this for
+    //what is this for???
 /*    @ManyToMany(mappedBy = "ticketEntities")
     private List<UserEntity> users = new ArrayList<>();*/
 

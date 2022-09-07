@@ -13,4 +13,6 @@ public interface TicketService {
     TicketModel updateTicket(Integer id, TicketModel ticketModel);
 
     TicketModel findByTicketId(Integer ticketId);
+
+    boolean deleteByTicketId(Integer ticketId);
 }

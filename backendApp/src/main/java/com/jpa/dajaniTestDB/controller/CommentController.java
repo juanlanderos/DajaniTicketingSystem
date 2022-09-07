@@ -51,7 +51,7 @@ public class CommentController {
     }
 
     public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
-        CommentModel commentModel = null;
+        CommentModel commentModel;
         commentModel = commentService.findByCommentId(id);
         return ResponseEntity.ok(commentModel);
     }

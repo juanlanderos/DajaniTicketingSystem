@@ -63,4 +63,10 @@ public class TicketServiceImpl implements TicketService {
         return ticketModel;
     }
 
+    @Override
+    public boolean deleteByTicketId(Integer ticketId) {
+        TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        ticketRepository.delete(ticketEntity);
+        return true;
+    }
 }

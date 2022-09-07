@@ -30,14 +30,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getAllUsers() {
         List<UserEntity> userEntities = userRepository.findAll();
-
         List<UserModel> userModels = userEntities
                 .stream()
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
                         tempUser.getAdmin(),
                         tempUser.getAgent(),
-                        tempUser.getRequester()))
+                        tempUser.getRequester(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getEmail()))
                 .collect(Collectors.toList());
         return userModels;
     }
@@ -50,7 +52,65 @@ public class UserServiceImpl implements UserService {
         return tempUserModel;
     }
 
-    //updating employees method? Come back to this later
+    @Override
+    public List<UserModel> getUsersByFirstName(String firstName) {
+        List<UserEntity> userEntities = userRepository.findByFirstName(firstName);
+        List<UserModel> userModels = userEntities
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getAdmin(),
+                        tempUser.getAgent(),
+                        tempUser.getRequester(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getEmail()))
+                .collect(Collectors.toList());
+        return userModels;
+    }
 
+    @Override
+    public List<UserModel> getUsersByLastName(String lastName) {
+        List<UserEntity> userEntities = userRepository.findByLastName(lastName);
+        List<UserModel> userModels = userEntities
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getAdmin(),
+                        tempUser.getAgent(),
+                        tempUser.getRequester(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getEmail()))
+                .collect(Collectors.toList());
+        return userModels;
+    }
+
+    @Override
+    public List<UserModel> getUsersByFullName(String firstName, String lastName){
+        List<UserEntity> userEntities = userRepository.findByFullName(firstName,lastName);
+        List<UserModel> userModels = userEntities
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getAdmin(),
+                        tempUser.getAgent(),
+                        tempUser.getRequester(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getEmail()))
+                .collect(Collectors.toList());
+        return userModels;
+    }
+
+    @Override
+    public UserModel getUserByEmail(String email) {
+        UserEntity tempUserEntity = userRepository.findByEmail(email);
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
+    }
+
+    //updating employees method? Come back to this later
 }
 

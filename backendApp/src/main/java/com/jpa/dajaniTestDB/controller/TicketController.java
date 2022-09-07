@@ -9,7 +9,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -47,7 +49,7 @@ public class TicketController {
     })
     @GetMapping("/tickets/{id}")
     public ResponseEntity<TicketModel> showTicketById(@PathVariable int id){
-        TicketModel tempTicketModel = null;
+        TicketModel tempTicketModel;
         tempTicketModel = ticketService.findByTicketId(id);
         return ResponseEntity.ok(tempTicketModel);
     }
@@ -75,10 +77,29 @@ public class TicketController {
                     description = "Not available",
                     content = @Content)
     })
+    @PostMapping("/tickets")
     public ResponseEntity<TicketModel> updateTicketStatus(@PathVariable Integer id,
                                                           @RequestBody TicketModel ticketModel){
         ticketModel = ticketService.updateTicket(id, ticketModel);
         return ResponseEntity.ok(ticketModel);
+    }
+
+    @Operation(summary = "Deletes ticket based on its ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Deletes ticket by finding its ID in serviceImpl"),
+            //content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not available",
+                    content = @Content)
+    })
+    @DeleteMapping("/tickets/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteTicketById(@PathVariable Integer id){
+        boolean deleted;
+        deleted = ticketService.deleteByTicketId(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", deleted);
+        return ResponseEntity.ok(response);
     }
 
 }

@@ -46,6 +46,15 @@ public class UserEntity {
     @Column(name = "requester")
     private Integer requester;
 
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
     //----------------Accessors and Modifiers Past this-----------
     public Integer getUserId() {
         return userId;
@@ -75,6 +84,18 @@ public class UserEntity {
         return requester;
     }
 
+    public String getFirstName(){
+        return firstName;
+    }
+
+    public String getLastName(){
+        return lastName;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
     public void setRequester(Integer requester) {
         this.requester = requester;
     }
@@ -86,6 +107,4 @@ public class UserEntity {
     public List<TicketEntity> getTicketEntities(){ return ticketEntities;}
 
     public void setTicketEntities(List<TicketEntity> ticketEntities) {this.ticketEntities = ticketEntities;}
-
-
 }
