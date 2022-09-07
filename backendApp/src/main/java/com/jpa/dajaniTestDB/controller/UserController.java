@@ -50,7 +50,7 @@ public class UserController {
     })
     @GetMapping("/users")
     public List<UserModel> getAllUsers(){
-        return userService.getAllUsers();
+        return userService.showAllUsers();
     }
 
     @Operation(summary = "Fetches all users stored in DB by their firstname")
@@ -62,8 +62,8 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users")
-    public List<UserModel> getUsersByFirstName(@PathVariable String firstName){
+    @GetMapping("/users/{firstName}")
+    public List<UserModel> getUsersByFirstName(@PathVariable("firstName") String firstName){
         return userService.getUsersByFirstName(firstName);
     }
 
@@ -76,8 +76,8 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users")
-    public List<UserModel> getUsersByLastName(@PathVariable String lastName){
+    @GetMapping("/users/{lastName}")
+    public List<UserModel> getUsersByLastName(@PathVariable("lastNname") String lastName){
         return userService.getUsersByLastName(lastName);
     }
 
@@ -90,8 +90,9 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users")
-    public List<UserModel> getUsersByFullName(@PathVariable String firstName, @PathVariable String lastName){
+    @GetMapping("/users/{fullName}")
+    public List<UserModel> getUsersByFullName(@PathVariable("firstname") String firstName,
+                                              @PathVariable("lastname") String lastName){
         return userService.getUsersByFullName(firstName, lastName);
     }
 
@@ -104,7 +105,7 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    public UserModel getUserByEmail(@PathVariable String email){
+    public UserModel getUserByEmail(@PathVariable("email") String email){
         return userService.getUserByEmail(email);
     }
 

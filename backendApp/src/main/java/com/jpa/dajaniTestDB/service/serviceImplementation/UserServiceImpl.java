@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserModel> getAllUsers() {
+    public List<UserModel> showAllUsers() {
         List<UserEntity> userEntities = userRepository.findAll();
         List<UserModel> userModels = userEntities
                 .stream()

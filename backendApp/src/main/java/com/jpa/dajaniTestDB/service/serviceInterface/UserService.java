@@ -7,7 +7,7 @@ public interface UserService {
 
     UserModel saveUser(UserModel userModel);
 
-    List<UserModel> getAllUsers();
+    List<UserModel> showAllUsers();
 
     UserModel getUserById(int id);
 

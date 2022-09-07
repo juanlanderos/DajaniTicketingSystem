@@ -77,7 +77,7 @@ public class TicketController {
                     description = "Not available",
                     content = @Content)
     })
-    @PostMapping("/tickets")
+    @PostMapping("/tickets/{id}")
     public ResponseEntity<TicketModel> updateTicketStatus(@PathVariable Integer id,
                                                           @RequestBody TicketModel ticketModel){
         ticketModel = ticketService.updateTicket(id, ticketModel);

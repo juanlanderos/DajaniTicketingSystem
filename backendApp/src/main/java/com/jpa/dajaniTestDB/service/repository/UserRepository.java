@@ -5,6 +5,7 @@ import org.h2.engine.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -50,8 +51,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     public List<UserEntity> findByLastName(String lastName);
 
-    public List<UserEntity> findByFullName(String firstName, String lastName);
+    @Query("select u from UserEntity u where (u.firstName = :firstName and u.lastName = :lastName)")
+    public List<UserEntity> findByFullName(@Param("firstName")String firstName,
+                                           @Param("lastName") String lastName);
 
     public UserEntity findByEmail(String email);
-
 }
