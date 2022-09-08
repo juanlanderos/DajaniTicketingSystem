@@ -62,7 +62,7 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users/{firstName}")
+    @GetMapping("/users/firstname/{firstName}")
     public List<UserModel> getUsersByFirstName(@PathVariable("firstName") String firstName){
         return userService.getUsersByFirstName(firstName);
     }
@@ -76,8 +76,8 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users/{lastName}")
-    public List<UserModel> getUsersByLastName(@PathVariable("lastNname") String lastName){
+    @GetMapping("/users/lastname/{lastName}")
+    public List<UserModel> getUsersByLastName(@PathVariable("lastName") String lastName){
         return userService.getUsersByLastName(lastName);
     }
 
@@ -90,9 +90,9 @@ public class UserController {
                     description = "Not available",
                     content = @Content)
     })
-    @GetMapping("/users/{fullName}")
-    public List<UserModel> getUsersByFullName(@PathVariable("firstname") String firstName,
-                                              @PathVariable("lastname") String lastName){
+    @GetMapping("/users/fullName/{firstName}/{lastName}")
+    public List<UserModel> getUsersByFullName(@PathVariable("firstName") String firstName,
+                                              @PathVariable("lastName") String lastName){
         return userService.getUsersByFullName(firstName, lastName);
     }
 
