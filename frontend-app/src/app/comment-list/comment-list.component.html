@@ -1,0 +1,20 @@
+<h2 class="text-primary text-left px-5 py-5">Comments</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-primary px-2 py-3">Comment ID</th>
+            <th class="text-primary px-2 py-3">Content</th>
+            <th class="text-primary px-2 py-3">Created At</th>
+            <th class="text-primary px-2 py-3">Updated At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let comment of comments">
+            <td>{{comment.commentId}}</td>
+            <td>{{comment.content}}</td>
+            <td>{{comment.createdAt}}</td>
+            <td>{{comment.updatedAt}}</td>
+        </tr>
+    </tbody>
+</table>
+ 

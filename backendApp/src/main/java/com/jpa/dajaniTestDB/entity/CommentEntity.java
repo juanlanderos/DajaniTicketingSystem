@@ -2,16 +2,14 @@ package com.jpa.dajaniTestDB.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
 
-@Builder
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-
+@Data
 @Table(name = "comment")
 public class CommentEntity {
 
@@ -52,10 +50,10 @@ public class CommentEntity {
     private UserEntity userEntity;
 
     @Column(name = "created_at")
-    private Instant createdAt;
+    private String createdAt;
 
     @Column(name = "updated_at")
-    private Instant updatedAt;
+    private String updatedAt;
 
     /* @Column
     @Temporal(TemporalType.DATE)
@@ -95,19 +93,19 @@ public class CommentEntity {
         this.content = content;
     }
 
-    public Instant getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Instant createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Instant getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Instant updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 

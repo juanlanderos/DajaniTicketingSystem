@@ -13,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class TicketModel {
     private Integer ticketId;
-    private Instant createdAt;
-    private Instant updatedAt;
-    private Instant completedAt;
+    private String createdAt;
+    private String updatedAt;
+    private String completedAt;
     private String statusId;
     private Integer assigneeId;
     private Integer requesterId;

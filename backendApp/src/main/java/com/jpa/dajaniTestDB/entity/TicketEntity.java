@@ -24,18 +24,18 @@ public class TicketEntity {
     )
     private Integer ticketId;
 
-    //what is this for???
-/*    @ManyToMany(mappedBy = "ticketEntities")
-    private List<UserEntity> users = new ArrayList<>();*/
+
+    @ManyToMany(mappedBy = "ticketEntities")
+    private List<UserEntity> users = new ArrayList<>();
 
     @Column(name = "created_at")
-    private Instant createdAt;
+    private String createdAt;
 
     @Column(name = "updated_at")
-    private Instant updatedAt;
+    private String updatedAt;
 
     @Column(name = "completed_at")
-    private Instant completedAt;
+    private String completedAt;
 
     @Column(name = "status_ID")
     private String statusId;
@@ -55,25 +55,25 @@ public class TicketEntity {
 
     public void setTicketId(Integer ticketId) {this.ticketId = ticketId;}
 
-    public Instant getCreatedAt() {return createdAt;}
+    public String getCreatedAt() {return createdAt;}
 
-    public void setCreatedAt(Instant createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Instant getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Instant updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Instant getCompletedAt() {
+    public String getCompletedAt() {
         return completedAt;
     }
 
-    public void setCompletedAt(Instant completedAt) {
+    public void setCompletedAt(String completedAt) {
         this.completedAt = completedAt;
     }
 

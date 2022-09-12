@@ -12,6 +12,6 @@ import java.time.Instant;
 public class CommentModel {
     private Integer commentId;
     private String content;
-    private Instant createdAt;
-    private Instant updatedAt;
+    private String createdAt;
+    private String updatedAt;
 }

@@ -1,0 +1,15 @@
+<div class="col-md-6 offset-3">
+<h3> Create Comment </h3>
+<form (ngSubmit) = "onSubmit()">
+
+    <div class="form-group">
+        <label> Content </label>
+        <input type="string" class = 'form-control' id="content"
+        [(ngModel)] = "comment.content" name="content" 
+        placeholder="Write here">
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+
+</form>
+</div>

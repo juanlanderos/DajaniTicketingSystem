@@ -23,7 +23,8 @@ public class CommentServiceImpl implements CommentService {
     public CommentModel createComment(CommentModel commentModel) {
         CommentEntity tempCommentEntity = new CommentEntity();
         BeanUtils.copyProperties(commentModel, tempCommentEntity);
-        return null;
+        commentRepository.save(tempCommentEntity);
+        return commentModel;
     }
 
     @Override

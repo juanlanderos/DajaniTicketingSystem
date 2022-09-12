@@ -3,6 +3,24 @@
     <form (ngSubmit) = "onSubmit()">
     
         <div class="form-group">
+            <label> First Name </label>
+            <input type="string" class="form-control" id="firstname"
+                [(ngModel)] = "user.firstName" name="firstname">
+        </div>
+
+        <div class="form-group">
+            <label> Last Name </label>
+            <input type="string" class="form-control" id="lastname"
+                [(ngModel)] = "user.lastName" name="lastname">
+        </div>
+
+        <div class="form-group">
+            <label> Email </label>
+            <input type="email" class="form-control" id="email"
+                [(ngModel)] = "user.email" name="email">
+        </div>
+
+        <div class="form-group">
             <label> Admin </label>
             <input type="number" class="form-control" id="admin"
                 [(ngModel)] = "user.admin" name="admin">

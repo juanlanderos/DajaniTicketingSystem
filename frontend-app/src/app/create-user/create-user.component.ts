@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class CreateUserComponent implements OnInit {
 
   user: User = new User();
+  chosenRole: String = "";
+
   constructor(private userService: UserService, 
     private router: Router) { }
 
@@ -28,8 +30,35 @@ export class CreateUserComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
+  changeRole(input: String){
+    switch(input) {
+      case "admin":
+        this.user.admin = 1;
+        this.user.agent = 0;
+        this.user.requester = 0;
+        break;
+      case "agent":
+        this.user.admin = 0;
+        this.user.agent = 1;
+        this.user.requester = 0;
+        break;
+      case "requester":
+        this.user.admin = 0;
+        this.user.agent = 0;
+        this.user.requester = 1;
+        break;
+      default:
+        this.user.admin = 0;
+        this.user.agent = 0;
+        this.user.requester = 0;
+        break;
+    } 
+  }
+
   onSubmit(){
     console.log(this.user);
+    console.log(this.chosenRole);
+    this.changeRole(this.chosenRole);
     this.saveUser();
   }
 
