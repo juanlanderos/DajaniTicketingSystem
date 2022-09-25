@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommentListComponent } from './comment-list/comment-list.component';
-import { CreateCommentComponent } from './create-comment/create-comment.component';
-import { CreateTicketComponent } from './create-ticket/create-ticket.component';
-import { CreateUserComponent } from './create-user/create-user.component';
-import { TicketListComponent } from './ticket-list/ticket-list.component';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { CommentListComponent } from './Components/comment-list/comment-list.component';
+import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
+import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
+import { CreateUserComponent } from './Components/create-user/create-user.component';
+import { TicketListComponent } from './Components/ticket-list/ticket-list.component';
+import { UpdateUserComponent } from './Components/update-user/update-user.component';
+import { UserListComponent } from './Components/user-list/user-list.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: "tickets", component: TicketListComponent},
   {path: "create-ticket", component: CreateTicketComponent},
   {path: "comments", component: CommentListComponent},
-  {path: "create-comment", component: CreateCommentComponent}
+  {path: "create-comment", component: CreateCommentComponent},
+  {path: "sign-in", component: SignInComponent}
 ];
 
 @NgModule({

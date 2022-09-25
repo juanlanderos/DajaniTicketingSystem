@@ -1,26 +1,28 @@
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
+<nav class="navbar navbar-expand-ld bg-primary navbar-dark">
+  <ul class="nav nav-tabs">
+    <li class="nav-item bg-white">
       <a routerLink="users" routerLinkActive="active" class="nav-link">User List</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item bg-white">
       <a routerLink="create-user" routerLinkActive="active" class="nav-link">Create User</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item bg-white">
       <a routerLink="tickets" routerLinkActive="active" class="nav-link">Ticket List</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item bg-white">
       <a routerLink="create-ticket" routerLinkActive="active" class="nav-link">Create Ticket</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item bg-white">
       <a routerLink="comments" routerLinkActive="active" class="nav-link">Comment List</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item bg-white">
       <a routerLink="create-comment" routerLinkActive="active" class="nav-link">Create Comment</a>
+    </li>
+    <li class ="nav-item bg-white">
+      <app-sign-in></app-sign-in>
     </li>
   </ul>
 </nav>
-
 
 <h1 class="text-center border-bottom">{{title}}</h1>
 <div class="container">

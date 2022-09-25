@@ -1,0 +1,27 @@
+<!--If user is not Authenticated, present a Sign In button
+<ng-container *ngIf="authenticator.route !== 'authenticated'">
+  <a href="https://dts.auth.us-west-1.amazoncognito.com/login?response_type=code&client_id=27bau4jfo0te7hcsf5ir1l3nph&redirect_uri=http://localhost:4200/users"
+  class = btn btn-primary>
+  Sign In
+  </a>
+</ng-container>
+-->
+
+
+<ng-container *ngIf="authenticator.route !== 'authenticated'">
+  <amplify-authenticator variation="modal">
+    <ng-template
+      amplifySlot="authenticated"
+      let-user="user"
+      let-signOut="signOut"
+    >
+      <h1>Welcome {{ user.username }}!</h1>
+      <button (click)="signOut()">Sign Out</button>
+    </ng-template>
+  </amplify-authenticator>
+</ng-container>
+
+<ng-container *ngIf="authenticator.route === 'authenticated'">
+    <h2>Welcome, {{ authenticator.user.username }}!</h2>
+    <button (click)="authenticator.signOut()">Sign Out</button>
+</ng-container>

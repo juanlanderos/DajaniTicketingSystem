@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { FormsModule } from '@angular/forms';
-import { UpdateUserComponent } from './update-user/update-user.component';
-import { TicketListComponent } from './ticket-list/ticket-list.component';
-import { CreateTicketComponent } from './create-ticket/create-ticket.component';
-import { CommentListComponent } from './comment-list/comment-list.component';
-import { CreateCommentComponent } from './create-comment/create-comment.component';
+//Components below
+import { UserListComponent } from './Components/user-list/user-list.component';
+import { CreateUserComponent } from './Components/create-user/create-user.component';
+import { UpdateUserComponent } from './Components/update-user/update-user.component';
+import { TicketListComponent } from './Components/ticket-list/ticket-list.component';
+import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
+import { CommentListComponent } from './Components/comment-list/comment-list.component';
+import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
+import { SignInComponent } from './Components/sign-in/sign-in.component';
+//AWS Amplify imports
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import { Amplify, Auth } from 'aws-amplify';
+import awsconfig from '../aws-exports';
+
+Amplify.configure(awsconfig);
+
 
 @NgModule({
   declarations: [
@@ -21,13 +30,15 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
     TicketListComponent,
     CreateTicketComponent,
     CommentListComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AmplifyAuthenticatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
