@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { CommentListComponent } from './Components/comment-list/comment-list.component';
 import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
 import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
   {path: "create-ticket", component: CreateTicketComponent},
   {path: "comments", component: CommentListComponent},
   {path: "create-comment", component: CreateCommentComponent},
-  {path: "sign-in", component: SignInComponent}
 ];
 
 @NgModule({

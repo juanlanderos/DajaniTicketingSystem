@@ -12,14 +12,6 @@ import { TicketListComponent } from './Components/ticket-list/ticket-list.compon
 import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
 import { CommentListComponent } from './Components/comment-list/comment-list.component';
 import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
-import { SignInComponent } from './Components/sign-in/sign-in.component';
-//AWS Amplify imports
-import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
-import { Amplify, Auth } from 'aws-amplify';
-import awsconfig from '../aws-exports';
-
-Amplify.configure(awsconfig);
-
 
 @NgModule({
   declarations: [
@@ -30,15 +22,13 @@ Amplify.configure(awsconfig);
     TicketListComponent,
     CreateTicketComponent,
     CommentListComponent,
-    CreateCommentComponent,
-    SignInComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AmplifyAuthenticatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
