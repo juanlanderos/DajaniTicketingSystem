@@ -7,6 +7,7 @@ import { CreateUserComponent } from './Components/create-user/create-user.compon
 import { TicketListComponent } from './Components/ticket-list/ticket-list.component';
 import { UpdateUserComponent } from './Components/update-user/update-user.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
+import { ProfileComponent } from './Components/profile/profile.component'
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "create-ticket", component: CreateTicketComponent},
   {path: "comments", component: CommentListComponent},
   {path: "create-comment", component: CreateCommentComponent},
+  {path: "profile", component: ProfileComponent}
 ];
 
 @NgModule({

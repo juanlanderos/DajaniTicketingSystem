@@ -14,6 +14,8 @@ import { TicketListComponent } from './Components/ticket-list/ticket-list.compon
 import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
 import { CommentListComponent } from './Components/comment-list/comment-list.component';
 import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 //Daniel Imports Below this
 
@@ -32,13 +34,15 @@ import { MatButtonModule } from '@angular/material/button';
     TicketListComponent,
     CreateTicketComponent,
     CommentListComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatIconModule,
     //Daniel Imports below here
     BrowserAnimationsModule,
     MatSidenavModule,
