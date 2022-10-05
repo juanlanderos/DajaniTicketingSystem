@@ -1,5 +1,3 @@
-@import '~@aws-amplify/ui-angular/theme.css';
-
 /* You can add global styles to this file, and also import other style files */
 .footer{
     position: relative;
@@ -10,3 +8,5 @@
     text-align: center;
     color: white;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
