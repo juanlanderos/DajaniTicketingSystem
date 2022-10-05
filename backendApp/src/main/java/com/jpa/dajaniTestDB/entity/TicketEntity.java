@@ -3,7 +3,6 @@ package com.jpa.dajaniTestDB.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class TicketEntity {
 
 
     @ManyToMany(mappedBy = "ticketEntities")
-    private List<UserEntity> users = new ArrayList<>();
+    private List<UserEntity> userEntityList = new ArrayList<>();
 
     @Column(name = "created_at")
     private String createdAt;
@@ -102,4 +101,8 @@ public class TicketEntity {
     public List<CommentEntity> getCommentEntityList() {return commentEntityList;}
 
     public void setCommentEntityList(List<CommentEntity> commentEntityList) {this.commentEntityList = commentEntityList;}
+
+    public List<UserEntity>getUsersEntityList(){
+        return userEntityList;
+    }
 }

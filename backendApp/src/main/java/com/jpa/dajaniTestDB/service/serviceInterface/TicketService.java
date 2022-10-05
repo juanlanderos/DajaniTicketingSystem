@@ -1,6 +1,7 @@
 package com.jpa.dajaniTestDB.service.serviceInterface;
 
 import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface TicketService {
     TicketModel findByTicketId(Integer ticketId);
 
     boolean deleteByTicketId(Integer ticketId);
+
+    List<UserModel> getAllUsersByTicketId(Integer ticketId);
 }

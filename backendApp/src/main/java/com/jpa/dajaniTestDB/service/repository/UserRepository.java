@@ -55,5 +55,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     public List<UserEntity> findByFullName(@Param("firstName")String firstName,
                                            @Param("lastName") String lastName);
 
+
     public UserEntity findByEmail(String email);
 }

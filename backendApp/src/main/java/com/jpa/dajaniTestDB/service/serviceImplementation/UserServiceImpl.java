@@ -1,5 +1,6 @@
 package com.jpa.dajaniTestDB.service.serviceImplementation;
 
+import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
@@ -7,6 +8,7 @@ import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,6 +105,7 @@ public class UserServiceImpl implements UserService {
         return userModels;
     }
 
+
     @Override
     public UserModel getUserByEmail(String email) {
         UserEntity tempUserEntity = userRepository.findByEmail(email);
@@ -110,7 +113,5 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(tempUserEntity, tempUserModel);
         return tempUserModel;
     }
-
-    //updating employees method? Come back to this later
 }
 

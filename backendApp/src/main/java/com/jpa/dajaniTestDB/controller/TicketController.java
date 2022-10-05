@@ -1,6 +1,7 @@
 package com.jpa.dajaniTestDB.controller;
 
 import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +54,20 @@ public class TicketController {
         TicketModel tempTicketModel;
         tempTicketModel = ticketService.findByTicketId(id);
         return ResponseEntity.ok(tempTicketModel);
+    }
+
+    @Operation(summary = "Fetches users from a ticket based on its ticketID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Fetched ticketEntity and associated Users from DB based on its ID"),
+            //content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not available",
+                    content = @Content)
+    })
+    @GetMapping("/tickets/{id}")
+    public List<UserModel> getUsersFromTicket(@PathVariable int id){
+        return ticketService.getAllUsersByTicketId(id);
     }
 
     @Operation(summary = "Saves a ticketEntity to DB")
@@ -101,5 +117,7 @@ public class TicketController {
         response.put("deleted", deleted);
         return ResponseEntity.ok(response);
     }
+
+
 
 }

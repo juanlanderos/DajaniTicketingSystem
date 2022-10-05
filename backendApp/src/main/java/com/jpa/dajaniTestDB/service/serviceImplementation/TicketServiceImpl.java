@@ -1,7 +1,9 @@
 package com.jpa.dajaniTestDB.service.serviceImplementation;
 
 import com.jpa.dajaniTestDB.entity.TicketEntity;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
 import org.springframework.beans.BeanUtils;
@@ -42,7 +44,8 @@ public class TicketServiceImpl implements TicketService {
                         tempTicket.getStatusId(),
                         tempTicket.getAssigneeId(),
                         tempTicket.getRequesterId(),
-                        tempTicket.getCommentEntityList()
+                        tempTicket.getCommentEntityList(),
+                        tempTicket.getUsersEntityList()
                 ))
                 .collect(Collectors.toList());
         return ticketModels;
@@ -68,5 +71,23 @@ public class TicketServiceImpl implements TicketService {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
         ticketRepository.delete(ticketEntity);
         return true;
+    }
+
+    @Override
+    public List<UserModel> getAllUsersByTicketId(Integer ticketId) {
+        TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        List<UserEntity> userEntities = ticketEntity.getUsersEntityList();
+        List<UserModel> userModels = userEntities
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getAdmin(),
+                        tempUser.getAgent(),
+                        tempUser.getRequester(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getEmail()))
+                .collect(Collectors.toList());
+        return userModels;
     }
 }

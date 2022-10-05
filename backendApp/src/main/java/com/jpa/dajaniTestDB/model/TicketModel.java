@@ -1,6 +1,7 @@
 package com.jpa.dajaniTestDB.model;
 
 import com.jpa.dajaniTestDB.entity.CommentEntity;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,5 @@ public class TicketModel {
     private Integer assigneeId;
     private Integer requesterId;
     private List<CommentEntity> commentEntityList;
+    private List<UserEntity> userEntityList;
 }
