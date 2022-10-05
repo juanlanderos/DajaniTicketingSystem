@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+
 //Components below
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
@@ -43,6 +45,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatButtonModule,
     //Daniel Imports above here
+    //Russell Import
+    AngularMaterialModule,
+    //Russell Import
   ],
   providers: [],
   bootstrap: [AppComponent]
