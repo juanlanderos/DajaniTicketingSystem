@@ -1,12 +1,42 @@
-@import '~@aws-amplify/ui-angular/theme.css';
-
 /* You can add global styles to this file, and also import other style files */
+
+/*Need to put image into top left corner of this*/
+.header {
+    background-color: #e71b1b;
+    text-align: center;
+    padding: 20px;
+  }
+
 .footer{
     position: relative;
     bottom:0;
     width:100%;
     height:70px;
-    background-color: blue;
+    background-color: rgb(33, 33, 229);
     text-align: center;
     color: white;
+    opacity: 0.6;
 }
+
+/*minimum border for tables of table, th, td elements.*/
+.table, th, td {
+    border: 1px solid;
+  }
+
+/* changes color of a link on hover. Might not work with
+current iteration of code.*/
+.topnav a:hover {
+    background-color: rgb(33, 33, 229);
+    color: rgb(35, 211, 91);
+  }
+
+  /*Less eye-searing color for webpage background.*/
+.body {
+    background-color: gray;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

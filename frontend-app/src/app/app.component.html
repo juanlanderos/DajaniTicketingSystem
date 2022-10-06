@@ -1,3 +1,6 @@
+<head>
+  <link rel="style" href="app.component.css">
+</head>
 <nav class="navbar navbar-expand-ld bg-primary navbar-dark">
   <ul class="nav nav-tabs">
     <li class="nav-item bg-white">
@@ -18,13 +21,36 @@
     <li class="nav-item bg-white">
       <a routerLink="create-comment" routerLinkActive="active" class="nav-link">Create Comment</a>
     </li>
+    <li class="nav-item bg-white">
+      <a routerLink="profile" routerLinkActive="active" class="nav-link">Profile</a>
+    </li>
   </ul>
 </nav>
 
-<h1 class="text-center border-bottom">{{title}}</h1>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class ="signout"><button mat-raised-button color="primary">Primary</button>
 </div>
+
+<h1 class="text-center border-bottom">{{title}}</h1>
+<!--Daniel Code Below here-->
+<mat-sidenav-container class="sidenav">
+  <mat-sidenav mode = "side" opened>
+    
+
+
+    <p><button mat-raised-button>View Active Tickets</button></p><!--Will show all tickets that are not resolved or closed, function will return all tickets that are in the active states, ie not resolved/closed-->
+    <p><button mat-raised-button><a routerLink="profile" routerLinkActive="active" class="nav-link">View My Tickets</a></button></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
+    <p><button mat-raised-button>View Unassigned Tickets</button></p><!--Will show all tickets that aren't yet assigned, function will return all tickets with an empty 'assigneeId' attribute-->
+    <p><button mat-raised-button><a routerLink="tickets" routerLinkActive="active" class="nav-link">View All Tickets</a></button></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
+                                                                                                                                     <!--This is the only one with a page currently^-->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+    <p></p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!--Daniel Code Above here-->
 
 <footer class ="footer">
   <div class ="container">
