@@ -8,6 +8,7 @@ import { TicketListComponent } from './Components/ticket-list/ticket-list.compon
 import { UpdateUserComponent } from './Components/update-user/update-user.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { ProfileComponent } from './Components/profile/profile.component'
+import { TicketViewComponent } from './Components/ticket-view/ticket-view.component'
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: "create-ticket", component: CreateTicketComponent},
   {path: "comments", component: CommentListComponent},
   {path: "create-comment", component: CreateCommentComponent},
-  {path: "profile", component: ProfileComponent}
+  {path: "profile", component: ProfileComponent},
+  {path: "ticket-view", component: TicketViewComponent}
 ];
 
 @NgModule({

@@ -16,6 +16,7 @@ import { CommentListComponent } from './Components/comment-list/comment-list.com
 import { CreateCommentComponent } from './Components/create-comment/create-comment.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
 
 //Daniel Imports Below this
 
@@ -35,7 +36,8 @@ import { MatButtonModule } from '@angular/material/button';
     CreateTicketComponent,
     CommentListComponent,
     CreateCommentComponent,
-    ProfileComponent
+    ProfileComponent,
+    TicketViewComponent
   ],
   imports: [
     BrowserModule,

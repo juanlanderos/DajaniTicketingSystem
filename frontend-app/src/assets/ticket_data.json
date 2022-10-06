@@ -1,0 +1,58 @@
+{
+	"data": [
+		{
+			"ticketId": 1, 
+			"createdAt": "10-1-2022", 
+			"updatedAt": "10-2-2022", 
+			"completedAt": "10-3-2022", 
+			"statusId": 1, 
+			"assigneeId": 1,
+		   	"requesterId": 1, 
+			"user": {
+				"userId": 101, 
+				"firstName": "John", 
+				"lastName": "Doe",
+				"email": "johndoe@gmail.com"
+			},
+			"admin": "Mark",
+			"agent": "Your_Agent", 
+			"requester": "Customer1"
+		},
+		{
+			"ticketId": 2, 
+			"createdAt": "10-4-2022", 
+			"updatedAt": "10-5-2022", 
+			"completedAt": "10-6-2022", 
+			"statusId": 1, 
+			"assigneeId": 1,
+		   	"requesterId": 1, 
+			"user": {
+				"userId": 102, 
+				"firstName": "Johnny", 
+				"lastName": "Appleseed",
+				"email": "johnnya@gmail.com"
+			},
+			"admin": "Mark",
+			"agent": "Your_agent", 
+			"requester": "Customer2"
+		},
+		{
+			"ticketId": 3, 
+			"createdAt": "10-6-2022", 
+			"updatedAt": "10-7-2022", 
+			"completedAt": "10-8-2022", 
+			"statusId": 1, 
+			"assigneeId": 1,
+		   	"requesterId": 1, 
+			"user": {
+				"userId": 103, 
+				"firstName": "Tony", 
+				"lastName": "Stark",
+				"email": "tonystark@gmail.com"
+			},
+			"admin": "Mark",
+			"agent": "Your_agent", 
+			"requester": "Customer3"
+		}
+	]
+}
