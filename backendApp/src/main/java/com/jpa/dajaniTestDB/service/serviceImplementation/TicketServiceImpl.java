@@ -5,7 +5,9 @@ import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
+import com.jpa.dajaniTestDB.service.repository.UserRepository;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
+import org.h2.engine.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +18,21 @@ import java.util.stream.Collectors;
 public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
+    private final UserRepository userRepository;
 
-    public TicketServiceImpl(TicketRepository ticketRepository){
+    public TicketServiceImpl(TicketRepository ticketRepository, UserRepository userRepository){
         this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
     }
 
-    @Override
+/*    @Override
     public TicketModel createTicket(TicketModel tempTicketModel){
         TicketEntity tempTicketEntity = new TicketEntity();
 
         BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
         ticketRepository.save(tempTicketEntity);
         return tempTicketModel;
-    }
+    }*/
 
     @Override
     public List<TicketModel> getAllTickets() {
@@ -42,20 +46,11 @@ public class TicketServiceImpl implements TicketService {
                         tempTicket.getUpdatedAt(),
                         tempTicket.getCompletedAt(),
                         tempTicket.getStatusId(),
-                        tempTicket.getAssigneeId(),
-                        tempTicket.getRequesterId(),
                         tempTicket.getCommentEntityList(),
-                        tempTicket.getUsersEntityList()
+                        tempTicket.getTicketUsers()
                 ))
                 .collect(Collectors.toList());
         return ticketModels;
-    }
-
-    @Override
-    public TicketModel updateTicket(Integer id, TicketModel ticketModel) {
-        TicketEntity ticketEntity = ticketRepository.findById(id).get();
-        ticketEntity.setUpdatedAt(ticketEntity.getUpdatedAt());
-        return ticketModel;
     }
 
     @Override
@@ -69,24 +64,47 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public boolean deleteByTicketId(Integer ticketId) {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        List<UserEntity> userEntityList = ticketEntity.getTicketUsers();
+
+        for( UserEntity i : userEntityList){
+            i.removeTicket(ticketEntity);
+        }
         ticketRepository.delete(ticketEntity);
         return true;
     }
 
     @Override
+    public TicketModel createNewTicket(Integer userId, TicketModel tempTicketModel) {
+        TicketEntity tempTicketEntity = new TicketEntity();
+        UserEntity tempUserEntity = userRepository.findById(userId).get();
+        BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
+        tempTicketEntity.getTicketUsers().add(tempUserEntity);
+        tempUserEntity.addTicket(tempTicketEntity);
+        ticketRepository.save(tempTicketEntity);
+        return tempTicketModel;
+    }
+
+    @Override
+    public void addUserToTicket(Integer userId, Integer ticketId) {
+        TicketEntity tempTicketEntity = ticketRepository.findById(ticketId).get();
+        UserEntity tempUserEntity = userRepository.findById(userId).get();
+        tempTicketEntity.getTicketUsers().add(tempUserEntity);
+        tempUserEntity.addTicket(tempTicketEntity);
+        ticketRepository.save(tempTicketEntity);
+    }
+
+    @Override
     public List<UserModel> getAllUsersByTicketId(Integer ticketId) {
-        TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
-        List<UserEntity> userEntities = ticketEntity.getUsersEntityList();
-        List<UserModel> userModels = userEntities
+        TicketEntity tempTicketEntity = ticketRepository.findById(ticketId).get();
+        List<UserEntity> userEntityList = tempTicketEntity.getTicketUsers();
+
+        List<UserModel> userModels = userEntityList
                 .stream()
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
-                        tempUser.getAdmin(),
-                        tempUser.getAgent(),
-                        tempUser.getRequester(),
-                        tempUser.getFirstName(),
-                        tempUser.getLastName(),
-                        tempUser.getEmail()))
+                        tempUser.getEmail(),
+                        tempUser.getTicketEntities()
+                ))
                 .collect(Collectors.toList());
         return userModels;
     }

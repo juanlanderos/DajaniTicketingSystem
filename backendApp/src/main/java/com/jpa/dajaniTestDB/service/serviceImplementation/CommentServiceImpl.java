@@ -41,28 +41,4 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
         return commentModels;
     }
-
-    @Override
-    public CommentModel updateCommentStatus(Integer id, CommentModel commentModel) {
-        CommentEntity tempCommentEntity
-                = commentRepository.findById(id).get();
-        tempCommentEntity.setCommentId(tempCommentEntity.getCommentId());
-        tempCommentEntity.setContent(tempCommentEntity.getContent());
-        tempCommentEntity.setCreatedAt(tempCommentEntity.getUpdatedAt());
-        tempCommentEntity.setUpdatedAt(tempCommentEntity.getCreatedAt());
-
-        commentRepository.save(tempCommentEntity);
-        return commentModel;
-    }
-
-
-    //not really sure if this is useful
-    @Override
-    public CommentModel findByCommentId(Integer commentId) {
-        CommentEntity commentEntity =
-                commentRepository.findById(commentId).get();
-        CommentModel commentModel = new CommentModel();
-        BeanUtils.copyProperties(commentEntity, commentModel);
-        return commentModel;
-    }
 }

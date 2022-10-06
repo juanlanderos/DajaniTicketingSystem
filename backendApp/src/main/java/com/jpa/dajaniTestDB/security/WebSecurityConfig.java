@@ -1,4 +1,5 @@
 
+
 package com.jpa.dajaniTestDB.security;
 
 import com.nimbusds.jose.shaded.json.JSONArray;
@@ -20,7 +21,8 @@ import java.util.stream.Collectors;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /* BAELDUNG EXAMPLE
+
+/* BAELDUNG EXAMPLE
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
-    }*/
+    }*//*
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -67,6 +70,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+
+
+*/
 /*    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -80,9 +86,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
-    }*/
+    }*//*
 
-/*    @Override
+
+*/
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
@@ -90,6 +98,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/oauth/token").permitAll().and()
                 .httpBasic();
-    }*/
+    }
+
 }
+
 

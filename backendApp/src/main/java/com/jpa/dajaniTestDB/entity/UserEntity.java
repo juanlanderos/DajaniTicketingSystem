@@ -1,12 +1,15 @@
 package com.jpa.dajaniTestDB.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
 @Entity
 @Data
 @Table(name = "user")
@@ -26,7 +29,8 @@ public class UserEntity {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.LAZY)
+            //cascade = { CascadeType.ALL })
     @JoinTable(
             name = "user_ticket",
             joinColumns = { @JoinColumn(name = "user_id") },
@@ -34,28 +38,32 @@ public class UserEntity {
     )
     private List<TicketEntity> ticketEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userEntity")
-    private List<CommentEntity> commentEntityList = new ArrayList<>();
-
-    @Column(name = "admin")
-    private Integer admin;
-
-    @Column(name = "agent")
-    private Integer agent;
-
-    @Column(name = "requester")
-    private Integer requester;
-
-    @Column(name = "firstName")
-    private String firstName;
-
-    @Column(name = "lastName")
-    private String lastName;
-
     @Column(name = "email")
     private String email;
 
     //----------------Accessors and Modifiers Past this-----------
+
+    public void addTicket(TicketEntity ticketEntity){
+        this.ticketEntities.add(ticketEntity);
+        ticketEntity.getTicketUsers().add(this);
+    }
+
+/*
+    public void removeTicket(int ticketId){
+        TicketEntity ticketEntity = this.ticketEntities.stream()
+                .filter(t -> t.getTicketId() == ticketId).findFirst().orElse(null);
+
+        if(ticketEntity != null){
+            this.ticketEntities.remove(ticketEntity);
+            ticketEntity.getTicketUsers().remove(this);
+        }
+    }
+*/
+
+    public void removeTicket(TicketEntity ticketEntity){
+        ticketEntities.remove(ticketEntity);
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -64,47 +72,9 @@ public class UserEntity {
         this.userId = userId;
     }
 
-    public Integer getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Integer admin) {
-        this.admin = admin;
-    }
-
-    public Integer getAgent() {
-        return agent;
-    }
-
-    public void setAgent(Integer agent) {
-        this.agent = agent;
-    }
-
-    public Integer getRequester() {
-        return requester;
-    }
-
-    public String getFirstName(){
-        return firstName;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
     public String getEmail(){
         return email;
     }
-
-    public void setRequester(Integer requester) {
-        this.requester = requester;
-    }
-
-    public List<CommentEntity> getCommentEntityList() {return commentEntityList;}
-
-    public void setCommentEntityList(List<CommentEntity> commentEntityList) {this.commentEntityList = commentEntityList;}
-
-    public List<TicketEntity> getTicketEntities(){ return ticketEntities;}
 
     public void setTicketEntities(List<TicketEntity> ticketEntities) {this.ticketEntities = ticketEntities;}
 }

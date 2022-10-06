@@ -1,11 +1,17 @@
 package com.jpa.dajaniTestDB.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import org.h2.engine.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "ticketId")
 @Data
 @Entity
 @Table(name = "ticket")
@@ -23,10 +29,6 @@ public class TicketEntity {
     )
     private Integer ticketId;
 
-
-    @ManyToMany(mappedBy = "ticketEntities")
-    private List<UserEntity> userEntityList = new ArrayList<>();
-
     @Column(name = "created_at")
     private String createdAt;
 
@@ -39,20 +41,22 @@ public class TicketEntity {
     @Column(name = "status_ID")
     private String statusId;
 
-    @Column(name = "assignee_ID")
-    private Integer assigneeId;
-
-    @Column(name = "requester_ID")
-    private Integer requesterId;
-
     @OneToMany(mappedBy = "ticketEntity")
     private List<CommentEntity> commentEntityList = new ArrayList<>();
 
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            mappedBy = "ticketEntities")
+            //cascade = { CascadeType.DETACH })
+    private List<UserEntity> ticketUsers = new ArrayList<>();
+
 //------------------Modifiers Past This Point ----------------------------
 
-    public Integer getTicketId() {return ticketId;}
+/*    public List<UserEntity> getUserEntityList(){
+        return ticketUsers;
+    }*/
 
-    public void setTicketId(Integer ticketId) {this.ticketId = ticketId;}
+    public Integer getTicketId() {return ticketId;}
 
     public String getCreatedAt() {return createdAt;}
 
@@ -84,25 +88,7 @@ public class TicketEntity {
         this.statusId = statusId;
     }
 
-    public Integer getAssigneeId() {
-        return assigneeId;
-    }
-
-    public void setAssigneeId(Integer assigneeId) {this.assigneeId = assigneeId;}
-
-    public Integer getRequesterId() {
-        return requesterId;
-    }
-
-    public void setRequesterId(Integer requesterId) {
-        this.requesterId = requesterId;
-    }
-
     public List<CommentEntity> getCommentEntityList() {return commentEntityList;}
 
     public void setCommentEntityList(List<CommentEntity> commentEntityList) {this.commentEntityList = commentEntityList;}
-
-    public List<UserEntity>getUsersEntityList(){
-        return userEntityList;
-    }
 }

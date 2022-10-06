@@ -1,3 +1,4 @@
+/*
 package com.jpa.dajaniTestDB.security;
 
 import org.springframework.context.annotation.Configuration;
@@ -11,3 +12,4 @@ public class CognitoWebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
     }
 }
+*/

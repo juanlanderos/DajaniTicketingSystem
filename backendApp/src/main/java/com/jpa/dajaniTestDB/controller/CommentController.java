@@ -50,10 +50,10 @@ public class CommentController {
         return commentService.createComment(commentModel);
     }
 
-    public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
+    /*public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
         CommentModel commentModel;
         commentModel = commentService.findByCommentId(id);
         return ResponseEntity.ok(commentModel);
-    }
+    }*/
 
 }

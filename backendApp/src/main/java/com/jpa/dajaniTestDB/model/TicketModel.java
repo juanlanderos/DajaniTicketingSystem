@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
 import java.util.List;
 
 @Data
@@ -18,8 +17,6 @@ public class TicketModel {
     private String updatedAt;
     private String completedAt;
     private String statusId;
-    private Integer assigneeId;
-    private Integer requesterId;
     private List<CommentEntity> commentEntityList;
     private List<UserEntity> userEntityList;
 }
