@@ -38,6 +38,9 @@ public class UserEntity {
     )
     private List<TicketEntity> ticketEntities = new ArrayList<>();
 
+    @OneToMany(mappedBy = "userEntity")
+    private List<CommentEntity> commentEntityList = new ArrayList<>();
+
     @Column(name = "email")
     private String email;
 
@@ -47,18 +50,6 @@ public class UserEntity {
         this.ticketEntities.add(ticketEntity);
         ticketEntity.getTicketUsers().add(this);
     }
-
-/*
-    public void removeTicket(int ticketId){
-        TicketEntity ticketEntity = this.ticketEntities.stream()
-                .filter(t -> t.getTicketId() == ticketId).findFirst().orElse(null);
-
-        if(ticketEntity != null){
-            this.ticketEntities.remove(ticketEntity);
-            ticketEntity.getTicketUsers().remove(this);
-        }
-    }
-*/
 
     public void removeTicket(TicketEntity ticketEntity){
         ticketEntities.remove(ticketEntity);

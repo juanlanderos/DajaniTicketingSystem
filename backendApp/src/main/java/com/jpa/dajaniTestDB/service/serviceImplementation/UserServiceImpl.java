@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
                         tempUser.getEmail(),
+                        tempUser.getCommentEntityList(),
                         tempUser.getTicketEntities())
                         )
                 .collect(Collectors.toList());

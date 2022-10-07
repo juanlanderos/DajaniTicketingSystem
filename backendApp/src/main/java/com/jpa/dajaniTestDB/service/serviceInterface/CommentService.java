@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CommentService {
 
-    CommentModel createComment(CommentModel commentModel);
+    CommentModel createComment(CommentModel commentModel, Integer ticketId, Integer userId);
 
     List<CommentModel> getAllComments();
 }

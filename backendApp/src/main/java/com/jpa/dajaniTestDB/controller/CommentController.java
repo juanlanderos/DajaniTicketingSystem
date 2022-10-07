@@ -45,12 +45,14 @@ public class CommentController {
                     description = "Not available",
                     content = @Content)
     })
-    @PostMapping("/comments")
-    public CommentModel createComment(@RequestBody CommentModel commentModel){
-        return commentService.createComment(commentModel);
+    @PostMapping("/comments/{ticketId}/{userId}")
+    public CommentModel createComment(@RequestBody CommentModel commentModel, @PathVariable Integer ticketId,
+                                      @PathVariable Integer userId){
+
+        return commentService.createComment(commentModel, ticketId, userId);
     }
 
-    /*public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
+/*    public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
         CommentModel commentModel;
         commentModel = commentService.findByCommentId(id);
         return ResponseEntity.ok(commentModel);

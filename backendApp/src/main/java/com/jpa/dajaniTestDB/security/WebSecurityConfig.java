@@ -36,10 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
-    }*//*
+    }*/
 
-
-    @Override
+/*    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(a -> a
@@ -68,11 +67,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
             return mappedAuthorities;
         };
-    }
+    }*/
 
 
+  //USE THIS FOR TESTING ENDPOINTS
 
-*/
 /*    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -86,10 +85,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
-    }*//*
+    }*/
 
-
-*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

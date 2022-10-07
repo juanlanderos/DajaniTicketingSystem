@@ -41,9 +41,11 @@ public class TicketEntity {
     @Column(name = "status_ID")
     private String statusId;
 
-    @OneToMany(mappedBy = "ticketEntity")
+    //child in relationship with commentEntity
+    @OneToMany(
+            mappedBy = "ticketEntity",
+            orphanRemoval = true)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
-
 
     @ManyToMany(fetch = FetchType.LAZY,
             mappedBy = "ticketEntities")

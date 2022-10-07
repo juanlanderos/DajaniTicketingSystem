@@ -1,5 +1,6 @@
 package com.jpa.dajaniTestDB.controller;
 
+import com.jpa.dajaniTestDB.model.CommentModel;
 import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
@@ -68,6 +69,20 @@ public class TicketController {
     @GetMapping("/ticketUsers/{id}")
     public List<UserModel> getUsersFromTicket(@PathVariable int id){
         return ticketService.getAllUsersByTicketId(id);
+    }
+
+    @Operation(summary = "Fetches COMMENTS from a ticket based on its ticketID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Fetched ticketEntity and associated comments from DB based on its ID"),
+            //content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "404",
+                    description = "Not available",
+                    content = @Content)
+    })
+    @GetMapping("/ticket-comments/{id}")
+    public List<CommentModel> getAllCommentsByTicketId(@PathVariable int id){
+        return ticketService.getAllCommentsByTicketId(id);
     }
 
     @Operation(summary = "Creates a new ticketEntity; saves to DB")

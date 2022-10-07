@@ -1,7 +1,9 @@
 package com.jpa.dajaniTestDB.service.serviceImplementation;
 
+import com.jpa.dajaniTestDB.entity.CommentEntity;
 import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import com.jpa.dajaniTestDB.model.CommentModel;
 import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
@@ -65,12 +67,33 @@ public class TicketServiceImpl implements TicketService {
     public boolean deleteByTicketId(Integer ticketId) {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
         List<UserEntity> userEntityList = ticketEntity.getTicketUsers();
-
-        for( UserEntity i : userEntityList){
-            i.removeTicket(ticketEntity);
+        if(ticketEntity != null){
+            for( UserEntity i : userEntityList){
+                i.removeTicket(ticketEntity);
+            }
+            ticketRepository.delete(ticketEntity);
+            return true;
         }
-        ticketRepository.delete(ticketEntity);
-        return true;
+        else{
+            System.err.println("User does not exist");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeUserFromTicket(Integer ticketId, Integer userId){
+        TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        List<UserEntity> userEntityList = ticketEntity.getTicketUsers();
+        UserEntity removedUser = userRepository.findById(userId).get();
+        if(removedUser != null){
+            userEntityList.remove(removedUser);
+            removedUser.removeTicket(ticketEntity);
+            return true;
+        }
+        else{
+            System.err.println("User does not exist");
+            return false;
+        }
     }
 
     @Override
@@ -103,9 +126,28 @@ public class TicketServiceImpl implements TicketService {
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
                         tempUser.getEmail(),
+                        tempUser.getCommentEntityList(),
                         tempUser.getTicketEntities()
                 ))
                 .collect(Collectors.toList());
         return userModels;
+    }
+
+    @Override
+    public List<CommentModel> getAllCommentsByTicketId(Integer ticketId) {
+        TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        List<CommentEntity> commentEntityList = ticketEntity.getCommentEntityList();
+        List<CommentModel> commentModels = commentEntityList
+                .stream()
+                .map(com -> new CommentModel(
+                        com.getCommentId(),
+                        com.getTicketEntity(),
+                        com.getUserEntity(),
+                        com.getContent(),
+                        com.getCreatedAt(),
+                        com.getUpdatedAt()
+                ))
+                .collect(Collectors.toList());
+        return commentModels;
     }
 }

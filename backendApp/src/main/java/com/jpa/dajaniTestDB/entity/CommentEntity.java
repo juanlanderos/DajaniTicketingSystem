@@ -1,12 +1,8 @@
 package com.jpa.dajaniTestDB.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.Instant;
 
 @Entity
 @Data
@@ -28,6 +24,7 @@ public class CommentEntity {
     @Column(name = "comment_id", nullable = false)
     private Integer commentId;
 
+    //owner in relationship to ticketEntity
     @ManyToOne
     @JoinColumn(
             name = "ticket_id",
@@ -35,11 +32,6 @@ public class CommentEntity {
             nullable = true
     )
     private TicketEntity ticketEntity;
-
-
-    @Lob
-    @Column(name = "content")
-    private String content;
 
     @ManyToOne
     @JoinColumn(
@@ -49,24 +41,15 @@ public class CommentEntity {
     )
     private UserEntity userEntity;
 
+    @Lob
+    @Column(name = "content")
+    private String content;
+
     @Column(name = "created_at")
     private String createdAt;
 
     @Column(name = "updated_at")
     private String updatedAt;
-
-    /* @Column
-    @Temporal(TemporalType.DATE)
-    Date publicationDate;
-
-    @Column
-    @Temporal(TemporalType.TIME)
-    Date publicationTime;
-
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    Date creationDateTime;
-    */
 
     //------------------------Modifiers------------------------
     public Integer getCommentId() {
@@ -112,29 +95,4 @@ public class CommentEntity {
     public UserEntity getUserEntity() {return userEntity;}
 
     public void setUserEntity(UserEntity userEntity) {this.userEntity = userEntity;}
-
-    /*public Date getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate() {
-        this.publicationDate = publicationDate;
-    }
-
-    public Date getPublicationTime() {
-        return publicationTime;
-    }
-
-    public void setPublicationTime() {
-        this.publicationTime = publicationTime;
-    }
-
-    public Date getCreationDateTime() {
-        return getCreationDateTime();
-    }
-
-    public void setCreationDateTime() {
-        this.creationDateTime = creationDateTime;
-    }
-     */
 }
