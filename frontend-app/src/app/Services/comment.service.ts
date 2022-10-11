@@ -16,8 +16,9 @@ export class CommentService {
     return this.httpClient.get<Comment[]>(this.baseUrl);
   }
 
-  createComment(comment: Comment): Observable<Object>{
-    return this.httpClient.post(`${this.baseUrl}`, comment);
+  createComment(comment: Comment, ticketId: number,
+                userId: number): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/${ticketId}/${userId}`, comment);
   }
 
 }
