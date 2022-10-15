@@ -11,6 +11,8 @@ import { TicketService } from '../../Services/ticket.service';
 export class CreateTicketComponent implements OnInit {
 
   ticket: Ticket = new Ticket();
+  userId!: number;
+
   constructor(private ticketService: TicketService,
     private router: Router) { }
 
@@ -18,7 +20,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   saveTicket(){
-    this.ticketService.createTicket(this.ticket).subscribe( data => {
+    this.ticketService.createTicket(this.userId,this.ticket).subscribe( data => {
       console.log(data);
       this.goToTicketList();
     }, error => console.log(error));

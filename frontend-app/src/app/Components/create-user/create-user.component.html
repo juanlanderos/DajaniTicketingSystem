@@ -3,34 +3,11 @@
 <form (ngSubmit) = "onSubmit()">
 
     <div class="form-group pt-1">
-        <label> First Name </label>
-        <input type="string" class="form-control" id="firstname"
-            [(ngModel)] = "user.firstName" name="firstname">
-    </div>
-
-    <div class="form-group pt-1">
-        <label> Last Name </label>
-        <input type="string" class="form-control" id="lastname"
-            [(ngModel)] = "user.lastName" name="lastname">
-    </div>
-
-    <div class="form-group pt-1">
         <label> Email </label>
         <input type="email" class="form-control" id="email"
             [(ngModel)] = "user.email" name="email">
     </div>
 
-    <div class="form-group pt-1 pb-3" name="userRole">
-        <label> Roles </label>
-        <div class="">
-            <select id="userRoleSelect" name="userRoleSelect" [(ngModel)] = "chosenRole" class="px-5">
-                <option selected disabled>Select Role</option>
-                <option value="admin" name="admin">Admin</option>
-                <option value="agent" name="agent">Agent</option>
-                <option value="requester" name="requester">Requester</option>
-            </select>
-        </div>
-    </div>
 
     <button class="btn btn-success" type="submit">Submit</button>
 

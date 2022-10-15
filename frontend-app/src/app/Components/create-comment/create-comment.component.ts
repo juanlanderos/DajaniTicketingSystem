@@ -11,6 +11,8 @@ import { CommentService } from '../../Services/comment.service';
 export class CreateCommentComponent implements OnInit {
 
   comment: Comment = new Comment();
+  ticketId!: number;
+  userId!: number;
 
   constructor(private commentService: CommentService,
     private router: Router) { }
@@ -18,11 +20,11 @@ export class CreateCommentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveComment(){
-    this.commentService.createComment(this.comment).subscribe( data => {
-      this.goToCommentList();
-    }, error => console.log(error));
-  }
+ saveComment(){
+     this.commentService.createComment(this.comment, this.ticketId, this.userId).subscribe( data => {
+     this.goToCommentList();
+  }, error => console.log(error));
+ }
 
   goToCommentList(){
     this.router.navigate(['/comments']);

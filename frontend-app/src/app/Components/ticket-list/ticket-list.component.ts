@@ -32,7 +32,7 @@ export class TicketListComponent implements OnInit {
   */ //REMOVE WHEN DB IS OFFICIALLY LINKED. TEMPORARY
   private getTickets(){
     this.ticketService.getTicketsList().subscribe(data => {
-      this.tickets = data.data
+      this.tickets = data;
     });
   }
 

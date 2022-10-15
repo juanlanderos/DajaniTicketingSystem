@@ -1,17 +1,17 @@
 <h2 class="text-primary text-left px-5 py-5">Tickets</h2>
 
-<!--Russell code-->
+<!--Russell code
 <div>
     <mat-form-field appearance="outline">
     <mat-label> Status Filter </mat-label>
     <mat-select multiple [(value)]="selectedstatuses">
-      <!-- <mat-select-trigger> {{namedTrigger(this.selectedYearLevels, this.yearLevels)}} </mat-select-trigger> -->
+       <mat-select-trigger> {{namedTrigger(this.selectedYearLevels, this.yearLevels)}} </mat-select-trigger> 
       <mat-select-trigger> {{defaultTrigger(this.selectedstatuses, this.statuses)}} </mat-select-trigger>
       <mat-option *ngFor="let status of statuses" [value]="status"> {{status}} </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
-<!--Russell code-->
+Russell code-->
 
 <table class="table table-striped">
     <thead>
@@ -32,8 +32,6 @@
             <td> {{ticket.updatedAt}}</td>
             <td> {{ticket.completedAt}} </td>
             <td> {{ticket.statusId}} </td>
-            <td> {{ticket.assigneeId}} </td>
-            <td> {{ticket.requesterId}} </td>
         </tr>
     </tbody>
 </table>

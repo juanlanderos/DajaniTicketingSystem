@@ -38,8 +38,8 @@ export class TicketService {
     exist before creating a ticket. Pass in a userID that corresponds to ticket.
     Also takes a Ticket entity
   */
-  creatTicket(id: number, ticket: Ticket): Observable<Object>{
-    return this.httpClient.post(`${this.baseUrl}/${id}`, ticket);
+  createTicket(userId: number, ticket: Ticket): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/${userId}`, ticket);
   }
 
   /*
