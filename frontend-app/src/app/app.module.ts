@@ -9,6 +9,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 //Components below
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
+import { UpdateUserComponent } from './Components/update-user/update-user.component';
 import { TicketListComponent } from './Components/ticket-list/ticket-list.component';
 import { CreateTicketComponent } from './Components/create-ticket/create-ticket.component';
 import { CommentListComponent } from './Components/comment-list/comment-list.component';
@@ -30,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     UserListComponent,
     CreateUserComponent,
+    UpdateUserComponent,
     TicketListComponent,
     CreateTicketComponent,
     CommentListComponent,

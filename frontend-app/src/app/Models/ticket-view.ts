@@ -11,4 +11,5 @@ export class TicketView {
     title!: string; //title of ticket
     description!: string; //ticket issue description
     ticketState!: string; //open, closed, resolved...
+    admin!: string;
 }

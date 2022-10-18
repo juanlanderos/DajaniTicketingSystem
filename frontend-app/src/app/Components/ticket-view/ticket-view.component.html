@@ -1,92 +1,134 @@
+<div class="container" *ngIf="ticket">
 
-<h2 class="text-primary text-left px-5 py-5">Ticket View</h2>
-<h3> Current Ticket </h3>
-<table class="container">
-    <thead>
-        <tr>
-            <th class="text-primary px-2 py-3">Ticket ID</th>
-            <th class="text-primary px-2 py-3">Created At</th>
-            <th class="text-primary px-2 py-3">Updated At</th>
-            <th class="text-primary px-2 py-3">Completed At</th>
-            <th class="text-primary px-2 py-3">Status ID</th>
-            <th class="text-primary px-2 py-3">Assignee ID</th>
-            <th class="text-primary px-2 py-3">Requester ID</th>
-        </tr>
-    </thead>
-</table>
+	
 
-<style>
-    input{
-        padding: 1px;
-        border-radius: 4px;
-    }
-</style>
+	<!-- Breakpoint to seperate itself from the ticket (like a carriage retrun)-->
+	<br><br> 
 
-<!---->
+		<!-- Each "ticket-detail-row" contains two input fields.
+		1. input fields are readonly.
+		2. Associated data was bound using 'property binding'.
+		   [value]="ticket.ticketId"
+		3. matInput used for custom styling
+		4. Styles can be viewed in css file
+		5. Flex used for layout
+	-->
 
-<div class="float-container">
+	<h2>
+		<span class="underlined">Details for ticket #{{ ticket.ticketId }}</span>
+	</h2>
+	<div style="margin: auto; width: 500; height: 500; background-color: rgb(233, 235, 235); padding: 30px;"> <!-- Defines style background/boxes -->
+	
+		<!-- Displays User Details -->
+		<div *ngIf="ticket.user">
+			<h3>
+				<span class="underlined">User Details</span>
+			</h3>
+			<div class="ticket-detail-row">
+				<div class="ticket-col-info">
+					<mat-label class="label">Full Name:</mat-label>
+					<mat-form-field class="flex-1" appearance="outline">
+						<input type="text" matInput readonly [value]="ticket.user.firstName + ' ' + ticket.user.lastName">
+					</mat-form-field>
+				</div>
+		
+				<div class="ticket-col-info">
+					<mat-label class="label">Email:</mat-label>
+					<mat-form-field class="flex-1" appearance="outline">
+						<input type="text" matInput readonly [value]="ticket.user.email">
+					</mat-form-field>
+				</div>
+					<div class="ticket-col-info">
+						<mat-label class="label">Phone Number:</mat-label>
+						<mat-form-field class="flex-1" appearance="outline">
+							<input type="text" matInput readonly [value]="ticket.user.phone">
+						</mat-form-field>
+					</div>
+			</div>
+		</div>
+		<br><br>
+		<h3>
+			<span class="underlined">Ticket Info</span>
+		</h3>
+		<div class="ticket-details">
+		<div class="ticket-detail-row">
+			<div class="ticket-col-info">
+				<mat-label class="label">Ticket Number:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.ticketDept + ticket.ticketId"> 
+					
+				</mat-form-field>
+			</div>
+	
+			<div class="ticket-col-info">
+				<mat-label class="label">Title:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.title">
+				</mat-form-field>
+			</div>
+		</div>
 
-    <div class="float-child">
-      <div class="green">Edit</div>
-    </div>
-    
-    <div class="float-child">
-      <div class="blue">Comment</div>
-    </div>
+		<div class="ticket-detail-row">
+			<div class="ticket-col-info">
+				<mat-label class="label">Requester Id:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.requesterId">
+				</mat-form-field>
+			</div>
+	
+			<div class="ticket-col-info">
+				<mat-label class="label">Admin:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.admin">
+				</mat-form-field>
+			</div>
+		</div>
 
-    <div class="float-child">
-        <div class="blue">Assign</div>
-      </div>
+		<div class="ticket-detail-row">
+			<div class="ticket-col-info">
+				<mat-label class="label">Date Created:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.createdAt">
+				</mat-form-field>
+			</div>
+	
+			<div class="ticket-col-info">
+				<mat-label class="label">Completed At:</mat-label>
+				<mat-form-field class="flex-1" appearance="outline">
+					<input type="text" matInput readonly [value]="ticket.completedAt">
+				</mat-form-field>
+			</div>
+		</div>
+		<br>
+		<br>
 
-      <div class="float-child">
-        <div class="blue">Status - Pending</div>
-      </div>
-    
-  </div>
-<!---->
-
-
-<!-- Breakpoint to seperate itself from the ticket (like a carriage retrun)-->
-    <div>
-    <br><br> 
-    <div>
-
-<body>
-    <div style="margin: auto; width: 500; height: 500; background-color: rgb(219, 224, 226); padding: 10px;"> <!-- Defines style background/boxes -->
-
-    <label for="title">Title:</label>
-    <input type="text" id="title"
-    title ="title" cols="50" placeholder=" Please help with task.">
-    <br><br>
-
-    <p>
-    <label for="text area">Description:</label></p>
-    <textarea id="description" 
-    name="description" rows="4" cols="50">Having an issue allocating resources within between certain classes. Please help.</textarea>
-    <br><br>
-    <p>
-    
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName"
-    firstName="firstName" placeholder=" John">
-    <br><br>
-    
-    <!-- How it will most likely be written. 
-    <div>
-    <label for="">firstName:</label>
-    <input type="text" id="firstName" name="" readonly>
-    <div>
-    -->
-    
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName"
-    firstName="lastName" placeholder=" Doe">
-    <br><br>
-
-    <label for="ticketId">Ticket ID:</label>
-    <input type="text" id="ticketId"
-    firstName="ticketId" placeholder=" NCS100251">
-    <br><br>
-    
+		<!---->
+	<div class="float-container">
+		<div class="float-child">
+		  <div class="edit">Edit</div>
+		</div>
+		
+		<div class="float-child">
+		  <div class="comment">Comment</div>
+		</div>
+	
+		<div class="float-child">
+			<div class="assign">Assign</div>
+		  </div>
+	
+		  <div class="float-child">
+			<div class="status">Status - Pending</div>
+		  </div>
+		  <br>
+	  </div>
+	<!---->
+	<br>
+		<p>
+			<label for="text area">Description:</label></p>
+			<textarea id="description" 
+			name="description" rows="5" cols="150">Need help with setting up 2 server racks in ICS Building. They will need to be configured with CENTOS and Ubuntu 18.04.</textarea>
+			<br><br>
+		<p>
+	</div>
 </div>
-<body>
+

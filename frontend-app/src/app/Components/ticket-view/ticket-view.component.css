@@ -1,11 +1,56 @@
 .float-container {
-    border: 3px solid #fff;
-    padding: 10px;
+    border: 5px solid rgb(119, 119, 124); /* Blue border around edit 'buttons' */
+    padding: 25px; /* White border around edit 'buttons' */
+	width: 45%; /* How wide the container is */
 }
 
 .float-child {
-    width: 10%;
-    float: left;
-    padding: 10;
-    border: 1px solid rgb(145, 156, 197);
+    width: 25%; /* How wide boxes are */
+    float: left; /* Positioning */
+    padding: 5px; /* padding all around boxes */
+    border: 1px solid rgb(89, 90, 95); /* Border color of boxes */
 }  
+
+/* Styling to make the mat input fields nicer 
+ng-deep class used because it is nested in mat-form
+*/
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+	padding: 0.5em 0;
+}
+
+::ng-deep .mat-form-field-wrapper {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.title-field {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 2rem;
+}
+
+.input {
+	flex: 1;
+	margin-bottom: 1rem;
+}
+
+.underlined {
+	border-bottom: 1px solid black;
+}
+
+.ticket-detail-row {
+	display: flex;
+    justify-content: space-around;
+}
+
+.ticket-col-info {
+	display: flex;
+	align-items: center;
+	flex: 0 0 30%;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+.label {
+	flex: 0 0 30%;
+}

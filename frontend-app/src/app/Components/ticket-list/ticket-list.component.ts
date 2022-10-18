@@ -23,6 +23,7 @@ export class TicketListComponent implements OnInit {
     this.getTickets();
   }
 
+  //Matt's code
   /* //Uncomment once the db has been implemented. 
   private getTickets(){
     this.ticketService.getTicketsList().subscribe(data => {
@@ -51,5 +52,11 @@ export class TicketListComponent implements OnInit {
     }
   }
   // Russell Code
+  
+//Matts code
+onViewTicketDetails(ticket: Ticket): void {
+  this.router.navigate(['ticket-view', ticket.ticketId]);
+  }
+//Matts code
 
 }

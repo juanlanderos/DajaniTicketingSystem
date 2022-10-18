@@ -6,4 +6,9 @@ export class User {
     email!: String;
     commentList!: Comment[];
     ticketList!: Ticket[];
+    agent!: number;
+    admin!: number;
+    requester!: number;
+    firstName!: string;
+    lastName!: string;
 }
