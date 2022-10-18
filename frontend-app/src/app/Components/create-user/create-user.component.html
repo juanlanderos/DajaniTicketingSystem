@@ -1,15 +1,24 @@
-<div class="col-md-6 offset-3">
-<h3> Create User </h3>
-<form (ngSubmit) = "onSubmit()">
 
-    <div class="form-group pt-1">
-        <label> Email </label>
-        <input type="email" class="form-control" id="email"
-            [(ngModel)] = "user.email" name="email">
-    </div>
+    <div class="col-md-6 offset-3">
+        <div class="card" >
+            <strong> Create User</strong>
+            <br><br>
+            <form (ngSubmit) = "onSubmit()">
+                <div class="form-group pt-1">
+                    <label> Email Id </label>
+                     <input type="email" class="form-control" id="email"
+                     [(ngModel)] = "user.email" name="email">
+                     </div>
+                    <br>
+                     <button class="btn btn-success" type="submit">Submit</button>
+                    </form>
+                
+                
+            </div>
+        </div>
 
 
-    <button class="btn btn-success" type="submit">Submit</button>
 
-</form>
-</div>
+        
+
+

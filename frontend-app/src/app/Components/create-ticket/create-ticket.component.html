@@ -1,5 +1,8 @@
+
 <div class="col-md-6 offset-3">
-    <h3> Create Ticket </h3>
+    <div class="card" >  
+    <h1 class="strong"> Create Ticket </h1>
+    <br><br>
     <form (ngSubmit) = "onSubmit()">
     
         <div class="form-group">
@@ -8,9 +11,12 @@
                 [(ngModel)] = "ticket.statusId" name="statusId">
         </div>
 
-    
+        <br>
         <button class="btn btn-success" type="submit">Submit</button>
     
     </form>
-    </div>
+</div>
+ </div>
+
+
     

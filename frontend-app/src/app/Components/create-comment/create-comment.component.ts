@@ -19,6 +19,7 @@ export class CreateCommentComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
  saveComment(){
      this.commentService.createComment(this.comment, this.ticketId, this.userId).subscribe( data => {
