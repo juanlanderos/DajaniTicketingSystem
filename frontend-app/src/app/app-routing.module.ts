@@ -10,6 +10,7 @@ import { UserListComponent } from './Components/user-list/user-list.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
 import { UpdateTicketsComponent } from './Components/update-tickets/update-tickets.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "create-comment", component: CreateCommentComponent},
   {path: "profile", component: ProfileComponent},
   {path: "ticket-view", component: TicketViewComponent},
+  {path: "dashboard", component: DashboardComponent},
   {path: "ticket-view/:id", component: TicketViewComponent},
   {path: "update-tickets/:statusId", component: UpdateTicketsComponent},
 

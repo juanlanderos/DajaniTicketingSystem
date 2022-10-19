@@ -1,22 +1,48 @@
-
 <div class="col-md-6 offset-3">
     <div class="card" >  
     <h1 class="strong"> Create Ticket </h1>
     <br><br>
     <form (ngSubmit) = "onSubmit()">
-    
-        <div class="form-group">
+        
+        <!-- this should eventually pull the next number that doesn't exist yet from ticketID database and should not be editable -->
+        <div>
+            <label>Ticket Number</label>
+            <input type="string" style="width: 200px" class = "form-control" id="ticketId"
+            [(ngModel)] = "ticket.ticketId" name="ticketId">
+        </div>
+        <!-- this should eventually need to validate that the user entered is a valid user in the database -->
+        <div>
+            <label>Requester</label>
+            <input type="string" style="width: 200px" class = "form-control" id="requesterId"
+            [(ngModel)] = "ticket.requesterId" name="requesterId">
+        </div>
+
+        <div>
+            <label for="t1">Status<span aria-label="required">*</span></label><br>
+            <input type="text" id="t1" name="statuses" list="l1" required
+            [(ngModel)] = "ticket.statusId" name="statusId"
+                   pattern="[Oo]pen|[Ss]olved|[Pp]ending|[Ss]pam">
+            <datalist id="l1">
+              <option>Open</option>
+              <option>Solved</option>
+              <option>Pending</option>
+              <option>Spam</option>
+            </datalist>
+        </div>
+        <!-- <div class="form-group">
             <label> Status </label>
             <input type="string" class="form-control" id="statusId"
                 [(ngModel)] = "ticket.statusId" name="statusId">
-        </div>
+        </div> -->
 
-        <br>
+        <!-- Ticket will need to be updated in the backend to include a title -->
+        <label> Title </label>
+            <input type="string" class="form-control" id="ticketDescriptionId">
+            <label for="text area">Description:</label>
+			<textarea id="description" 
+			name="description" rows="10" cols="84"></textarea>
         <button class="btn btn-success" type="submit">Submit</button>
     
     </form>
-</div>
- </div>
-
-
+    </div>
     

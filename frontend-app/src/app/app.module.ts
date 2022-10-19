@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 
+
 //Components below
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
@@ -17,7 +18,7 @@ import { CreateCommentComponent } from './Components/create-comment/create-comme
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
-
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 //Daniel Imports Below this
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -37,7 +38,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommentListComponent,
     CreateCommentComponent,
     ProfileComponent,
-    TicketViewComponent
+    TicketViewComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
