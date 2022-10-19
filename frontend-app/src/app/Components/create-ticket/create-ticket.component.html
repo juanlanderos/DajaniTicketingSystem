@@ -42,7 +42,8 @@
 			<textarea id="description" 
 			name="description" rows="10" cols="84"></textarea>
         <button class="btn btn-success" type="submit">Submit</button>
-    
+        <!-- this will require an associated file upload component to make it usable -->
+        <input type="file" class ="file-upload" onchange="console.log(event.target.files)">
     </form>
     </div>
     
