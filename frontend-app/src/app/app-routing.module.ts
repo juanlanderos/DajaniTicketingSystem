@@ -7,8 +7,9 @@ import { CreateUserComponent } from './Components/create-user/create-user.compon
 import { TicketListComponent } from './Components/ticket-list/ticket-list.component';
 import { UpdateUserComponent } from './Components/update-user/update-user.component';
 import { UserListComponent } from './Components/user-list/user-list.component';
-import { ProfileComponent } from './Components/profile/profile.component'
-import { TicketViewComponent } from './Components/ticket-view/ticket-view.component'
+import { ProfileComponent } from './Components/profile/profile.component';
+import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
+import { UpdateTicketsComponent } from './Components/update-tickets/update-tickets.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "profile", component: ProfileComponent},
   {path: "ticket-view", component: TicketViewComponent},
   {path: "ticket-view/:id", component: TicketViewComponent},
+  {path: "update-tickets/:statusId", component: UpdateTicketsComponent},
 
 ];
 

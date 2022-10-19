@@ -23,6 +23,7 @@
             <th class="text-primary px-2 py-3">Status ID</th>
             <th class="text-primary px-2 py-3">Assignee ID</th>
             <th class="text-primary px-2 py-3">Requester ID</th>
+            <th> Update </th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
             <td> {{ticket.statusId}} </td>
             <td> {{ticket.assigneeId}} </td>
             <td> {{ticket.requesterId}} </td>
+            <td> <button (click)="updateTickets(ticket.statusId)" class = "btn btn-info"></button>> </td>
         </tr>
     </tbody>
 </table>

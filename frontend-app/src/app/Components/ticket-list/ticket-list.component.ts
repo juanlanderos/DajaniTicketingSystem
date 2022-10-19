@@ -53,6 +53,12 @@ export class TicketListComponent implements OnInit {
   }
   // Russell Code
   
+  // Russell Code update tickets
+  updateTickets(statusId: String){
+    this.router.navigate(['update-tickets', statusId]);
+  }
+  // Russell Code update tickets
+  
 //Matts code
 onViewTicketDetails(ticket: Ticket): void {
   this.router.navigate(['ticket-view', ticket.ticketId]);
