@@ -44,3 +44,41 @@
 .footer {
     background-color:#b0be54;
 }
+
+.sidenavButton{
+
+width: 100%;
+background-color: #b0be54;
+
+}
+
+.sidenavButton:hover{
+
+    color: #ffffff;
+    
+}
+
+.sidenav{
+
+    background-color: #c0c1c1
+
+}
+
+.sidenavButton{
+
+width: 100%;
+background-color: #b0be54;
+
+}
+
+.sidenavButton:hover{
+
+    color: #ffffff;
+    
+}
+
+.sidenav{
+
+    background-color: #c0c1c1
+
+}

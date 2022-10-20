@@ -24,13 +24,7 @@ export class TicketListComponent implements OnInit {
   }
 
   //Matt's code
-  /* //Uncomment once the db has been implemented. 
-  private getTickets(){
-    this.ticketService.getTicketsList().subscribe(data => {
-      this.tickets = data;
-    })
-  }
-  */ //REMOVE WHEN DB IS OFFICIALLY LINKED. TEMPORARY
+  //Ticket List for showing all tickets in database - DJB, 10/17/22
   private getTickets(){
     this.ticketService.getTicketsList().subscribe(data => {
       this.tickets = data;
