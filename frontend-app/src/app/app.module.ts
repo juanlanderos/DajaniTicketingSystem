@@ -24,7 +24,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { HtmlEditorComponent } from './html-editor/html-editor.component';
+//import { HtmlEditorComponent } from './html-editor/html-editor.component';
 
 //Daniel Imports Above this
 
@@ -41,7 +41,7 @@ import { HtmlEditorComponent } from './html-editor/html-editor.component';
     ProfileComponent,
     TicketViewComponent,
     DashboardComponent,
-    HtmlEditorComponent
+    //HtmlEditorComponent
   ],
   imports: [
     BrowserModule,
