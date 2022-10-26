@@ -35,9 +35,13 @@ public class UserServiceImpl implements UserService {
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
                         tempUser.getEmail(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getPassword(),
+                        tempUser.getRoles(),
                         tempUser.getCommentEntityList(),
-                        tempUser.getTicketEntities())
-                        )
+                        tempUser.getTicketEntities()
+                ))
                 .collect(Collectors.toList());
         return userModels;
     }
@@ -57,5 +61,23 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(tempUserEntity, tempUserModel);
         return tempUserModel;
     }
+
+    @Override
+    public UserModel getUserByFirstName(String firstName) {
+        UserEntity tempUserEntity = userRepository.findByFirstName(firstName);
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
+    }
+
+    @Override
+    public UserModel getUserByLastName(String lastName) {
+        UserEntity tempUserEntity = userRepository.findByLastName(lastName);
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
+    }
+
+
 }
 

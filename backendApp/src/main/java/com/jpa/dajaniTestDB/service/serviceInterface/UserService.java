@@ -12,4 +12,8 @@ public interface UserService {
     UserModel getUserById(int id);
 
     UserModel getUserByEmail(String email);
+
+    UserModel getUserByFirstName(String firstName);
+
+    UserModel getUserByLastName(String lastName);
 }

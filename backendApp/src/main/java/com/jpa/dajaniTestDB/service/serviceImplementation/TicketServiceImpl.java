@@ -126,6 +126,10 @@ public class TicketServiceImpl implements TicketService {
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
                         tempUser.getEmail(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getPassword(),
+                        tempUser.getRoles(),
                         tempUser.getCommentEntityList(),
                         tempUser.getTicketEntities()
                 ))

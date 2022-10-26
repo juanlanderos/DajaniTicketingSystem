@@ -1,19 +1,20 @@
 package com.jpa.dajaniTestDB.entity;
 
-import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "userId")
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
+
     @Id
     //auto-increments primary key per new entry (upon insert)
     @SequenceGenerator(
@@ -21,13 +22,40 @@ public class UserEntity {
             sequenceName = "user_sequence",
             allocationSize = 1
     )
-    //generates the values needed for pk sequence
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
+            strategy = GenerationType.IDENTITY,
             generator = "user_sequence"
     )
     @Column(name = "user_id", nullable = false)
     private Integer userId;
+
+    @NotBlank
+    @Column(name = "email")
+    @Size(max = 120)
+    private String email;
+
+    @NotBlank
+    @Column(name = "firstName")
+    @Size(max = 120)
+    private String firstName;
+
+    @NotBlank
+    @Column(name = "lastName")
+    @Size(max = 120)
+    private String lastName;
+
+    @NotBlank
+    @Column(name = "password")
+    @Size(max = 120)
+    private String password;
+
+    //join table with roleEntity
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId")
+    )
+    private Set<RoleEntity> roles = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
             //cascade = { CascadeType.ALL })
@@ -41,10 +69,61 @@ public class UserEntity {
     @OneToMany(mappedBy = "userEntity")
     private List<CommentEntity> commentEntityList = new ArrayList<>();
 
-    @Column(name = "email")
-    private String email;
+    public UserEntity(String email, String firstName, String lastName, String password) {
 
-    //----------------Accessors and Modifiers Past this-----------
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
+    public UserEntity() {
+    }
+
+    //----------------Accessors and Modifiers Past this-----------\
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
+    }
 
     public void addTicket(TicketEntity ticketEntity){
         this.ticketEntities.add(ticketEntity);
@@ -55,16 +134,14 @@ public class UserEntity {
         ticketEntities.remove(ticketEntity);
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getEmail(){
         return email;
+    }
+
+    public List<TicketEntity> getTicketEntities() {
+        return ticketEntities;
     }
 
     public void setTicketEntities(List<TicketEntity> ticketEntities) {this.ticketEntities = ticketEntities;}
