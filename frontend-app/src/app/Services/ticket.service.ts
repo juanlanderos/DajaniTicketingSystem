@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Comment } from '../Models/comment';
 import { Ticket } from '../Models/ticket';
 import { User } from '../Models/user';
 
@@ -29,8 +30,13 @@ export class TicketService {
   }
 
   //get all of the comments attached to a ticket. Pass in ticket ID
-  getCommentsFromTicket(id : number): Observable<User[]>{
-    return this.httpClient.get<User[]>(`http://localhost:9000/api/ticket-comments/${id}`);
+  getCommentsFromTicket(id : number): Observable<Comment[]>{
+    return this.httpClient.get<Comment[]>(`http://localhost:9000/api/ticket-comments/${id}`);
+  }
+
+  // Add comment to ticket comments section. Pass in ticket ID
+  addCommentToTicket(comment: any): Observable<any>{
+    return this.httpClient.post(`http://localhost:9000/api/ticket-comments`, comment);
   }
 
   /*

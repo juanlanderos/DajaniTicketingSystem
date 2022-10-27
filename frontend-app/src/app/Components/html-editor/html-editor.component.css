@@ -1,0 +1,3 @@
+.html-editor ::ng-deep .angular-editor {
+    margin-top: 1rem; /* Space on top of the html editor fields (bold, italics..etc) */
+}

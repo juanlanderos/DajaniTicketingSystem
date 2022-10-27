@@ -1,10 +1,6 @@
-<div class="container" *ngIf="ticket">
+<div class="ticket-view" *ngIf="ticket">
 
-	
-
-	<!-- Breakpoint to seperate itself from the ticket (like a carriage retrun)-->
-	<br><br> 
-
+	<!-- Breakpoint to seperate itself from the ticket (like a carriage retrun) -->
 		<!-- Each "ticket-detail-row" contains two input fields.
 		1. input fields are readonly.
 		2. Associated data was bound using 'property binding'.
@@ -13,122 +9,94 @@
 		4. Styles can be viewed in css file
 		5. Flex used for layout.
 	-->
-
-	<h2>
-		<span class="underlined">Details for ticket #{{ ticket.ticketId }}</span>
+	<div class="detail box">
+	<h2 class="heading-primary">
+		Details for ticket # ECS{{ ticket.ticketId }} <!-- ECS is department abbr if needed. Can change to whatever -->
 	</h2>
-	<div style="margin: auto; width: 500; height: 500; background-color: rgb(233, 235, 235); padding: 30px;"> <!-- Defines style background/boxes -->
-	
-		<!-- Displays User Details -->
-		<div *ngIf="ticket.user">
-			<h3>
-				<span class="underlined">User Details</span>
-			</h3>
-			<div class="ticket-detail-row">
-				<div class="ticket-col-info">
-					<mat-label class="label">Full Name:</mat-label>
-					<mat-form-field class="flex-1" appearance="outline">
-						<input type="text" matInput readonly [value]="ticket.user.firstName + ' ' + ticket.user.lastName">
-					</mat-form-field>
+	<!-- Move "detail box" here instead if you want color of background gone -->
+		<div class="ticket-surround"> <!-- Added for blue background color masked as white. Change css if want removed -->
+		<div class="user-details">
+			<div class="left">
+				<div class="title-box">
+					<div class="label-bold">Title:&nbsp;&nbsp;</div>
+					<div class="title">Having issues accessing company portal online.</div> <!-- Temp until title for ticketId is linked -->
 				</div>
-		
-				<div class="ticket-col-info">
-					<mat-label class="label">Email:</mat-label>
-					<mat-form-field class="flex-1" appearance="outline">
-						<input type="text" matInput readonly [value]="ticket.user.email">
-					</mat-form-field>
-				</div>
-					<div class="ticket-col-info">
-						<mat-label class="label">Phone Number:</mat-label>
-						<mat-form-field class="flex-1" appearance="outline">
-							<input type="text" matInput readonly [value]="ticket.user.phone">
-						</mat-form-field>
+				<div class="description-box">
+					<div class="label-bold">Description:&nbsp;&nbsp;</div>
+					<div class="description"><p><p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  <!-- Temp until description for ticketId is linked -->
+						tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+						aliquip ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
+						dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+						tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis aute irure dolor in nostrud exercitation ullamco laboris.?
 					</div>
+				</div>
+			</div>
+			<!-- User details box (right side) -->
+			<div class="right box">
+				<div class="label-box">User Details</div>
+				<div class="info" *ngIf="user; else noUser;">
+					<div class="flex flex-col mb-2">
+						<label for="fullname" class="label">Full Name:</label> <!-- Waiting on back-end implementation -->
+						<input id="fullname" type="text" readonly [value]="user.firstName">
+					</div>
+					<div class="flex flex-col mb-2">
+						<label for="email" class="label">Email:</label> 
+						<!-- Pulling user email associated with ticketId fom DB -->
+						<input id="email" type="text" readonly [value]="user.email">
+					</div>
+				</div>
+				<ng-template #noUser>
+					<!-- This will appear if there is no user associated with a ticketId) -->
+					<div>No user assigned yet</div>
+				</ng-template>
 			</div>
 		</div>
-		<br><br>
-		<h3>
-			<span class="underlined">Ticket Info</span>
-		</h3>
-		<div class="ticket-details">
-		<div class="ticket-detail-row">
-			<div class="ticket-col-info">
-				<mat-label class="label">Ticket Number:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.ticketDept + ticket.ticketId"> 
-					
-				</mat-form-field>
-			</div>
-	
-			<div class="ticket-col-info">
-				<mat-label class="label">Title:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.title">
-				</mat-form-field>
-			</div>
-		</div>
+		<!-- Ticket Info box separating ticket details from description -->
+		<div class="ticket-info box">
+			<div class="label-box">Ticket Info</div>
+			<div class="box flex">
+				<div class="left-box">
+					<div class="flex flex-col mb-2 w-50">
+						<!-- Grabs ticket id information and displays it -->
+						<label for="ticketId" class="label">Ticket Id:</label>
+						<input id="ticketId" type="text" readonly [value]="ticket.ticketId">
+					</div>
+					<!-- Waiting on back-end implementation -->
+					<div class="flex flex-col mb-2 w-50">
+						<label for="requesterId" class="label">Requester Id:</label>
+						<input id="requesterId" type="text" readonly [value]="ticket.requesterId">
+					</div>
+				</div>
 
-		<div class="ticket-detail-row">
-			<div class="ticket-col-info">
-				<mat-label class="label">Requester Id:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.requesterId">
-				</mat-form-field>
-			</div>
-	
-			<div class="ticket-col-info">
-				<mat-label class="label">Admin:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.admin">
-				</mat-form-field>
+				<div class="right-box">
+					<div class="flex flex-col mb-2 w-50">
+						<label for="createdAt" class="label">Created At:</label>
+						<input id="createdAt" type="text" readonly [value]="ticket.createdAt">
+					</div>
+					<!-- Grabs ticket updated information and displays it -->
+					<div class="flex flex-col mb-2 w-50">
+						<label for="updatedAt" class="label">Updated At:</label>
+						<input id="updatedAt" type="text" readonly [value]="ticket.updatedAt">
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="ticket-detail-row">
-			<div class="ticket-col-info">
-				<mat-label class="label">Date Created:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.createdAt">
-				</mat-form-field>
-			</div>
-	
-			<div class="ticket-col-info">
-				<mat-label class="label">Completed At:</mat-label>
-				<mat-form-field class="flex-1" appearance="outline">
-					<input type="text" matInput readonly [value]="ticket.completedAt">
-				</mat-form-field>
+		<!-- If there is no comment for ticket, dont display box, if there is, display the comment box -->
+		<div class="comments box" *ngIf="comments.length > 0">
+			<div class="comment box" *ngFor="let comment of comments" [innerHTML]="comment?.content">
 			</div>
 		</div>
-		<br>
-		<br>
-
-		<!---->
-	<div class="float-container">
-		<div class="float-child">
-		  <div class="edit">Edit</div>
+		<!-- Separator box between comments and Response -->
+		<div class="separator-box"></div>
+		<!-- Response field for customer comment -->
+		<div class="html-editor box">
+			<app-html-editor placeholder="New Response here..."
+				[htmlContent]="responseFC.value"
+				(signals)="onHtmlContentChange($event)">
+			</app-html-editor>
 		</div>
-		
-		<div class="float-child">
-		  <div class="comment">Comment</div>
-		</div>
-	
-		<div class="float-child">
-			<div class="assign">Assign</div>
-		  </div>
-	
-		  <div class="float-child">
-			<div class="status">Status - Pending</div>
-		  </div>
-		  <br>
-	  </div>
-	<!---->
-	<br>
-		<p>
-			<label for="text area">Description:</label></p>
-			<textarea id="description" 
-			name="description" rows="5" cols="150">Need help with setting up 2 server racks in ICS Building. They will need to be configured with CENTOS and Ubuntu 18.04.</textarea>
-			<br><br>
-		<p>
+		<button class="mt-3" mat-raised-button color="primary" (click)="onSubmit()">Submit Response</button>
 	</div>
-</div>
-

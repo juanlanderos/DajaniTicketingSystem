@@ -23,8 +23,8 @@ const routes: Routes = [
   {path: "create-comment", component: CreateCommentComponent},
   {path: "profile", component: ProfileComponent},
   {path: "ticket-view", component: TicketViewComponent},
-  {path: "dashboard", component: DashboardComponent},
   {path: "ticket-view/:id", component: TicketViewComponent},
+  {path: "dashboard", component: DashboardComponent},
   {path: "update-tickets/:statusId", component: UpdateTicketsComponent},
 
 ];

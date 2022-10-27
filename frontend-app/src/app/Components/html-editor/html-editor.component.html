@@ -1,1 +1,7 @@
-<p>html-editor works or does it!</p>
+<div class="html-editor">
+	<!-- 
+		This is a 3rd party html editor package.
+		Detailed documentation can be found here: https://www.npmjs.com/package/@kolkov/angular-editor
+	-->
+	<angular-editor [placeholder]="placeholder" [(ngModel)]="htmlContent" (ngModelChange)="onValueChange($event)" [config]="config"></angular-editor>
+</div>

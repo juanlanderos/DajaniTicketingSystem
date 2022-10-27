@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 
-
 //Components below
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { CreateUserComponent } from './Components/create-user/create-user.component';
@@ -19,12 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { HtmlEditorComponent } from './Components/html-editor/html-editor.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 //Daniel Imports Below this
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-//import { HtmlEditorComponent } from './html-editor/html-editor.component';
 
 //Daniel Imports Above this
 
@@ -41,7 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
     ProfileComponent,
     TicketViewComponent,
     DashboardComponent,
-    //HtmlEditorComponent
+    HtmlEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +59,7 @@ import { MatButtonModule } from '@angular/material/button';
     //Russell Import
     AngularMaterialModule,
     //Russell Import
+    AngularEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

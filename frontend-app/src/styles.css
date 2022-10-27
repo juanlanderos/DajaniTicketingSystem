@@ -43,6 +43,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	margin-right: 1rem;
 }
 
+.mb-2 {
+	margin-bottom: .5rem;
+}
+
 .flex {
 	display: flex;
 }
@@ -51,3 +55,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	flex: 1;
 }
 /* End of Matt's Code */
+
+.flex-col {
+	flex-direction: column;
+}

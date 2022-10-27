@@ -27,7 +27,6 @@
 
 }
 
-
 .navbar {
         display: flex;
         /* align-items: left; */
@@ -49,13 +48,11 @@
 
 width: 100%;
 background-color: #b0be54;
-
 }
 
 .sidenavButton:hover{
 
-    color: #ffffff;
-    
+    color: #ffffff;   
 }
 
 .sidenav{
@@ -82,3 +79,14 @@ background-color: #b0be54;
     background-color: #c0c1c1
 
 }
+/* Can technically be removed since already in styles.css
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #2e5495;
+    text-align: center;
+    color: #fff;
+} */

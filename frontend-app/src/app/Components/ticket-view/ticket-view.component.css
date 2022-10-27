@@ -1,56 +1,127 @@
-.float-container {
-    border: 5px solid rgb(119, 119, 124); /* Blue border around edit 'buttons' */
-    padding: 25px; /* White border around edit 'buttons' */
-	width: 45%; /* How wide the container is */
+.ticket-view {
+	margin-top: 1rem;
+	
+   /* Styling to make the mat input fields nicer, ng-deep class used because it is nested in mat-form */
 }
 
-.float-child {
-    width: 25%; /* How wide boxes are */
-    float: left; /* Positioning */
-    padding: 5px; /* padding all around boxes */
-    border: 1px solid rgb(89, 90, 95); /* Border color of boxes */
-}  
-
-/* Styling to make the mat input fields nicer 
-ng-deep class used because it is nested in mat-form
-*/
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-	padding: 0.5em 0;
+.ticket-view .detail .ticket-surround {
+	padding: 1rem; /* surrounding padding around contents within ticket info */
+	border: 1.7px solid gray; /* color and weight of box line */
+	background: #ffffff; /* OKAY */
 }
 
-::ng-deep .mat-form-field-wrapper {
-	margin: 0 !important;
-	padding: 0 !important;
+/* Color of heading title "Deatils for ticket #..." */
+.ticket-view .heading-primary {
+	color: #2e5495; /* color of text */
+	background: #ffffff; /* box background color */
+	text-align: center;
+	padding: 0.5rem 0;
+	border: 1.7px solid gray; /* color and weight of box line */
 }
-
-.title-field {
+/* Space and color between all content and outside borders */
+.ticket-view .detail {
+	padding: 1.5rem; /* Space around t-v contents (shrink or larger) */
+	font-size: 1rem; /* size of text in t-v */
+	background: #2e5495;  /* !! color of ticket-tiew page !! (background: #b0be54;)*/
+}
+/* Space separating user details box from "ticket info" box */
+.ticket-view .detail .user-details {
+	display: flex;
+	margin-bottom: 1.0rem;
+}
+/* User Details box between each comment */
+.ticket-view .detail .user-details .left {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 2rem;
+	flex: 0 0 75%; /* length of outter box */
+	margin-right: 1rem;
 }
-
-.input {
-	flex: 1;
+/* class for title box */
+.ticket-view .detail .user-details .left .title-box {
+	display: flex;
+	border: 1.7px solid gray; /* color and weight of box line */
+	padding: 0.5rem; /* Space around title in title box */
+	margin-bottom: 0.5rem; /* Space under title box */
+}
+/* class for Description box */
+.ticket-view .detail .user-details .left .description-box {
+	/* Add below if you want text in-line with the "description title"
+	display: flex; */
+	border: 1.7px solid gray; /* border color of box */
+	padding: 0.5rem;
+	flex: 1; /* used to keep everything in desc box proportional */
+}
+/* How big description box will be */
+.ticket-view .detail .user-details .right {
+	flex: 1; /* used to keep desc box proportional */
+	padding: 0.5rem;
+}
+/* class for how "bold" important text will be */
+.ticket-view .detail .user-details .label-bold {
+	font-weight: 600;
+}
+/* class for for ticket info box */
+.ticket-view .detail .ticket-info {
+	padding: 0.5rem; /* surrounding padding around contents within ticket info */
+}
+/* class for for ticket info left box */
+.ticket-view .detail .ticket-info .left-box {
+	flex: 0 0 50%;
+	padding: 0.5rem; /* surrounding padding around contents within ticket info */
+}
+/* class for for ticket info right box */
+.ticket-view .detail .ticket-info .right-box {
+	flex: 0 0 50%;
+	padding: 0.5rem; /* surrounding padding around contents within ticket info */
+}
+/* class for outter box comments section */
+.ticket-view .detail .comments {
+	padding: 0.5rem;
+	margin-top: 1rem; /* separator between comments box and ticket info box */
+	margin-bottom: 1rem; /* separator between comments box and response box */
+}
+/* class for for comments, comments section */
+.ticket-view .detail .comments .comment {
+	padding: 0.5rem; /* Space surrounding each comment inside box */
+	color: #2e5495; /* Color of comment */
+	margin-bottom: 0.5rem; /* Space between each comment */
+}
+/* Space surrounding response box contents */
+.ticket-view .detail .html-editor {
+	padding: 0 0.5rem 1rem; /* Padding on left/right/top-bottom space of response box */
+}
+/* "ticket info" box criteria */
+.ticket-view .detail .label-box {
+	background: #e6e6e6;
+	padding: 0.5rem;
+	text-align: center;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+/* Comment-response separator box */
+.ticket-view .detail .separator-box {
+	background: #e6e6e6;
+	padding: 0.5rem;
 	margin-bottom: 1rem;
 }
-
-.underlined {
-	border-bottom: 1px solid black;
+/* Color of ALL box lines */
+.ticket-view .box {
+	border: 1.7px solid gray; /* color and weight of box lines */
 }
-
-.ticket-detail-row {
-	display: flex;
-    justify-content: space-around;
+.ticket-view .p-2 {
+	padding: 0.5rem;
 }
-
-.ticket-col-info {
-	display: flex;
-	align-items: center;
-	flex: 0 0 30%;
-	margin-bottom: 1rem;
-	width: 100%;
+/* Color of place holder text (full name, email, ticket id.. etc) */
+.ticket-view .label {
+	color: #898989;
 }
-
-.label {
-	flex: 0 0 30%;
+.ticket-view .w-50 {
+	width: 50%;
+}
+.ticket-view ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+	padding: 0.5em 0;
+}
+.ticket-view ::ng-deep .mat-form-field-wrapper {
+	margin: 0 !important;
+	padding: 0 !important;
 }
