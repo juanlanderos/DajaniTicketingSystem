@@ -6,7 +6,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     private final UserService userService;
 
@@ -41,6 +47,8 @@ public class UserController {
     })
     @PostMapping("/users")
     public UserModel createUser(@RequestBody UserModel tempUserModel){
+        tempUserModel.setPassword(bCryptPasswordEncoder()
+                .encode(tempUserModel.getPassword()));
         return userService.saveUser(tempUserModel);
     }
 
