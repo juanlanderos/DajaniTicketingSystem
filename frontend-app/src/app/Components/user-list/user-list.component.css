@@ -1,12 +1,12 @@
 
 #users {
-    border-collapse: collapse;
-    width: 100%;    
+    width: 100%;
+    margin-left: 3px;    
 }
 
 #users td, #users th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 6px;
 }
 
 #users tr:nth-child(even){background-color: #f2f2f2;}
@@ -18,6 +18,6 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
-    color: white;
+    background-color: #a8b557;
+    color: rgb(10, 10, 10);
 }

@@ -27,6 +27,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 
+
 //Daniel Imports Above this
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MatButtonModule } from '@angular/material/button';
     ProfileComponent,
     TicketViewComponent,
     DashboardComponent,
-    HtmlEditorComponent
+    HtmlEditorComponent,
+   
   ],
   imports: [
     BrowserModule,
