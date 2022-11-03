@@ -11,6 +11,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { TicketViewComponent } from './Components/ticket-view/ticket-view.component';
 import { UpdateTicketsComponent } from './Components/update-tickets/update-tickets.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "ticket-view/:id", component: TicketViewComponent},
   {path: "dashboard", component: DashboardComponent},
   {path: "update-tickets/:statusId", component: UpdateTicketsComponent},
+  {path: "login", component: LoginComponent}
 
 ];
 

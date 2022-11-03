@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Dajani Ticketing System';
+
+  constructor() {   
+    window.onbeforeunload = function() {
+      localStorage.clear();
+      return '';
+    };
+  }
+  
 }
