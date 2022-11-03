@@ -4,13 +4,6 @@
     <br><br>
     <form (ngSubmit) = "onSubmit()">
         
-        <!-- this should eventually pull the next number that doesn't exist yet from ticketID database and should not be editable -->
-        <div>
-            <label>Ticket Number</label>
-            <input type="string" style="width: 200px" class = "form-control" id="ticketId"
-            [(ngModel)] = "ticket.ticketId" name="ticketId">
-        </div>
-        <!-- this should eventually need to validate that the user entered is a valid user in the database -->
         <div>
             <label>Requester</label>
             <input type="string" style="width: 200px" class = "form-control" id="requesterId"
@@ -29,18 +22,15 @@
               <option>Spam</option>
             </datalist>
         </div>
-        <!-- <div class="form-group">
-            <label> Status </label>
-            <input type="string" class="form-control" id="statusId"
-                [(ngModel)] = "ticket.statusId" name="statusId">
-        </div> -->
 
-        <!-- Ticket will need to be updated in the backend to include a title -->
         <label> Title </label>
-            <input type="string" class="form-control" id="ticketDescriptionId">
-            <label for="text area">Description:</label>
-			<textarea id="description" 
-			name="description" rows="10" cols="84"></textarea>
+        <input type="string" class="form-control" id="ticketTitleId" 
+        [(ngModel)] = "ticket.title" name="ticketTitleId">
+        <!-- backend will need to be updated to include a ticket description -->
+            <label for="text area">Description:</label><br>
+			<textarea id="descriptionId" 
+			name="description" rows="10" cols="84" ></textarea><br>
+            <!-- [(ngModel)] = "ticket.content" name="ticketDescription" -->
         <button class="btn btn-success" type="submit">Submit</button>
         <!-- this will require an associated file upload component to make it usable -->
         <input type="file" class ="file-upload" onchange="console.log(event.target.files)">
