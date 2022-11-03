@@ -1,10 +1,8 @@
 package com.jpa.dajaniTestDB.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
-import org.h2.engine.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +26,9 @@ public class TicketEntity {
             generator = "ticket_sequence"
     )
     private Integer ticketId;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "created_at")
     private String createdAt;

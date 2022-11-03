@@ -9,7 +9,6 @@ import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
-import org.h2.engine.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +43,7 @@ public class TicketServiceImpl implements TicketService {
                 .stream()
                 .map(tempTicket -> new TicketModel(
                         tempTicket.getTicketId(),
+                        tempTicket.getTitle(),
                         tempTicket.getCreatedAt(),
                         tempTicket.getUpdatedAt(),
                         tempTicket.getCompletedAt(),
@@ -58,6 +58,14 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketModel findByTicketId(Integer ticketId) {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
+        TicketModel ticketModel = new TicketModel();
+        BeanUtils.copyProperties(ticketEntity, ticketModel);
+        return ticketModel;
+    }
+
+    @Override
+    public TicketModel findByTicketTitle(String title) {
+        TicketEntity ticketEntity = ticketRepository.findByTitle(title);
         TicketModel ticketModel = new TicketModel();
         BeanUtils.copyProperties(ticketEntity, ticketModel);
         return ticketModel;
@@ -125,7 +133,12 @@ public class TicketServiceImpl implements TicketService {
                 .stream()
                 .map(tempUser -> new UserModel(
                         tempUser.getUserId(),
+                        tempUser.getUsername(),
                         tempUser.getEmail(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getPassword(),
+                        tempUser.getRoles(),
                         tempUser.getCommentEntityList(),
                         tempUser.getTicketEntities()
                 ))

@@ -1,82 +1,135 @@
 package com.jpa.dajaniTestDB.controller;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jpa.dajaniTestDB.entity.RoleEntity;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URI;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @CrossOrigin("http://localhost:4200")
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     private final UserService userService;
 
-    public UserController(UserService userService){
-        this.userService = userService;
+
+    //signup method
+    @PostMapping("/user/save")
+    public ResponseEntity<UserModel> saveUser(@RequestBody UserModel tempUserModel){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
+        return ResponseEntity.created(uri).body(userService.saveUser(tempUserModel));
     }
 
-    @Operation(summary = "Adds a new user")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "New user created and stored",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
-    @PostMapping("/users")
-    public UserModel createUser(@RequestBody UserModel tempUserModel){
-        return userService.saveUser(tempUserModel);
+    @PostMapping("/role/save")
+    public ResponseEntity<RoleEntity> saveRole(@RequestBody RoleEntity tempRole){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
+        return ResponseEntity.created(uri).body(userService.saveRole(tempRole));
     }
 
-    @Operation(summary = "Fetches all users stored in DB")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched all users from DB",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
+    @PostMapping("/role/addToUser")
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
+        userService.addRoleToUser(form.getUsername(), form.getUsername());
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/token/refresh")
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+            try {
+                String refresh_token = authorizationHeader.substring("Bearer ".length());
+                Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+                JWTVerifier verifier = JWT.require(algorithm).build();
+                DecodedJWT decodedJWT = verifier.verify(refresh_token);
+                String username = decodedJWT.getSubject();
+                UserModel userModel = userService.getUserByUsername(username);
+
+                String access_token = JWT.create()
+                        .withSubject(userModel.getUsername())
+                        .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
+                        .withIssuer(request.getRequestURL().toString())
+                        .withClaim("roles", userModel.getRoles().stream().map(RoleEntity::getRoleName).collect(Collectors.toList()))
+                        .sign(algorithm);
+
+                Map<String, String> tokens = new HashMap<>();
+                tokens.put("access_token", access_token);
+                tokens.put("refresh_token", refresh_token);
+                response.setContentType(APPLICATION_JSON_VALUE);
+                new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+
+            }catch (Exception e){
+                log.error("Error with refresh token: {}", e.getMessage());
+                response.setHeader("error", e.getMessage());
+                response.setStatus(FORBIDDEN.value());
+                //response.sendError(FORBIDDEN.value());
+                Map<String, String> error = new HashMap<>();
+                error.put("error_message", e.getMessage());
+                response.setContentType(APPLICATION_JSON_VALUE);
+                new ObjectMapper().writeValue(response.getOutputStream(), error);
+            }
+
+        } else {
+            throw new RuntimeException("Refresh token is missing");
+        }
+    }
+    //signup + login methods end
+
     @GetMapping("/users")
-    public List<UserModel> getAllUsers(){
-        return userService.showAllUsers();
+    public ResponseEntity<List<UserModel>> getAllUsers(){
+        return ResponseEntity.ok().body(userService.showAllUsers());
     }
 
-    @Operation(summary = "Fetches users by their email address")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetches all users from DB with specified email address",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/users/email/{email}")
     public UserModel getUserByEmail(@PathVariable("email") String email){
         return userService.getUserByEmail(email);
     }
 
-    @Operation(summary = "Fetches a user from their ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched user from DB based on their ID",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
+
     @GetMapping("/users/{id}")
     public ResponseEntity<UserModel> getUserById(@PathVariable int id){
         UserModel tempUserModel = null;
         tempUserModel = userService.getUserById(id);
         return ResponseEntity.ok(tempUserModel);
     }
+}
+
+@Data
+class RoleToUserForm {
+    private String username;
+    private String roleName;
 }
