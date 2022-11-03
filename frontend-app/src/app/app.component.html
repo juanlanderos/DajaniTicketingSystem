@@ -10,22 +10,10 @@
       <a routerLink="create-user" routerLinkActive="active" class="nav-link">Create User</a>
     </li>
     <li class="nav-item bg-white">
-      <a routerLink="create-ticket" routerLinkActive="active" class="nav-link">Create Ticket</a>
-    </li>
-    <li class="nav-item bg-white">
       <a routerLink="comments" routerLinkActive="active" class="nav-link">Comment List</a>
     </li>
     <li class="nav-item bg-white">
       <a routerLink="create-comment" routerLinkActive="active" class="nav-link">Create Comment</a>
-    </li>
-    <li class="nav-item bg-white">
-      <a routerLink="profile" routerLinkActive="active" class="nav-link">Profile</a>
-    </li>
-    <!-- <li class="nav-item bg-white">
-      <a routerLink="ticket-view" routerLinkActive="active" class="nav-link">Ticket View (Temp)</a>
-    </li> -->
-    <li class="nav-item bg-white">
-      <a routerLink="dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
     </li>
     <li class="nav-item bg-white">
       <a routerLink="login" routerLinkActive="active" class="nav-link">Login</a>
@@ -46,7 +34,7 @@
 
 
     <p><button class = "sidenavButton" mat-raised-button>View Active Tickets</button></p><!--Will show all tickets that are not resolved or closed, function will return all tickets that are in the active states, ie not resolved/closed-->
-    <p><a routerLink="profile" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View My Tickets</button></a></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
+    <p><a routerLink="dashboard" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View My Dashboard</button></a></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
     <p><button class = "sidenavButton" mat-raised-button>View Unassigned Tickets</button></p><!--Will show all tickets that aren't yet assigned, function will return all tickets with an empty 'assigneeId' attribute-->
     <p><a routerLink="tickets" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View All Tickets</button></a></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
     <p><a routerLink="create-ticket" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>Create Ticket</button></a></p>                                                                                                                                 <!--This is the only one with a page currently^-->
