@@ -20,6 +20,7 @@ import { TicketViewComponent } from './Components/ticket-view/ticket-view.compon
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HtmlEditorComponent } from './Components/html-editor/html-editor.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoginComponent } from './Components/login/login.component';
 
 //Daniel Imports Below this
 
@@ -44,6 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
     TicketViewComponent,
     DashboardComponent,
     HtmlEditorComponent,
+    LoginComponent
    
   ],
   imports: [
