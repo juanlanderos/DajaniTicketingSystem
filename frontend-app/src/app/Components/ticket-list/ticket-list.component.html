@@ -27,19 +27,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let ticket of tickets">
-            <td> 
-				<a [routerLink]="['/ticket-view', ticket.ticketId]">{{ticket.ticketId}}</a> <!--to make ticket link clickable-->
-        <!-- <tr *ngFor = "let ticket of tickets"> -->
-            <td> {{ticket.ticketId}} </td>
-            <td> {{ticket.createdAt}} </td>
-            <td> {{ticket.updatedAt}}</td>
-            <td> {{ticket.completedAt}} </td>
-            <td> {{ticket.statusId}} </td>
-            <td> {{ticket.assigneeId}} </td>
-            <td> {{ticket.requesterId}} </td>
-            <td> <button (click)="updateTickets(ticket.statusId)" class = "btn btn-info"></button>> </td>
-        </tr>
+        <ng-container *ngFor = "let ticket of tickets">
+            <tr *ngIf="filterTickets(ticket) ">
+                <td> 
+                    <a [routerLink]="['/ticket-view', ticket.ticketId]">{{ticket.ticketId}}</a> <!--to make ticket link clickable-->
+            <!-- <tr *ngFor = "let ticket of tickets"> -->
+                <td> {{ticket.ticketId}} </td>
+                <td> {{ticket.createdAt}} </td>
+                <td> {{ticket.updatedAt}}</td>
+                <td> {{ticket.completedAt}} </td>
+                <td> {{ticket.statusId}} </td>
+                <td> {{ticket.assigneeId}} </td>
+                <td> {{ticket.requesterId}} </td>
+                <td> <button (click)="updateTickets(ticket.statusId)" class = "btn btn-info"></button>> </td>
+            </tr>
+        </ng-container>
     </tbody>
 </table>
  
