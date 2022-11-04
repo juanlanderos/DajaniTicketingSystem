@@ -7,7 +7,7 @@
 .ticket-view .detail .ticket-surround {
 	padding: 1rem; /* surrounding padding around contents within ticket info */
 	border: 1.7px solid gray; /* color and weight of box line */
-	background: #ffffff; /* OKAY */
+	background: #ffffff; /* Wite background color */
 }
 
 /* Color of heading title "Deatils for ticket #..." */
@@ -82,10 +82,20 @@
 }
 /* class for for comments, comments section */
 .ticket-view .detail .comments .comment {
+	display: flex; /* Added so we can add user name and date/time in comment */
+	justify-content: space-between; /* Added so we can add user name and date/time in comment */
 	padding: 0.5rem; /* Space surrounding each comment inside box */
 	color: #2e5495; /* Color of comment */
 	margin-bottom: 0.5rem; /* Space between each comment */
+} 
+
+/* class for for comments, comments section (OLD)
+.ticket-view .detail .comments .comment {
+	padding: 0.5rem; /* Space surrounding each comment inside box 
+	color: #2e5495; /* Color of comment 
+	margin-bottom: 0.5rem; /* Space between each comment 
 }
+*/
 /* Space surrounding response box contents */
 .ticket-view .detail .html-editor {
 	padding: 0 0.5rem 1rem; /* Padding on left/right/top-bottom space of response box */

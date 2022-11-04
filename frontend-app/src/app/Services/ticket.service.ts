@@ -36,7 +36,7 @@ export class TicketService {
 
   // Add comment to ticket comments section. Pass in ticket ID
   addCommentToTicket(comment: any): Observable<any>{
-    return this.httpClient.post(`http://localhost:9000/api/ticket-comments`, comment);
+    return this.httpClient.post(`http://localhost:9000/api/comments/${comment.ticketId}/${comment.userId}`, comment);
   }
 
   /*

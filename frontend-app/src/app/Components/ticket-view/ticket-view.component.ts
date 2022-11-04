@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/Models/comment';
 import { Ticket } from 'src/app/Models/ticket';
 import { User } from 'src/app/Models/user';
@@ -68,6 +68,15 @@ export class TicketViewComponent implements OnInit
 		this.ticketService.getCommentsFromTicket(this.ticket.ticketId).subscribe({
 			next: (resp: Comment[]) => {
 				this.comments = resp;
+				/*
+					Since user info is not coming in from the "getCommentsFromTicket" function,
+					I'm attaching the user associated with the comment.
+					The below lines can be removed once the function in the back-end starts returing userinfo above.
+				*/
+				this.comments = this.comments.map(comment => {
+					comment.userEntity = this.user;
+					return comment;
+				})
 			}
 		});
 	}
@@ -88,6 +97,7 @@ export class TicketViewComponent implements OnInit
 		next: resp => {
 			// Reset the html editor content;
 			this.responseFC.reset();
+			this.getUserComments();
 		}
 	  });
 	}

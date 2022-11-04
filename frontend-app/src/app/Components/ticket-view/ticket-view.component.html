@@ -86,17 +86,26 @@
 		</div>
 		<!-- If there is no comment for ticket, dont display box, if there is, display the comment box -->
 		<div class="comments box" *ngIf="comments.length > 0">
-			<div class="comment box" *ngFor="let comment of comments" [innerHTML]="comment?.content">
+			<div class="comment box" *ngFor="let comment of comments">
+				<div class="flex flex-col">
+					<!-- email that wrote the comment since db for name isnt up yet -->
+					<div class="label" style="margin-bottom: 6px;">{{ comment.userEntity.email }}</div>
+						<p> <!-- added space to seperate email from comment -->
+					<!-- Content from the comment being pulled in HTML from the HTML editor, that's why innerHTML is bounded here -->
+					<div [innerHTML]="comment.content"></div>
+				</div>
+				<div class="comment-date label">{{ comment.createdAt | date: 'medium' }}</div>
 			</div>
 		</div>
 		<!-- Separator box between comments and Response -->
 		<div class="separator-box"></div>
 		<!-- Response field for customer comment -->
 		<div class="html-editor box">
+			<!-- Placeholder text for comment response box -->
 			<app-html-editor placeholder="New Response here..."
 				[htmlContent]="responseFC.value"
-				(signals)="onHtmlContentChange($event)">
+				(signals)="onHtmlContentChange($event)"> <!-- Determines when a change in values have been made in html editor -->
 			</app-html-editor>
-		</div>
+		</div> <!-- Submit button for comment response field -->
 		<button class="mt-3" mat-raised-button color="primary" (click)="onSubmit()">Submit Response</button>
 	</div>
