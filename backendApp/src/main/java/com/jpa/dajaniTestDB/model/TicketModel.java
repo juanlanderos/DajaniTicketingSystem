@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TicketModel {
     private Integer ticketId;
+    private String title;
     private String createdAt;
     private String updatedAt;
     private String completedAt;

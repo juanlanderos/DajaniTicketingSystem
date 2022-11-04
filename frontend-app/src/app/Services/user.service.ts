@@ -12,8 +12,9 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
+  //signup
   createUser(user: User): Observable<Object>{
-    return this.httpClient.post(`${this.baseUrl}`, user);
+    return this.httpClient.post(`http://localhost:9000/api/users`, user);
   }
 
   getUsersList(): Observable<User[]>{

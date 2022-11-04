@@ -20,12 +20,14 @@ import { TicketViewComponent } from './Components/ticket-view/ticket-view.compon
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HtmlEditorComponent } from './Components/html-editor/html-editor.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoginComponent } from './Components/login/login.component';
 
 //Daniel Imports Below this
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+
 
 //Daniel Imports Above this
 
@@ -42,7 +44,9 @@ import { MatButtonModule } from '@angular/material/button';
     ProfileComponent,
     TicketViewComponent,
     DashboardComponent,
-    HtmlEditorComponent
+    HtmlEditorComponent,
+    LoginComponent
+   
   ],
   imports: [
     BrowserModule,

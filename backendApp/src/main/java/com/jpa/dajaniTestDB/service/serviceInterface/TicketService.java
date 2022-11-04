@@ -12,6 +12,8 @@ public interface TicketService {
 
     TicketModel findByTicketId(Integer ticketId);
 
+    TicketModel findByTicketTitle(String title);
+
     boolean deleteByTicketId(Integer ticketId);
 
     boolean removeUserFromTicket(Integer ticketId, Integer userId);

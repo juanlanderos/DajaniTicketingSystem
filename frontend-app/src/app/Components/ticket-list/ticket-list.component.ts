@@ -11,10 +11,7 @@ import { TicketService } from '../../Services/ticket.service';
 export class TicketListComponent implements OnInit {
 
   tickets: Ticket[] = [];
-  // Russell Code
-  statuses: string[] =['Open', 'Solved','Pending', 'Spam'];
-  selectedstatuses: string[] =['Open', 'Solved','Pending', 'Spam'];
-  // Russell Code
+  
 
   constructor(private ticketService: TicketService,
     private router: Router) { }
@@ -30,8 +27,10 @@ export class TicketListComponent implements OnInit {
       this.tickets = data;
     });
   }
-
   // Russell Code
+  statuses: String[] =['Open', 'Solved','Pending', 'Spam'];
+  selectedstatuses: String[] =['Open', 'Solved','Pending', 'Spam'];
+
   public defaultTrigger(selectedArr: any[], totalArr: any[]) {
     let selected = selectedArr.length;
     let total = totalArr.length;
@@ -44,6 +43,13 @@ export class TicketListComponent implements OnInit {
     } else {
       return selected + ' of ' + total + ' Selected';
     }
+  }
+
+  public filterTickets (ticket: Ticket) {
+    if (!this.selectedstatuses.includes(ticket.statusId)) {
+      return false;
+    }
+    return true;
   }
   // Russell Code
   

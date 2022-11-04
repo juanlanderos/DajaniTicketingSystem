@@ -19,8 +19,10 @@ export class CreateTicketComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // userID is hard coded in the creatTicket method below, to change it back,
+  // it should be this.ticketService.createTicket(this.userId,this.ticket)
   saveTicket(){
-    this.ticketService.createTicket(this.userId,this.ticket).subscribe( data => {
+    this.ticketService.createTicket(1,this.ticket).subscribe( data => {
       console.log(data);
       this.goToTicketList();
     }, error => console.log(error));
@@ -30,6 +32,10 @@ export class CreateTicketComponent implements OnInit {
     this.router.navigate(['/tickets']);
   }
 
+  goToIndividualTicket(){
+    this.router.navigate(['/tickets, ticket.ticketId']);
+  }
+
   onSubmit(){
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -37,6 +43,7 @@ export class CreateTicketComponent implements OnInit {
     this.ticket.createdAt = date + ' :: ' + time;
     this.ticket.updatedAt = date + ' :: ' + time;
     this.ticket.completedAt = '---';
+
     //
     console.log(this.ticket);
     this.saveTicket();

@@ -1,4 +1,3 @@
-import { Comment } from "./comment";
 import { User } from "./user";
 
 export class Ticket {
@@ -12,4 +11,6 @@ export class Ticket {
     commentList!: Comment[];
     userList!: User[];
     requesterId!: number;
+    title!: string;
+
 }
