@@ -79,6 +79,11 @@ background-color: #b0be54;
     background-color: #c0c1c1
 
 }
+
+/* Image position */
+.image-logo {
+    padding: 0.5px;
+}
 /* Can technically be removed since already in styles.css
 .footer {
     display: flex;
