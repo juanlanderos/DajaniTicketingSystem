@@ -32,7 +32,7 @@
                 <td> 
                     <a [routerLink]="['/ticket-view', ticket.ticketId]">{{ticket.ticketId}}</a> <!--to make ticket link clickable-->
             <!-- <tr *ngFor = "let ticket of tickets"> -->
-                <td> {{ticket.ticketId}} </td>
+            <!--<td> {{ticket.ticketId}} </td> No longer needed since above statement to make ticketId clickable -->
                 <td> {{ticket.createdAt}} </td>
                 <td> {{ticket.updatedAt}}</td>
                 <td> {{ticket.completedAt}} </td>
