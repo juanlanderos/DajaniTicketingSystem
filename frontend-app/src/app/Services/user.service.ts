@@ -21,8 +21,12 @@ export class UserService {
     return this.httpClient.get<User[]>(this.baseUrl);
   }
 
-  getUserByEmail(email : String): Observable<User>{
-    return this.httpClient.get<User>(`${this.baseUrl}/${email}`);
+  getUserByEmail(email : string): Observable<User>{
+    return this.httpClient.get<User>(`${this.baseUrl}/email/${email}`);
+  }
+
+  getUserByUsername(username : string): Observable<User>{
+    return this.httpClient.get<User>(`${this.baseUrl}/username/${username}`);
   }
 
   getUserById(id : number): Observable<User>{

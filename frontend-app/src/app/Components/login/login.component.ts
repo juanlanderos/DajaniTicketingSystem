@@ -5,6 +5,8 @@ import { LoginForm } from 'src/app/Models/login-form';
 import { AuthService } from 'src/app/Services/auth.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import jwt_decode from "jwt-decode";
+import { UserService } from 'src/app/Services/user.service';
+import { User } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +16,12 @@ import jwt_decode from "jwt-decode";
 export class LoginComponent implements OnInit {
 
   loginForm: LoginForm = new LoginForm();
+  currentUser!: User;
   tokens!: JwtToken;
 
   constructor(private authService: AuthService,
     private localStorage: LocalStorageService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -31,7 +35,16 @@ export class LoginComponent implements OnInit {
       this.localStorage.set("access_token", this.tokens.access_token);
       this.localStorage.set("refresh_token", this.tokens.refresh_token);
       this.localStorage.set("current_user", this.loginForm.username);
-      let decodeToken = jwt_decode(this.tokens.access_token);
+      //let decodeToken = jwt_decode(this.tokens.access_token);
+
+      //using the username, get that user and store info into localstorage
+      this.userService.getUserByUsername(this.loginForm.username).subscribe(data => {
+        this.currentUser = data;
+        
+        this.localStorage.set("firstName", this.currentUser.firstName);
+        this.localStorage.set("lastName", this.currentUser.lastName);
+        this.localStorage.set("role", this.currentUser.roles[0].roleName);
+      });
 
       //at the end, route the user to their corresponding home page (based on role?)
     })

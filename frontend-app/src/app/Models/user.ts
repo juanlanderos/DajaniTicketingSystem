@@ -1,11 +1,14 @@
 import { Comment } from "./comment";
+import { Role } from "./role";
 import { Ticket } from "./ticket";
 
 export class User {
     userId!: number;
-    email!: String;
-    firstName!: String;
-    lastName!: String;
-    commentList!: Comment[];
-    ticketList!: Ticket[];
+    username!: string;
+    email!: string;
+    firstName!: string;
+    lastName!: string;
+    roles!: Role[];
+    commentEntityList!: Comment[];
+    ticketEntities!: Ticket[];
 }

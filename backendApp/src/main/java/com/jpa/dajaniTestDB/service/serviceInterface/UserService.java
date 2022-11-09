@@ -9,8 +9,11 @@ import java.util.List;
 public interface UserService {
 
     UserModel saveUser(UserModel userModel);
+
     RoleEntity saveRole(RoleEntity role);
+
     void addRoleToUser(String username, String roleName);
+
     UserModel getUserByUsername(String username);
 
     List<UserModel> showAllUsers();
