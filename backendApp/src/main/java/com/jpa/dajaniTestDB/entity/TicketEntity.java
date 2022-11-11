@@ -30,7 +30,7 @@ public class TicketEntity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 65555)
     private String description;
 
     @Column(name = "created_at")
