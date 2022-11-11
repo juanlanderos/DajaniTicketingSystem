@@ -29,22 +29,22 @@ export class DashboardComponent implements OnInit {
 			if there is, pick that user data from there. else, added a dummy user
 		*/
 
-		const token =  this.localStorage.get("access_token");
+		const token = this.localStorage.get("access_token");
 
 		if (token) {
 			let decodeToken: any = jwt_decode(token);
-			this.user = decodeToken.user;
-		}
-		else {
+
 			this.user = {
-				firstName: 'Invalid',
-				lastName: 'User',
 				userId: 1,
-				commentList: [],
-				email: 'invalid_user@gmail.com',
-				ticketList: []
+				username: decodeToken.sub,
+				email: '',
+				commentEntityList: [],
+				firstName: '',
+				lastName: '',
+				roles: decodeToken.roles,
+				ticketEntities: []
 			}
-		} 
+		}
 
 		// Get all the tickets associated with current logged in user.
 		this.getCurrentUserTickets();
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
 		});
 
 		// Remove this when above API starts working properly
-		this.tickets = [
+		/*this.tickets = [
 			{ 	ticketId: 1, assigneeId: 1, 
 				commentList: [], requesterId: 1,
 				statusId: 'Open', ticketDept: '',
@@ -79,6 +79,6 @@ export class DashboardComponent implements OnInit {
 				createdAt: new Date().toLocaleString(),
 				updatedAt: new Date().toLocaleString()
 			} 
-		]
+		] */
 	}
 }

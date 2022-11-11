@@ -9,9 +9,9 @@ export class AppComponent {
   title = 'Dajani Ticketing System';
 
   constructor() {   
-    window.onbeforeunload = function() {
-      localStorage.clear();
-      return '';
-    };
+    //window.onbeforeunload = function() {
+    //  localStorage.clear();
+    //  return '';
+    //};
   }
 }

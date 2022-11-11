@@ -11,7 +11,7 @@
 	-->
 	<div class="detail box">
 	<h2 class="heading-primary">
-		Details for ticket # ECS{{ ticket.ticketId }} <!-- ECS is department abbr if needed. Can change to whatever -->
+		Details for ticket # DJC: {{ ticket.ticketId }} <!-- ECS is department abbr if needed. Can change to whatever -->
 	</h2>
 	<!-- Move "detail box" here instead if you want color of background gone -->
 		<div class="ticket-surround"> <!-- Added for blue background color masked as white. Change css if want removed -->
@@ -23,14 +23,7 @@
 				</div>
 				<div class="description-box">
 					<div class="label-bold">Description:&nbsp;&nbsp;</div>
-					<div class="description"><p><p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  <!-- Temp until description for ticketId is linked -->
-						tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-						aliquip ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
-						dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-						tempor incididunt ut labore et dolore magna aliqua.
-						Ut enim ad minim veniam, quis aute irure dolor in nostrud exercitation ullamco laboris.?
+					<div class="description">{{ticket.description}}
 					</div>
 				</div>
 			</div>

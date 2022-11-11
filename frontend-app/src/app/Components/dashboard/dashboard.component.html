@@ -19,7 +19,7 @@
                         <a [routerLink]="['/ticket-view', ticket.ticketId]">{{ticket.ticketId}}</a> <!--to make ticket link clickable-->
 					<td> {{ticket.createdAt}} </td> <!-- You can include " | date:'shortDate'}}" after created or update at for just the date. -->
 					<td> {{ticket.updatedAt}} </td>
-					<td> {{ticket.statusId}}</td>
+					<td> {{ticket.status}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -28,8 +28,8 @@
 			<!-- User details box (right side) -->
 			<div class="label-box">User Details</div>
 			<div class="flex flex-col mb-2">
-				<label for="fullname" class="label">Full Name:</label> <!-- Waiting on back-end implementation -->
-				<input id="fullname" type="text" readonly [value]="user.firstName + ' ' + user.lastName">
+				<label for="fullname" class="label">User Name:</label> <!-- Waiting on back-end implementation -->
+				<input id="fullname" type="text" readonly [value]="user.username"> <!-- Insert firstName + ' ' + user.lastName"> if you want -->
 			</div>
 
 			<div class="flex flex-col mb-2">
@@ -37,7 +37,6 @@
 				<!-- Pulling user email associated with ticketId fom DB -->
 				<input id="email" type="text" readonly [value]="user.email">
 			</div>
-
 			<a routerLink="changePassword">Change Password</a>
 		</div>
 	</div>

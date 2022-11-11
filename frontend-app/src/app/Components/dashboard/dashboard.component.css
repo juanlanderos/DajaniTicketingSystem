@@ -31,7 +31,7 @@
 	background: #ffffff; /* Wite background color */
 }
 
-/* "ticket info" box criteria */
+/* "User Details" box criteria */
 .dashboard-view .detail .label-box {
 	background: #e6e6e6;
 	padding: 0.5rem;
@@ -44,7 +44,7 @@
 	border: 1.7px solid gray; /* color and weight of box lines */
 }
 
-/* Color of place holder text (full name, email, ticket id.. etc) */
+/* Color of place holder text (full name, email.. etc) */
 .dashboard-view .label {
 	color: #898989;
 }
