@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
 			Since login is not working properly, I first check if there is a token that exists: 
 			if there is, pick that user data from there. else, added a dummy user
 		*/
+<<<<<<< Updated upstream
 
 		const token = this.localStorage.get("access_token");
 
@@ -51,12 +52,14 @@ export class DashboardComponent implements OnInit {
 
 		// Get all the tickets associated with current logged in user.
 		this.getCurrentUserTickets();
+=======
 		this.username = this.localStorage.get("current_user") as string;
 		this.userService.getUserByUsername(this.username).subscribe(data => {
 			this.user = data;
 			console.log(this.user);
 			this.getCurrentUserTickets();
 		});
+>>>>>>> Stashed changes
 	}
 
 	getCurrentUserTickets(): void {
@@ -64,6 +67,7 @@ export class DashboardComponent implements OnInit {
 			this.tickets = data;
 			console.log(this.tickets);
 		});
+<<<<<<< Updated upstream
 
 		// Remove this when above API starts working properly
 		/*this.tickets = [
@@ -84,5 +88,7 @@ export class DashboardComponent implements OnInit {
 				updatedAt: new Date().toLocaleString()
 			} 
 		] */
+=======
+>>>>>>> Stashed changes
 	}
 }
