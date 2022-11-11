@@ -2,15 +2,15 @@ import { User } from "./user";
 
 export class Ticket {
     ticketId!:number;
-    ticketDept!: string;
+    title!: string;
+    description!: string;
     createdAt!: string;
     updatedAt!: string;
     completedAt!: string;
-    statusId!: string;
-    assigneeId!: number;
+    status!: string;
     commentList!: Comment[];
     userList!: User[];
     requesterId!: number;
-    title!: string;
+    agentId!: number;
 
 }
