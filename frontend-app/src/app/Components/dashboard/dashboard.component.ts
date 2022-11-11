@@ -13,12 +13,10 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  	tickets: Ticket[] = [];
   	tickets!: Ticket[];
 	user!: User;
 	username!: string;
 
-	constructor(private tickService: TicketService,
 	constructor(private ticketService: TicketService,
 				private userService: UserService,
 				private localStorage: LocalStorageService) 
@@ -61,15 +59,7 @@ export class DashboardComponent implements OnInit {
 		});
 	}
 
-	/*
-		It wont return anything since the API is not there yet.
-		That's why hard coded tickets array is added. It can be removed when the API is done.
-	*/
 	getCurrentUserTickets(): void {
-		this.tickService.getTicketsByUserId(this.user.userId).subscribe({
-			next: (resp: any) => {
-				this.tickets = resp;
-			}
 		this.userService.getTicketsByUserId(this.user.userId).subscribe(data => {
 			this.tickets = data;
 			console.log(this.tickets);
