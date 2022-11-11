@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DashboardService } from '../../Services/dashboard.service';
-import { TicketView } from '../../Models/ticket-view';
-import { TicketViewComponent } from '../ticket-view/ticket-view.component';
-import { TicketViewService } from '../../Services/ticket-view.service';
-import { TicketListComponent } from 'src/app/Components/ticket-list/ticket-list.component';
-import { TicketService } from '../../Services/ticket.service';
-import { Dashboard } from 'src/app/Models/dashboard';
+import jwt_decode from "jwt-decode";
+import { Ticket } from 'src/app/Models/ticket';
+import { User } from 'src/app/Models/user';
+import { TicketService } from 'src/app/Services/ticket.service';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,20 +12,73 @@ import { Dashboard } from 'src/app/Models/dashboard';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  	tickets: Ticket[] = [];
+	user!: User;
 
-  tickets: TicketView[] = [];
-  constructor(private DashboardService: DashboardService,
-    private router: Router) {}
+	constructor(private tickService: TicketService,
+				private localStorage: LocalStorageService) 
+	{ }
 
-  ngOnInit(): void {
-    // this.getTickets();
-  }
+	ngOnInit(): void {
+		this.getLoggedInUserInfo();
+	}
 
-    // //REMOVE WHEN DB IS OFFICIALLY LINKED. TEMPORARY
-    // private getTickets(){
-    //   this.ticketViewService.getTicketsList().subscribe(data => {
-    //     this.tickets = data.data
-    //   });
-    // }
+	getLoggedInUserInfo(): void {
+		/* 	
+			Since login is not working properly, I first check if there is a token that exists: 
+			if there is, pick that user data from there. else, added a dummy user
+		*/
 
+		const token =  this.localStorage.get("access_token");
+
+		if (token) {
+			let decodeToken: any = jwt_decode(token);
+			this.user = decodeToken.user;
+		}
+		else {
+			this.user = {
+				firstName: 'Invalid',
+				lastName: 'User',
+				userId: 1,
+				commentList: [],
+				email: 'invalid_user@gmail.com',
+				ticketList: []
+			}
+		} 
+
+		// Get all the tickets associated with current logged in user.
+		this.getCurrentUserTickets();
+	}
+
+	/*
+		It wont return anything since the API is not there yet.
+		That's why hard coded tickets array is added. It can be removed when the API is done.
+	*/
+	getCurrentUserTickets(): void {
+		this.tickService.getTicketsByUserId(this.user.userId).subscribe({
+			next: (resp: any) => {
+				this.tickets = resp;
+			}
+		});
+
+		// Remove this when above API starts working properly
+		this.tickets = [
+			{ 	ticketId: 1, assigneeId: 1, 
+				commentList: [], requesterId: 1,
+				statusId: 'Open', ticketDept: '',
+				title: 'Test Ticket 01', userList: [],
+				completedAt: new Date().toLocaleString(), 
+				createdAt: new Date().toLocaleString(),
+				updatedAt: new Date().toLocaleString()
+			},
+			{ 	ticketId: 2, assigneeId: 1, 
+				commentList: [], requesterId: 1,
+				statusId: 'Open', ticketDept: '',
+				title: 'Test Ticket 02', userList: [],
+				completedAt: new Date().toLocaleString(), 
+				createdAt: new Date().toLocaleString(),
+				updatedAt: new Date().toLocaleString()
+			} 
+		]
+	}
 }

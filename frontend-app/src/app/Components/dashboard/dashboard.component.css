@@ -1,0 +1,72 @@
+.dashboard-view {
+	margin-top: 1rem;
+}
+
+/* User Details box between each box */
+.dashboard-view .detail .right {
+	display: flex;
+	flex-direction: column;
+	margin-left: 1rem;
+
+	flex: 1; /* used to keep desc box proportional */
+	padding: 0.5rem;
+}
+
+/* Space and color between all content and outside borders */
+.dashboard-view .detail {
+	padding: 1.5rem; /* Space around t-v contents (shrink or larger) */
+	font-size: 1rem; /* size of text in t-v */
+	background: #2e5495;  /* !! color of ticket-tiew page !! (background: #b0be54;)*/
+
+	display: flex;
+	margin-bottom: 1.0rem;
+}
+
+.dashboard-view .detail .ticket-surround {
+	display: flex;
+	width: 100%;
+
+	padding: 1rem; /* surrounding padding around contents within ticket info */
+	border: 1.7px solid gray; /* color and weight of box line */
+	background: #ffffff; /* Wite background color */
+}
+
+/* "ticket info" box criteria */
+.dashboard-view .detail .label-box {
+	background: #e6e6e6;
+	padding: 0.5rem;
+	text-align: center;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+}
+/* Color of ALL box lines */
+.dashboard-view .box {
+	border: 1.7px solid gray; /* color and weight of box lines */
+}
+
+/* Color of place holder text (full name, email, ticket id.. etc) */
+.dashboard-view .label {
+	color: #898989;
+}
+
+#tickets {
+    border-collapse: collapse;
+    width: 100%;    
+}
+
+#tickets td, #users th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#tickets tr:nth-child(even){background-color: #f2f2f2;}
+
+#tickets tr:hover {background-color: #ddd;}
+
+#tickets th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background: linear-gradient(90deg, hsla(205, 46%, 30%, 1) 0%, hsla(260, 29%, 36%, 1) 100%);
+    color: white;
+}

@@ -5,9 +5,6 @@ import { Comment } from 'src/app/Models/comment';
 import { Ticket } from 'src/app/Models/ticket';
 import { User } from 'src/app/Models/user';
 import { TicketService } from 'src/app/Services/ticket.service';
-//import { TicketView } from '../../Models/ticket-view';
-//import { TicketViewService } from '../../Services/ticket-view.service';
-//import { TicketListComponent } from 'src/app/Components/ticket-list/ticket-list.component';
 
 @Component({
   selector: 'app-ticket-view',

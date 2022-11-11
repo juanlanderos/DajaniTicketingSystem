@@ -1,3 +1,44 @@
-<div class="test">
-        My Dashboard Page
-    </div>
+<h1 class="text-primary text-center">Dashboard View Page</h1>
+<div class="dashboard-view">
+    
+<div class="detail box">
+	<!-- Move "detail box" here instead if you want color of background gone -->
+	<div class="ticket-surround">
+        <table id="tickets" class="table table-striped">
+			<thead>
+				<tr>
+					<th class="text-primary px-2 py-3">Ticket ID</th>
+					<th class="text-primary px-2 py-3">Created At</th>
+					<th class="text-primary px-2 py-3">Updated At</th>
+					<th class="text-primary px-2 py-3">Status Id</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor = "let ticket of tickets">
+					<td> 
+                        <a [routerLink]="['/ticket-view', ticket.ticketId]">{{ticket.ticketId}}</a> <!--to make ticket link clickable-->
+					<td> {{ticket.createdAt}} </td> <!-- You can include " | date:'shortDate'}}" after created or update at for just the date. -->
+					<td> {{ticket.updatedAt}} </td>
+					<td> {{ticket.statusId}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="right box">
+			<!-- User details box (right side) -->
+			<div class="label-box">User Details</div>
+			<div class="flex flex-col mb-2">
+				<label for="fullname" class="label">Full Name:</label> <!-- Waiting on back-end implementation -->
+				<input id="fullname" type="text" readonly [value]="user.firstName + ' ' + user.lastName">
+			</div>
+
+			<div class="flex flex-col mb-2">
+				<label for="email" class="label">Email:</label> 
+				<!-- Pulling user email associated with ticketId fom DB -->
+				<input id="email" type="text" readonly [value]="user.email">
+			</div>
+
+			<a routerLink="changePassword">Change Password</a>
+		</div>
+	</div>
+</div>
