@@ -68,7 +68,7 @@ export class TicketService {
     added to get all tickets in dashboard page 
     from the current user logged in 
   */
-  getTicketsByUserId(userId: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseUrl}/users/${userId}`);
+  getTicketsByUserId(userId: number): Observable<Ticket[]>{
+    return this.httpClient.get<Ticket[]>(`${this.baseUrl}/users/${userId}`);
   }
 }

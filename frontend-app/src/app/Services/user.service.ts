@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Models/user';
+import { Ticket } from '../Models/ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class UserService {
 
   updateUser(id: number, user: User): Observable<Object>{
     return this.httpClient.put(`${this.baseUrl}/${id}`, user);
+  }
+
+  getTicketsByUserId(id : number): Observable<Ticket[]>{
+    return this.httpClient.get<Ticket[]>(`${this.baseUrl}/tickets/${id}`);
   }
 }

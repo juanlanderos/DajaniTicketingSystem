@@ -1,7 +1,9 @@
 package com.jpa.dajaniTestDB.service.serviceImplementation;
 
 import com.jpa.dajaniTestDB.entity.RoleEntity;
+import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.RoleRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
@@ -134,6 +136,30 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         UserModel tempUserModel = new UserModel();
         BeanUtils.copyProperties(tempUserEntity, tempUserModel);
         return tempUserModel;
+    }
+
+    @Override
+    public List<TicketModel> getTicketsByUserId(int userId){
+        UserEntity userEntity = userRepository.findById(userId).get();
+        List<TicketEntity> ticketEntityList = userEntity.getTicketEntities();
+        List<TicketModel> ticketModelList = ticketEntityList
+                .stream()
+                .map(tempTicket -> new TicketModel(
+                        tempTicket.getTicketId(),
+                        tempTicket.getTitle(),
+                        tempTicket.getDescription(),
+                        tempTicket.getCreatedAt(),
+                        tempTicket.getUpdatedAt(),
+                        tempTicket.getCompletedAt(),
+                        tempTicket.getStatus(),
+                        tempTicket.getCommentEntityList(),
+                        tempTicket.getTicketUsers(),
+                        tempTicket.getRequesterId(),
+                        tempTicket.getAgentId()
+                ))
+                .collect(Collectors.toList());
+        return ticketModelList;
+
     }
 }
 

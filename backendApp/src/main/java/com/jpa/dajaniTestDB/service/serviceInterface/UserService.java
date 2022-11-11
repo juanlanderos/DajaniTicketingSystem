@@ -1,6 +1,7 @@
 package com.jpa.dajaniTestDB.service.serviceInterface;
 
 import com.jpa.dajaniTestDB.entity.RoleEntity;
+import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import org.springframework.security.core.userdetails.User;
 
@@ -25,4 +26,6 @@ public interface UserService {
     UserModel getUserByFirstName(String firstName);
 
     UserModel getUserByLastName(String lastName);
+
+    List<TicketModel> getTicketsByUserId(int userId);
 }

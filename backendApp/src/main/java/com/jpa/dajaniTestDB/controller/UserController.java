@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jpa.dajaniTestDB.entity.RoleEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -135,6 +136,12 @@ public class UserController {
         UserModel tempUserModel = null;
         tempUserModel = userService.getUserById(id);
         return ResponseEntity.ok(tempUserModel);
+    }
+
+    //get all tickets that belong to a user by their userId
+    @GetMapping("/users/tickets/{userId}")
+    public ResponseEntity<List<TicketModel>> getAllTicketsbyUserId(@PathVariable int userId){
+        return ResponseEntity.ok().body(userService.getTicketsByUserId(userId));
     }
 }
 

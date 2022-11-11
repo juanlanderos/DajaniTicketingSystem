@@ -4,6 +4,7 @@ import { Ticket } from 'src/app/Models/ticket';
 import { User } from 'src/app/Models/user';
 import { TicketService } from 'src/app/Services/ticket.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { UserService } from 'src/app/Services/user.service';
 
 
 @Component({
@@ -13,9 +14,13 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 })
 export class DashboardComponent implements OnInit {
   	tickets: Ticket[] = [];
+  	tickets!: Ticket[];
 	user!: User;
+	username!: string;
 
 	constructor(private tickService: TicketService,
+	constructor(private ticketService: TicketService,
+				private userService: UserService,
 				private localStorage: LocalStorageService) 
 	{ }
 
@@ -48,6 +53,12 @@ export class DashboardComponent implements OnInit {
 
 		// Get all the tickets associated with current logged in user.
 		this.getCurrentUserTickets();
+		this.username = this.localStorage.get("current_user") as string;
+		this.userService.getUserByUsername(this.username).subscribe(data => {
+			this.user = data;
+			console.log(this.user);
+			this.getCurrentUserTickets();
+		});
 	}
 
 	/*
@@ -59,6 +70,9 @@ export class DashboardComponent implements OnInit {
 			next: (resp: any) => {
 				this.tickets = resp;
 			}
+		this.userService.getTicketsByUserId(this.user.userId).subscribe(data => {
+			this.tickets = data;
+			console.log(this.tickets);
 		});
 
 		// Remove this when above API starts working properly
