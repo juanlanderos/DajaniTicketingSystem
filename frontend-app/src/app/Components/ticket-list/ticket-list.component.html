@@ -1,4 +1,5 @@
-<h1 class="text-primary text-center px-5 py-5">Tickets</h1>
+<div class = "component">
+    <h1 class="text-primary text-center px-1 py-1">Tickets</h1>
 
 <!--Russell code-->
 <div>
@@ -36,12 +37,13 @@
                 <td> {{ticket.createdAt}} </td>
                 <td> {{ticket.updatedAt}}</td>
                 <td> {{ticket.completedAt}} </td>
-                <td> {{ticket.statusId}} </td>
-                <td> {{ticket.assigneeId}} </td>
+                <td> {{ticket.status}} </td>
+                <td> {{ticket.agentId}} </td>
                 <td> {{ticket.requesterId}} </td>
-                <td> <button (click)="updateTickets(ticket.statusId)" class = "btn btn-info"></button>> </td>
+                <td> <button (click)="updateTickets(ticket.status)" class = "btn btn-info"></button>> </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
+</div>
  

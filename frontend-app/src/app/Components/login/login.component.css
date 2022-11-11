@@ -1,0 +1,103 @@
+.component{
+    height: 525px;
+}
+
+.signout {
+    position:absolute;
+    top: 5px;
+    right: 5px;
+
+}
+
+.homeButton {
+    position: absolute;
+    top: -3px;
+    right: 85px;
+    color: #b0be54;
+}
+
+.green {
+    color: #b0be54;
+
+}
+
+.signoutColor {
+    background-color: #e9e9e9;
+    color:#b0be54;
+}
+
+.lightGray {
+    background-color:#e9e9e9;
+
+}
+
+.navbar {
+        display: flex;
+        /* align-items: left; */
+        justify-content: left;
+        padding: 5px;
+        color: #b0be54;
+        background-color: #b0be54;
+      }
+
+.nav {
+    color: #b0be54;
+    background-color: #b0be54;
+}
+
+
+.footer {
+    background-color:#b0be54;
+}
+
+.sidenavButton{
+
+width: 100%;
+background-color: #b0be54;
+}
+
+.sidenavButton:hover{
+
+    color: #ffffff;   
+}
+
+.sidenav{
+
+    background-color: #c0c1c1
+
+}
+
+.sidenavButton{
+
+width: 100%;
+background-color: #b0be54;
+
+}
+
+.sidenavButton:hover{
+
+    color: #ffffff;
+    
+}
+
+.sidenav{
+
+    background-color: #c0c1c1
+
+}
+
+/* Image position */
+.image-logo {
+    padding: 0.5px;
+}
+/* Can technically be removed since already in styles.css
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #2e5495;
+    text-align: center;
+    color: #fff;
+} */

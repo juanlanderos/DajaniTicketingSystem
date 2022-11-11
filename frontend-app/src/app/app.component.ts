@@ -14,5 +14,4 @@ export class AppComponent {
       return '';
     };
   }
-  
 }

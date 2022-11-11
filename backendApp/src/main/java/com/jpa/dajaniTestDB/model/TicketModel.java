@@ -14,10 +14,13 @@ import java.util.List;
 public class TicketModel {
     private Integer ticketId;
     private String title;
+    private String description;
     private String createdAt;
     private String updatedAt;
     private String completedAt;
-    private String statusId;
+    private String status;
     private List<CommentEntity> commentEntityList;
     private List<UserEntity> userEntityList;
+    private Integer requesterId;
+    private Integer agentId;
 }

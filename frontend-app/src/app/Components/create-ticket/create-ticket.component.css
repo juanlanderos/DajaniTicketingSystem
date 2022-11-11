@@ -1,11 +1,13 @@
 
-.card{
+.component{
+    height: 525px;
+}
 
+.card{
+    height: auto;
     background-color: #a8b557;
     padding: 20px;
 }
-
-.card 
 
 .strong{
     color: rgb(10, 10, 10);

@@ -46,7 +46,7 @@ export class TicketListComponent implements OnInit {
   }
 
   public filterTickets (ticket: Ticket) {
-    if (!this.selectedstatuses.includes(ticket.statusId)) {
+    if (!this.selectedstatuses.includes(ticket.status)) {
       return false;
     }
     return true;

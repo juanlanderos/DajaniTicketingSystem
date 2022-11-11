@@ -44,12 +44,15 @@ public class TicketServiceImpl implements TicketService {
                 .map(tempTicket -> new TicketModel(
                         tempTicket.getTicketId(),
                         tempTicket.getTitle(),
+                        tempTicket.getDescription(),
                         tempTicket.getCreatedAt(),
                         tempTicket.getUpdatedAt(),
                         tempTicket.getCompletedAt(),
-                        tempTicket.getStatusId(),
+                        tempTicket.getStatus(),
                         tempTicket.getCommentEntityList(),
-                        tempTicket.getTicketUsers()
+                        tempTicket.getTicketUsers(),
+                        tempTicket.getRequesterId(),
+                        tempTicket.getAgentId()
                 ))
                 .collect(Collectors.toList());
         return ticketModels;
@@ -83,11 +86,12 @@ public class TicketServiceImpl implements TicketService {
             return true;
         }
         else{
-            System.err.println("User does not exist");
+            System.err.println("Ticket does not exist");
             return false;
         }
     }
 
+    //remove the user from the list of users and remove requester/agent id
     @Override
     public boolean removeUserFromTicket(Integer ticketId, Integer userId){
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
@@ -96,6 +100,11 @@ public class TicketServiceImpl implements TicketService {
         if(removedUser != null){
             userEntityList.remove(removedUser);
             removedUser.removeTicket(ticketEntity);
+            if(userId == ticketEntity.getRequesterId()){
+                ticketEntity.setRequesterId(null);
+            } else if (userId == ticketEntity.getAgentId()){
+                ticketEntity.setAgentId(null);
+            }
             return true;
         }
         else{
@@ -104,22 +113,26 @@ public class TicketServiceImpl implements TicketService {
         }
     }
 
+    //a new ticket is made by the person who will be the requester
     @Override
     public TicketModel createNewTicket(Integer userId, TicketModel tempTicketModel) {
         TicketEntity tempTicketEntity = new TicketEntity();
         UserEntity tempUserEntity = userRepository.findById(userId).get();
         BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
         tempTicketEntity.getTicketUsers().add(tempUserEntity);
+        tempTicketEntity.setRequesterId(userId);
         tempUserEntity.addTicket(tempTicketEntity);
         ticketRepository.save(tempTicketEntity);
         return tempTicketModel;
     }
 
+    //the people who must be added to a pre-existing ticket are agents
     @Override
     public void addUserToTicket(Integer userId, Integer ticketId) {
         TicketEntity tempTicketEntity = ticketRepository.findById(ticketId).get();
         UserEntity tempUserEntity = userRepository.findById(userId).get();
         tempTicketEntity.getTicketUsers().add(tempUserEntity);
+        tempTicketEntity.setAgentId(userId);
         tempUserEntity.addTicket(tempTicketEntity);
         ticketRepository.save(tempTicketEntity);
     }

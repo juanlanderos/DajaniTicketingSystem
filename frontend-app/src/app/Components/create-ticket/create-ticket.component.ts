@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/Models/user';
+import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { UserService } from 'src/app/Services/user.service';
 import { Ticket } from '../../Models/ticket';
 import { TicketService } from '../../Services/ticket.service';
 
@@ -11,18 +14,25 @@ import { TicketService } from '../../Services/ticket.service';
 export class CreateTicketComponent implements OnInit {
 
   ticket: Ticket = new Ticket();
-  userId!: number;
+  user: User = new User();
+  username!: string;
 
   constructor(private ticketService: TicketService,
+    private userService: UserService,
+    private localStorage: LocalStorageService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.username = this.localStorage.get("current_user") as string;
+    this.userService.getUserByUsername(this.username).subscribe(data => {
+      this.user = data;
+      console.log(this.user.userId);
+    })
+
   }
 
-  // userID is hard coded in the creatTicket method below, to change it back,
-  // it should be this.ticketService.createTicket(this.userId,this.ticket)
   saveTicket(){
-    this.ticketService.createTicket(1,this.ticket).subscribe( data => {
+    this.ticketService.createTicket(this.user.userId,this.ticket).subscribe( data => {
       console.log(data);
       this.goToTicketList();
     }, error => console.log(error));

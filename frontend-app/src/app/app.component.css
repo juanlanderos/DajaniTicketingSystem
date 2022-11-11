@@ -32,6 +32,8 @@
         /* align-items: left; */
         justify-content: left;
         padding: 5px;
+        color: #b0be54;
+        background-color: #b0be54;
       }
 
 .nav {
@@ -42,6 +44,10 @@
 
 .footer {
     background-color:#b0be54;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3rem; 
 }
 
 .sidenavButton{
@@ -56,8 +62,9 @@ background-color: #b0be54;
 }
 
 .sidenav{
-
-    background-color: #c0c1c1
+    height: auto;
+    padding-top: 25px;
+    background-color: #000000
 
 }
 
@@ -75,7 +82,10 @@ background-color: #b0be54;
 }
 
 .sidenav{
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
     background-color: #c0c1c1
 
 }

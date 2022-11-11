@@ -30,6 +30,9 @@ public class TicketEntity {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "created_at")
     private String createdAt;
 
@@ -39,8 +42,8 @@ public class TicketEntity {
     @Column(name = "completed_at")
     private String completedAt;
 
-    @Column(name = "status_ID")
-    private String statusId;
+    @Column(name = "status")
+    private String status;
 
     //child in relationship with commentEntity
     @OneToMany(
@@ -52,6 +55,14 @@ public class TicketEntity {
             mappedBy = "ticketEntities")
             //cascade = { CascadeType.DETACH })
     private List<UserEntity> ticketUsers = new ArrayList<>();
+
+    //used to find the user who made the ticket request
+    @Column(name = "requester")
+    private Integer requesterId;
+
+    //used to find the user who is assigned to fix the ticket
+    @Column(name = "agent")
+    private Integer agentId;
 
 //------------------Modifiers Past This Point ----------------------------
 
@@ -83,12 +94,12 @@ public class TicketEntity {
         this.completedAt = completedAt;
     }
 
-    public String getStatusId() {
-        return statusId;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusId(String statusId) {
-        this.statusId = statusId;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<CommentEntity> getCommentEntityList() {return commentEntityList;}

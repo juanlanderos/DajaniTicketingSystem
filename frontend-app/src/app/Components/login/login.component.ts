@@ -46,8 +46,13 @@ export class LoginComponent implements OnInit {
         this.localStorage.set("role", this.currentUser.roles[0].roleName);
       });
 
-      //at the end, route the user to their corresponding home page (based on role?)
+      //at the end, route the user to their corresponding home page 
+      this.goToDashboard();
     })
+  }
+
+  goToDashboard(){
+    this.router.navigate(['/dashboard']);
   }
 
   onSubmit(){

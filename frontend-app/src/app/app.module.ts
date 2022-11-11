@@ -27,6 +27,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginInfoComponent } from './Components/login-info/login-info.component';
 
 //Daniel Imports Above this
 
@@ -45,6 +46,7 @@ import { MatButtonModule } from '@angular/material/button';
     DashboardComponent,
     HtmlEditorComponent,
     LoginComponent,
+    LoginInfoComponent,
   ],
   imports: [
     BrowserModule,
