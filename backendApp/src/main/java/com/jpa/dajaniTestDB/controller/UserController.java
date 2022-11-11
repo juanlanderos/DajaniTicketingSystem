@@ -47,26 +47,28 @@ public class UserController {
 
     private final UserService userService;
 
-
-    //signup method
-    @PostMapping("/user/save")
+    //create a user
+    @PostMapping("/users/save")
     public ResponseEntity<UserModel> saveUser(@RequestBody UserModel tempUserModel){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(tempUserModel));
     }
 
+    //save a new role
     @PostMapping("/role/save")
     public ResponseEntity<RoleEntity> saveRole(@RequestBody RoleEntity tempRole){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(tempRole));
     }
 
+    //add a new role to a user
     @PostMapping("/role/addToUser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
         userService.addRoleToUser(form.getUsername(), form.getUsername());
         return ResponseEntity.ok().build();
     }
 
+    //take in refresh token and return a new access token
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);
@@ -109,17 +111,25 @@ public class UserController {
     }
     //signup + login methods end
 
+    //get a list of ALL users
     @GetMapping("/users")
     public ResponseEntity<List<UserModel>> getAllUsers(){
         return ResponseEntity.ok().body(userService.showAllUsers());
     }
 
+    //get a single user by their email
     @GetMapping("/users/email/{email}")
     public UserModel getUserByEmail(@PathVariable("email") String email){
         return userService.getUserByEmail(email);
     }
 
+    //get a single user by their username
+    @GetMapping("users/username/{username}")
+    public UserModel getUserByUsername(@PathVariable("username") String username){
+        return userService.getUserByUsername(username);
+    }
 
+    //get a single user by their userId
     @GetMapping("/users/{id}")
     public ResponseEntity<UserModel> getUserById(@PathVariable int id){
         UserModel tempUserModel = null;
