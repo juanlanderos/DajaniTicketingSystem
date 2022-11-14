@@ -3,15 +3,21 @@ package com.jpa.dajaniTestDB.service.serviceImplementation;
 import com.jpa.dajaniTestDB.entity.CommentEntity;
 import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import com.jpa.dajaniTestDB.model.CommentModel;
+import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
@@ -23,34 +29,51 @@ public class TicketServiceImpl implements TicketService {
     }
 
 /*    @Override
-    public TicketEntity createTicket(TicketEntity tempTicketEntity){
+    public TicketModel createTicket(TicketModel tempTicketModel){
         TicketEntity tempTicketEntity = new TicketEntity();
 
-        BeanUtils.copyProperties(tempTicketEntity, tempTicketEntity);
+        BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
         ticketRepository.save(tempTicketEntity);
-        return tempTicketEntity;
+        return tempTicketModel;
     }*/
 
     @Override
-    public List<TicketEntity> getAllTickets() {
+    public List<TicketModel> getAllTickets() {
         List<TicketEntity> ticketEntities = ticketRepository.findAll();
-        return ticketEntities;
+
+        List<TicketModel> ticketModels = ticketEntities
+                .stream()
+                .map(tempTicket -> new TicketModel(
+                        tempTicket.getTicketId(),
+                        tempTicket.getTitle(),
+                        tempTicket.getDescription(),
+                        tempTicket.getCreatedAt(),
+                        tempTicket.getUpdatedAt(),
+                        tempTicket.getCompletedAt(),
+                        tempTicket.getStatus(),
+                        tempTicket.getCommentEntityList(),
+                        tempTicket.getTicketUsers(),
+                        tempTicket.getRequesterId(),
+                        tempTicket.getAgentId()
+                ))
+                .collect(Collectors.toList());
+        return ticketModels;
     }
 
     @Override
-    public TicketEntity findByTicketId(Integer ticketId) {
+    public TicketModel findByTicketId(Integer ticketId) {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
-        TicketEntity TicketEntity = new TicketEntity();
-        BeanUtils.copyProperties(ticketEntity, TicketEntity);
-        return TicketEntity;
+        TicketModel ticketModel = new TicketModel();
+        BeanUtils.copyProperties(ticketEntity, ticketModel);
+        return ticketModel;
     }
 
     @Override
-    public TicketEntity findByTicketTitle(String title) {
+    public TicketModel findByTicketTitle(String title) {
         TicketEntity ticketEntity = ticketRepository.findByTitle(title);
-        TicketEntity TicketEntity = new TicketEntity();
-        BeanUtils.copyProperties(ticketEntity, TicketEntity);
-        return TicketEntity;
+        TicketModel ticketModel = new TicketModel();
+        BeanUtils.copyProperties(ticketEntity, ticketModel);
+        return ticketModel;
     }
 
     @Override
@@ -94,15 +117,15 @@ public class TicketServiceImpl implements TicketService {
 
     //a new ticket is made by the person who will be the requester
     @Override
-    public TicketEntity createNewTicket(Integer userId, TicketEntity tempTicketEntity) {
-        //TicketEntity tempTicketEntity = new TicketEntity();
+    public TicketModel createNewTicket(Integer userId, TicketModel tempTicketModel) {
+        TicketEntity tempTicketEntity = new TicketEntity();
         UserEntity tempUserEntity = userRepository.findById(userId).get();
-        //BeanUtils.copyProperties(tempTicketEntity, tempTicketEntity);
+        BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
         tempTicketEntity.getTicketUsers().add(tempUserEntity);
         tempTicketEntity.setRequesterId(userId);
         tempUserEntity.addTicket(tempTicketEntity);
         ticketRepository.save(tempTicketEntity);
-        return tempTicketEntity;
+        return tempTicketModel;
     }
 
     //the people who must be added to a pre-existing ticket are agents
@@ -117,15 +140,45 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<UserEntity> getAllUsersByTicketId(Integer ticketId) {
+    public List<UserModel> getAllUsersByTicketId(Integer ticketId) {
         TicketEntity tempTicketEntity = ticketRepository.findById(ticketId).get();
         List<UserEntity> userEntityList = tempTicketEntity.getTicketUsers();
-        return userEntityList;
+
+        List<UserModel> userModels = userEntityList
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getUsername(),
+                        tempUser.getEmail(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getPassword(),
+                        tempUser.getRoles(),
+                        tempUser.getCommentEntityList(),
+                        tempUser.getTicketEntities(),
+                        tempUser.getResetPasswordToken()
+                ))
+                .collect(Collectors.toList());
+        return userModels;
     }
 
     @Override
-    public List<CommentEntity> getAllCommentsByTicketId(Integer ticketId) {
+    public List<CommentModel> getAllCommentsByTicketId(Integer ticketId) {
+        log.info("Made it here");
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
-        return ticketEntity.getCommentEntityList();
+        List<CommentEntity> commentEntityList = ticketEntity.getCommentEntityList();
+        List<CommentModel> commentModels = commentEntityList
+                .stream()
+                .map(com -> new CommentModel(
+                        com.getCommentId(),
+                        com.getTicketEntity(),
+                        com.getUserEntity(),
+                        com.getContent(),
+                        com.getCreatedAt(),
+                        com.getUpdatedAt()
+                ))
+                .collect(Collectors.toList());
+        log.info("made it to the end");
+        return commentModels;
     }
 }

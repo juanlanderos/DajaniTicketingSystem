@@ -4,7 +4,8 @@ package com.jpa.dajaniTestDB.controller;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.jpa.dajaniTestDB.entity.UserEntity;
-import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
+import com.jpa.dajaniTestDB.model.UserModel;
+import com.jpa.dajaniTestDB.service.ServiceInterface.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -80,7 +81,7 @@ public class AuthController {
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<UserEntity> newUserRegistration(@RequestBody UserEntity tempUserModel) {
+    public ResponseEntity<UserModel> newUserRegistration(@RequestBody UserModel tempUserModel) {
         String username = tempUserModel.getUsername();
         String password = tempUserModel.getPassword();
 
@@ -90,28 +91,19 @@ public class AuthController {
         return ResponseEntity.created(uri).body(userService.saveUser(tempUserModel));
     }
 
-/*    @PostMapping("/auth/forgot_password/{email}")
-    public String processForgotPassword(@PathVariable("email") String email)
-            throws MessagingException, UnsupportedEncodingException {
-        String token = RandomString.make(30);
-        userService.updateResetPasswordToken(token, email);
-        sendEmail(email, "http://localhost:4200/newPassword");
-        return null;
-    }*/
-
     @PostMapping("/auth/forgotPassword/{email}")
     public ResponseEntity<String> processForgotPassword(@PathVariable String email)
             throws MessagingException, UnsupportedEncodingException {
         log.info("forgot_password REST function reached");
         String token = RandomString.make(30);
-        String confirmation = "Password successfully changed";
+        String confirmation = "Password change initiated";
 
         try {
             userService.updateResetPasswordToken(token, email);
-            sendEmail(email, "http://localhost:4200/newPassword");
+            sendEmail(email, "http://localhost:4200/resetPassword");
             log.info("updateResetPasswordToken reached");
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/auth/forgot_password/{email}").toUriString());
-            return ResponseEntity.created(uri).body(confirmation);
+            return ResponseEntity.ok(confirmation);
         }
         catch(UsernameNotFoundException e){
             log.info("error while sending email");
@@ -120,18 +112,20 @@ public class AuthController {
     }
 
     @PostMapping("/auth/reset_password/{token}/{password}")
-    public String processResetPassword(@PathVariable("token")String token, @PathVariable("password") String password){
-        UserEntity tempUser = userService.getByResetPasswordToken(token);
+    public  ResponseEntity<String> processResetPassword(@PathVariable("token")String token, @PathVariable("password") String password){
+        UserModel tempUser = userService.getByResetPasswordToken(token);
         if(tempUser != null){
             userService.updatePassword(tempUser, password);
         }
-        return "Password successfully changed";
+        return ResponseEntity.ok("Password successfully changed");
     }
 
     public void sendEmail(String recipientEmail, String link)
             throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
+        UserModel tempUser = userService.getUserByEmail(recipientEmail);
+        String token = tempUser.getResetPasswordToken();
 
         helper.setFrom("support@dajaniCo.com", "DajaniCo Support");
         helper.setTo(recipientEmail);
@@ -141,6 +135,8 @@ public class AuthController {
         String content = "<p>Hello,</p>"
                 + "<p>You have requested to reset your password.</p>"
                 + "<p>Click the link below to change your password:</p>"
+                + "<p>Copy this token: " + token +"</p>"
+                + "<p>You will need it for later </p>"
                 + "<p><a href=\"" + link + "\">Change my password</a></p>"
                 + "<br>"
                 + "<p>Ignore this email if you do remember your password, "
@@ -169,11 +165,4 @@ class UserTokens {
 class UserLogin {
     private String username;
     private String password;
-}
-
-class Utility {
-    public static String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
-    }
 }

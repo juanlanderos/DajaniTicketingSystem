@@ -1,20 +1,16 @@
 package com.jpa.dajaniTestDB.entity;
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-//@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "commentId")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "comment")
 public class CommentEntity {
 
@@ -34,8 +30,7 @@ public class CommentEntity {
     private Integer commentId;
 
     //owner in relationship to ticketEntity
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             name = "ticket_id",
             referencedColumnName = "ticketId",
@@ -43,7 +38,7 @@ public class CommentEntity {
     )
     private TicketEntity ticketEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             name = "user_id",
             referencedColumnName = "user_id",

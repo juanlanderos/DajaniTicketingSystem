@@ -1,30 +1,29 @@
 package com.jpa.dajaniTestDB.service.serviceInterface;
 
-import com.jpa.dajaniTestDB.entity.CommentEntity;
-import com.jpa.dajaniTestDB.entity.TicketEntity;
-import com.jpa.dajaniTestDB.entity.UserEntity;
-
+import com.jpa.dajaniTestDB.model.CommentModel;
+import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
 
 import java.util.List;
 
 public interface TicketService {
 
-    List<TicketEntity> getAllTickets();
+    List<TicketModel> getAllTickets();
 
-    TicketEntity findByTicketId(Integer ticketId);
+    TicketModel findByTicketId(Integer ticketId);
 
-    TicketEntity findByTicketTitle(String title);
+    TicketModel findByTicketTitle(String title);
 
     boolean deleteByTicketId(Integer ticketId);
 
     boolean removeUserFromTicket(Integer ticketId, Integer userId);
 
-    TicketEntity createNewTicket(Integer userId, TicketEntity TicketEntity);
+    TicketModel createNewTicket(Integer userId, TicketModel ticketModel);
 
     void addUserToTicket(Integer userId, Integer ticketId);
 
-    List<UserEntity> getAllUsersByTicketId(Integer ticketId);
+    List<UserModel> getAllUsersByTicketId(Integer ticketId);
 
-    List<CommentEntity> getAllCommentsByTicketId(Integer ticketId);
+    List<CommentModel> getAllCommentsByTicketId(Integer ticketId);
 
 }

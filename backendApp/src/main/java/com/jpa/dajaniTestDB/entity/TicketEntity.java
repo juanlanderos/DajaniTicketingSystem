@@ -1,9 +1,7 @@
 package com.jpa.dajaniTestDB.entity;
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,12 +9,10 @@ import java.util.List;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "ticketId")
-@Data
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Data
 @Entity
 @Table(name = "ticket")
-@AllArgsConstructor
-@NoArgsConstructor
 public class TicketEntity {
 
     @Id
@@ -50,7 +46,7 @@ public class TicketEntity {
     private String status;
 
     //child in relationship with commentEntity
-    @OneToMany(//fetch = FetchType.LAZY,
+    @OneToMany( fetch = FetchType.LAZY,
             mappedBy = "ticketEntity",
             orphanRemoval = true)
     private List<CommentEntity> commentEntityList = new ArrayList<>();

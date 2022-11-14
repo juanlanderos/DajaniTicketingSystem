@@ -3,9 +3,12 @@ package com.jpa.dajaniTestDB.service.serviceImplementation;
 import com.jpa.dajaniTestDB.entity.RoleEntity;
 import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
+import com.jpa.dajaniTestDB.model.TicketModel;
+import com.jpa.dajaniTestDB.model.UserModel;
+
+import com.jpa.dajaniTestDB.service.ServiceInterface.UserService;
 import com.jpa.dajaniTestDB.service.repository.RoleRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
-import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +33,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -49,13 +53,13 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public UserEntity saveUser(UserEntity UserEntity) {
-        log.info("Saving new user {} to the database", UserEntity.getUsername());
-        UserEntity.setPassword(passwordEncoder.encode(UserEntity.getPassword()));
+    public UserModel saveUser(UserModel userModel) {
+        log.info("Saving new user {} to the database", userModel.getUsername());
+        userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
         UserEntity userEntity = new UserEntity();
-        BeanUtils.copyProperties(UserEntity, userEntity);
+        BeanUtils.copyProperties(userModel, userEntity);
         userRepository.save(userEntity);
-        return UserEntity;
+        return userModel;
     }
 
     @Override
@@ -73,67 +77,97 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public UserEntity getUserByUsername(String username) {
+    public UserModel getUserByUsername(String username) {
         log.info("Fetching user {} from the database", username);
         UserEntity tempUserEntity = userRepository.findByUsername(username);
-        return tempUserEntity;
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
     }
 
     @Override
-    public List<UserEntity> showAllUsers() {
+    public List<UserModel> showAllUsers() {
         log.info("Fetching all users");
         List<UserEntity> userEntities = userRepository.findAll();
-        return userEntities;
+        List<UserModel> userModels = userEntities
+                .stream()
+                .map(tempUser -> new UserModel(
+                        tempUser.getUserId(),
+                        tempUser.getUsername(),
+                        tempUser.getEmail(),
+                        tempUser.getFirstName(),
+                        tempUser.getLastName(),
+                        tempUser.getPassword(),
+                        tempUser.getRoles(),
+                        tempUser.getCommentEntityList(),
+                        tempUser.getTicketEntities(),
+                        tempUser.getResetPasswordToken()
+                ))
+                .collect(Collectors.toList());
+        return userModels;
     }
 
     @Override
-    public UserEntity getUserById(int id) {
+    public UserModel getUserById(int id) {
         UserEntity tempUserEntity = userRepository.findById(id).get();
-        return tempUserEntity;
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
     }
 
     @Override
-    public UserEntity getUserByEmail(String email) {
+    public UserModel getUserByEmail(String email) {
         UserEntity tempUserEntity = userRepository.findByEmail(email);
-        //UserEntity tempUserEntity = new UserEntity();
-        BeanUtils.copyProperties(tempUserEntity, tempUserEntity);
-        return tempUserEntity;
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
     }
 
     @Override
-    public UserEntity getUserByFirstName(String firstName) {
+    public UserModel getUserByFirstName(String firstName) {
         UserEntity tempUserEntity = userRepository.findByFirstName(firstName);
-        //UserEntity tempUserEntity = new UserEntity();
-        BeanUtils.copyProperties(tempUserEntity, tempUserEntity);
-        return tempUserEntity;
-        //
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
     }
 
     @Override
-    public UserEntity getUserByLastName(String lastName) {
+    public UserModel getUserByLastName(String lastName) {
         UserEntity tempUserEntity = userRepository.findByLastName(lastName);
-        //UserEntity tempUserEntity = new UserEntity();
-        BeanUtils.copyProperties(tempUserEntity, tempUserEntity);
-        return tempUserEntity;
+        UserModel tempUserModel = new UserModel();
+        BeanUtils.copyProperties(tempUserEntity, tempUserModel);
+        return tempUserModel;
     }
 
     @Override
-    public List<TicketEntity> getTicketsByUserId(int userId){
+    public List<TicketModel> getTicketsByUserId(int userId){
         UserEntity userEntity = userRepository.findById(userId).get();
         List<TicketEntity> ticketEntityList = userEntity.getTicketEntities();
-        return ticketEntityList;
-
+        List<TicketModel> ticketModelList = ticketEntityList
+                .stream()
+                .map(tempTicket -> new TicketModel(
+                        tempTicket.getTicketId(),
+                        tempTicket.getTitle(),
+                        tempTicket.getDescription(),
+                        tempTicket.getCreatedAt(),
+                        tempTicket.getUpdatedAt(),
+                        tempTicket.getCompletedAt(),
+                        tempTicket.getStatus(),
+                        tempTicket.getCommentEntityList(),
+                        tempTicket.getTicketUsers(),
+                        tempTicket.getRequesterId(),
+                        tempTicket.getAgentId()
+                ))
+                .collect(Collectors.toList());
+        return ticketModelList;
     }
 
     @Override
     public void updateResetPasswordToken(String token, String email) {
         UserEntity tempUserEntity = userRepository.findByEmail(email);
-        //UserEntity tempUserEntity = new UserEntity();
-
         //find the user - if they exist, update their resetPasswordToken and save
         if(tempUserEntity != null){
             tempUserEntity.setResetPasswordToken(token);
-            BeanUtils.copyProperties(tempUserEntity, tempUserEntity);
             userRepository.save(tempUserEntity);
         } else {
             throw new UsernameNotFoundException("User not found");
@@ -141,22 +175,23 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public void updatePassword(UserEntity UserEntity, String newPassword) {
-        UserEntity tempUserEntity = new UserEntity();
+    public void updatePassword(UserModel userModel, String newPassword) {
         //encode newPassword and set it as the updated user's password
         String encodedPassword = passwordEncoder.encode(newPassword);
-        UserEntity.setPassword(encodedPassword);
-        UserEntity.setResetPasswordToken(null);
-        BeanUtils.copyProperties(UserEntity, tempUserEntity);
-        userRepository.save(tempUserEntity);
+        UserEntity userEntity = new UserEntity();
+        BeanUtils.copyProperties(userModel, userEntity);
+        userEntity.setPassword(encodedPassword);
+        userEntity.setResetPasswordToken(null);
+
+        userRepository.save(userEntity);
     }
 
     @Override
-    public UserEntity getByResetPasswordToken(String token) {
+    public UserModel getByResetPasswordToken(String token) {
+        UserModel userModel = new UserModel();
         UserEntity tempUserEntity = userRepository.findByResetPasswordToken(token);
-        //UserEntity tempUserEntity = new UserEntity();
-        BeanUtils.copyProperties(tempUserEntity, tempUserEntity);
-        return tempUserEntity;
+        BeanUtils.copyProperties(tempUserEntity, userModel);
+        return userModel;
     }
 }
 
