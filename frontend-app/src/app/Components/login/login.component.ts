@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import jwt_decode from "jwt-decode";
 import { UserService } from 'src/app/Services/user.service';
 import { User } from 'src/app/Models/user';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
     private localStorage: LocalStorageService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private appComponent: AppComponent) { }
 
   ngOnInit(): void {
   }
@@ -45,6 +47,8 @@ export class LoginComponent implements OnInit {
         this.localStorage.set("lastName", this.currentUser.lastName);
         this.localStorage.set("role", this.currentUser.roles[0].roleName);
       });
+      //before going to the dashboard, toggle on the nav bars
+      this.appComponent.toggleNavBar();
 
       //at the end, route the user to their corresponding home page 
       this.goToDashboard();

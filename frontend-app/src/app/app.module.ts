@@ -28,6 +28,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginInfoComponent } from './Components/login-info/login-info.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 //Daniel Imports Above this
 
@@ -47,6 +50,9 @@ import { LoginInfoComponent } from './Components/login-info/login-info.component
     HtmlEditorComponent,
     LoginComponent,
     LoginInfoComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,7 +32,7 @@ export class TicketViewComponent implements OnInit
 		2. The value returned from params object is of type string.
 		3. Used parseInt function to convert it to integer.
 	*/
-  const ticketId = parseInt(this.route.snapshot.params['id'], 10);
+  	const ticketId = parseInt(this.route.snapshot.params['id'], 10);
     this.getTicketInfo(ticketId);
     }
 
@@ -62,19 +62,9 @@ export class TicketViewComponent implements OnInit
 	}
   //extracts comments associated with that ticket for the user
 	private getUserComments(): void {
-		this.ticketService.getCommentsFromTicket(this.ticket.ticketId).subscribe({
-			next: (resp: Comment[]) => {
-				this.comments = resp;
-				/*
-					Since user info is not coming in from the "getCommentsFromTicket" function,
-					I'm attaching the user associated with the comment.
-					The below lines can be removed once the function in the back-end starts returing userinfo above.
-				*/
-				this.comments = this.comments.map(comment => {
-					comment.userEntity = this.user;
-					return comment;
-				})
-			}
+		this.ticketService.getCommentsFromTicket(this.ticket.ticketId).subscribe(data => {
+			console.log(data);
+			this.comments = data;
 		});
 	}
   

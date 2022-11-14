@@ -1,19 +1,21 @@
 <head>
   <link rel="style" href="app.component.css">
 </head>
-<nav class="navbar navbar-expand-sm navbar-light">
-  <div class="container-fluid ">
-    <a href="http://localhost:4200/dashboard"> <img src="../assets/img/Dajanicologoresized.png" alt=""></a> <!-- Dajani logo with redirect link to My Dashboard Page -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
-          <!--once you click logout, clear local storage and redirect user to login page-->
-        </li>	
-      </ul>		  
+<div *ngIf = "isLoggedIn">
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container-fluid ">
+      <a href="http://localhost:4200/dashboard"> <img src="../assets/img/Dajanicologoresized.png" alt=""></a> <!-- Dajani logo with redirect link to My Dashboard Page -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
+            <!--once you click logout, clear local storage and redirect user to login page-->
+          </li>	
+        </ul>		  
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
 
 <!--
       <li class="nav-item bg-white">
@@ -33,30 +35,39 @@
  -->
 
  <!--Daniel Code Below here-->
-<mat-sidenav-container>
-  <mat-sidenav #sidenav class="sidenav" mode = "side" opened>
-    <p><button class = "sidenavButton" mat-raised-button>View Active Tickets</button></p><!--Will show all tickets that are not resolved or closed, function will return all tickets that are in the active states, ie not resolved/closed-->
-    <p><a routerLink="dashboard" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View My Dashboard</button></a></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
-    <p><button class = "sidenavButton" mat-raised-button>View Unassigned Tickets</button></p><!--Will show all tickets that aren't yet assigned, function will return all tickets with an empty 'assigneeId' attribute-->
-    <p><a routerLink="tickets" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View All Tickets</button></a></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
-    <p><a routerLink="create-ticket" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>Create Ticket</button></a></p>                                                                                                                                 <!--This is the only one with a page currently^-->
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div>
-      <p><button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button></p>
-    </div>
-    <p><router-outlet></router-outlet></p>
-  </mat-sidenav-content>
+<div *ngIf = "isLoggedIn">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav class="sidenav" mode = "side" opened>
+      <p><button class = "sidenavButton" mat-raised-button>View Active Tickets</button></p><!--Will show all tickets that are not resolved or closed, function will return all tickets that are in the active states, ie not resolved/closed-->
+      <p><a routerLink="dashboard" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View My Dashboard</button></a></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
+      <p><button class = "sidenavButton" mat-raised-button>View Unassigned Tickets</button></p><!--Will show all tickets that aren't yet assigned, function will return all tickets with an empty 'assigneeId' attribute-->
+      <p><a routerLink="tickets" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View All Tickets</button></a></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
+      <p><a routerLink="create-ticket" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>Create Ticket</button></a></p>                                                                                                                                 <!--This is the only one with a page currently^-->
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div>
+        <p><button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button></p>
+      </div>
+      <p></p>
+    </mat-sidenav-content>
 </mat-sidenav-container>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+
 <!--Daniel Code Above here-->
 
 
 
-<footer class ="footer">
-  <div class ="container" >
-    <span> All Rights Reserved</span>
-  </div>
-</footer>
+<div *ngIf = "isLoggedIn">
+  <footer class ="footer">
+    <div class ="container" >
+      <span> All Rights Reserved</span>
+    </div>
+  </footer>
+</div>
+
 

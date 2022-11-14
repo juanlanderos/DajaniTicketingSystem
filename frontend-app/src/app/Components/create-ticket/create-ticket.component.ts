@@ -39,7 +39,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   goToTicketList(){
-    this.router.navigate(['/tickets']);
+    this.router.navigate(['/dashboard']);
   }
 
   goToIndividualTicket(){
@@ -53,6 +53,7 @@ export class CreateTicketComponent implements OnInit {
     this.ticket.createdAt = date + ' :: ' + time;
     this.ticket.updatedAt = date + ' :: ' + time;
     this.ticket.completedAt = '---';
+    this.ticket.status = "Open";
 
     //
     console.log(this.ticket);

@@ -12,6 +12,9 @@ import { TicketViewComponent } from './Components/ticket-view/ticket-view.compon
 import { UpdateTicketsComponent } from './Components/update-tickets/update-tickets.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginComponent } from './Components/login/login.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -27,7 +30,10 @@ const routes: Routes = [
   {path: "ticket-view/:id", component: TicketViewComponent},
   {path: "dashboard", component: DashboardComponent},
   {path: "update-tickets/:statusId", component: UpdateTicketsComponent},
-  {path: "login", component: LoginComponent}
+  {path: "login", component: LoginComponent},
+  {path: "signUp", component: SignUpComponent},
+  {path: "forgotPassword", component: ForgotPasswordComponent},
+  {path: "resetPassword", component: ResetPasswordComponent}
 
 ];
 

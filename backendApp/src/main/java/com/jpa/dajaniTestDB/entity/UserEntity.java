@@ -1,6 +1,9 @@
 package com.jpa.dajaniTestDB.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userId")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data

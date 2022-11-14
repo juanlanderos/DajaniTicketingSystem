@@ -8,6 +8,7 @@ export class User {
     email!: string;
     firstName!: string;
     lastName!: string;
+    password!: string;
     roles!: Role[];
     commentEntityList!: Comment[];
     ticketEntities!: Ticket[];
