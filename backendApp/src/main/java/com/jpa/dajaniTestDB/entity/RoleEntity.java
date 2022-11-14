@@ -19,24 +19,4 @@ public class RoleEntity {
 
     @Column(length = 20)
     private String roleName;
-
-    public RoleEntity(String roleName){
-        this.roleName = roleName;
-    }
-
-    public int getRoleID(){
-        return roleId;
-    }
-
-    public void setRoleID(int roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }

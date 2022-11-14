@@ -1,11 +1,20 @@
 package com.jpa.dajaniTestDB.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+//@JsonIgnoreProperties({"hibernateLazyInitializer"})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "commentId")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "comment")
 public class CommentEntity {
 
@@ -25,7 +34,8 @@ public class CommentEntity {
     private Integer commentId;
 
     //owner in relationship to ticketEntity
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "ticket_id",
             referencedColumnName = "ticketId",
@@ -33,7 +43,7 @@ public class CommentEntity {
     )
     private TicketEntity ticketEntity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "user_id",
             referencedColumnName = "user_id",
@@ -50,49 +60,4 @@ public class CommentEntity {
 
     @Column(name = "updated_at")
     private String updatedAt;
-
-    //------------------------Modifiers------------------------
-    public Integer getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
-    }
-
-    public TicketEntity getTicketEntity() {
-        return ticketEntity;
-    }
-
-    public void setTicketEntity(TicketEntity ticketEntity) {
-        this.ticketEntity = ticketEntity;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public UserEntity getUserEntity() {return userEntity;}
-
-    public void setUserEntity(UserEntity userEntity) {this.userEntity = userEntity;}
 }

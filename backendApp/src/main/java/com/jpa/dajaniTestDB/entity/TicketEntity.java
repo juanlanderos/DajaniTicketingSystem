@@ -1,8 +1,9 @@
 package com.jpa.dajaniTestDB.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,8 +12,11 @@ import java.util.List;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "ticketId")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 @Table(name = "ticket")
+@AllArgsConstructor
+@NoArgsConstructor
 public class TicketEntity {
 
     @Id
@@ -46,7 +50,7 @@ public class TicketEntity {
     private String status;
 
     //child in relationship with commentEntity
-    @OneToMany(
+    @OneToMany(//fetch = FetchType.LAZY,
             mappedBy = "ticketEntity",
             orphanRemoval = true)
     private List<CommentEntity> commentEntityList = new ArrayList<>();
@@ -63,46 +67,4 @@ public class TicketEntity {
     //used to find the user who is assigned to fix the ticket
     @Column(name = "agent")
     private Integer agentId;
-
-//------------------Modifiers Past This Point ----------------------------
-
-/*    public List<UserEntity> getUserEntityList(){
-        return ticketUsers;
-    }*/
-
-    public Integer getTicketId() {return ticketId;}
-
-    public String getCreatedAt() {return createdAt;}
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getCompletedAt() {
-        return completedAt;
-    }
-
-    public void setCompletedAt(String completedAt) {
-        this.completedAt = completedAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<CommentEntity> getCommentEntityList() {return commentEntityList;}
-
-    public void setCommentEntityList(List<CommentEntity> commentEntityList) {this.commentEntityList = commentEntityList;}
 }

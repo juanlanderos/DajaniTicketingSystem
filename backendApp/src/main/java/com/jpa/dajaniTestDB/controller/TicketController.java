@@ -1,8 +1,8 @@
 package com.jpa.dajaniTestDB.controller;
 
-import com.jpa.dajaniTestDB.model.CommentModel;
-import com.jpa.dajaniTestDB.model.TicketModel;
-import com.jpa.dajaniTestDB.model.UserModel;
+import com.jpa.dajaniTestDB.entity.CommentEntity;
+import com.jpa.dajaniTestDB.entity.TicketEntity;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,101 +27,38 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @Operation(summary = "Fetches all ticketEntities")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched all ticketEntities from DB",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/tickets")
-    public List<TicketModel> showAllTickets(){
+    public List<TicketEntity> showAllTickets(){
         return ticketService.getAllTickets();
     }
 
-    @Operation(summary = "Fetches a ticketEntity based on its ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/tickets/{id}")
-    public ResponseEntity<TicketModel> showTicketById(@PathVariable int id){
-        TicketModel tempTicketModel;
+    public ResponseEntity<TicketEntity> showTicketById(@PathVariable int id){
+        TicketEntity tempTicketModel;
         tempTicketModel = ticketService.findByTicketId(id);
         return ResponseEntity.ok(tempTicketModel);
     }
 
-    @Operation(summary = "Fetches users from a ticket based on its ticketID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity and associated Users from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/ticketUsers/{id}")
-    public List<UserModel> getUsersFromTicket(@PathVariable int id){
+    public List<UserEntity> getUsersFromTicket(@PathVariable int id){
         return ticketService.getAllUsersByTicketId(id);
     }
 
-    @Operation(summary = "Fetches COMMENTS from a ticket based on its ticketID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity and associated comments from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/ticket-comments/{id}")
-    public List<CommentModel> getAllCommentsByTicketId(@PathVariable int id){
+    public List<CommentEntity> getAllCommentsByTicketId(@PathVariable int id){
         return ticketService.getAllCommentsByTicketId(id);
     }
 
-    @Operation(summary = "Creates a new ticketEntity; saves to DB")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Saved a new ticketEntity to DB"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @PostMapping("/tickets/{userId}")
-    public TicketModel addTicket(@PathVariable Integer userId, @RequestBody TicketModel ticketModel){
+    public TicketEntity addTicket(@PathVariable Integer userId, @RequestBody TicketEntity ticketModel){
         return ticketService.createNewTicket(userId, ticketModel);
     }
 
-    @Operation(summary = "Adds a user to a ticket")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Saved a new user to a ticket"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @PostMapping("/tickets/{userId}/{ticketId}")
     public void addUserToTicket(@PathVariable Integer userId, @PathVariable Integer ticketId){
         ticketService.addUserToTicket(userId, ticketId);
     }
 
-    @Operation(summary = "Deletes ticket based on its ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Deletes ticket by finding its ID in serviceImpl",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @DeleteMapping("/tickets/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteTicketById(@PathVariable Integer id){
         boolean deleted;

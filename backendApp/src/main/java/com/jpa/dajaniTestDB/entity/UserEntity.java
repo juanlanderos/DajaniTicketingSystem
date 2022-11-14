@@ -1,5 +1,6 @@
 package com.jpa.dajaniTestDB.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,7 +22,6 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    //auto-increments primary key per new entry (upon insert)
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -58,6 +59,10 @@ public class UserEntity {
     @Size(max = 120)
     private String password;
 
+    @Column(name = "reset_password_token")
+    @Size(max = 120)
+    private String resetPasswordToken;
+
     //join table with roleEntity
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -74,16 +79,9 @@ public class UserEntity {
     )
     private List<TicketEntity> ticketEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userEntity")
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "userEntity")
     private List<CommentEntity> commentEntityList = new ArrayList<>();
-
-    public UserEntity(String email, String firstName, String lastName, String password) {
-
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
 
     public void addTicket(TicketEntity ticketEntity){
         this.ticketEntities.add(ticketEntity);
@@ -93,10 +91,4 @@ public class UserEntity {
     public void removeTicket(TicketEntity ticketEntity){
         ticketEntities.remove(ticketEntity);
     }
-
-    public List<TicketEntity> getTicketEntities() {
-        return ticketEntities;
-    }
-
-    public void setTicketEntities(List<TicketEntity> ticketEntities) {this.ticketEntities = ticketEntities;}
 }

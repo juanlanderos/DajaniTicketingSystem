@@ -1,7 +1,7 @@
 package com.jpa.dajaniTestDB;
 
 import com.jpa.dajaniTestDB.entity.RoleEntity;
-import com.jpa.dajaniTestDB.model.UserModel;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,14 +33,14 @@ public class DTSBackendApp extends SpringBootServletInitializer {
 			userService.saveRole(new RoleEntity(null, "ADMIN"));
 
 			Set<RoleEntity> emptySet = new HashSet<>();
-			userService.saveUser(new UserModel(null, "juan123", "something@email.com", "Juan",
-					"Landeros", "root", emptySet, null, null));
+			userService.saveUser(new UserEntity(null, "juan123", "saisiddharth1@gmail.com", "Juan",
+					"Landeros", "root", "", null, null, null));
 
-			userService.saveUser(new UserModel(null,"John123","something1@email.com", "John",
-					"Doe", "root", emptySet, null, null));
+			userService.saveUser(new UserEntity(null,"John123","something1@email.com", "John",
+					"Doe", "root", "", null, null, null));
 
-			userService.saveUser(new UserModel(null,"Jane123","something2@email.com", "Jane",
-					"Doe", "root", emptySet, null, null));
+			userService.saveUser(new UserEntity(null,"Jane123","something2@email.com", "Jane",
+					"Doe", "root", "", null, null, null));
 
 			userService.addRoleToUser("juan123", "ADMIN");
 			userService.addRoleToUser("John123", "AGENT");

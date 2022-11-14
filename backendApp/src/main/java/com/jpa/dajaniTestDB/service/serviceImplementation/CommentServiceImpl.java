@@ -3,8 +3,6 @@ package com.jpa.dajaniTestDB.service.serviceImplementation;
 import com.jpa.dajaniTestDB.entity.CommentEntity;
 import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
-import com.jpa.dajaniTestDB.model.CommentModel;
-import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.service.repository.CommentRepository;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
@@ -30,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentModel createComment(CommentModel commentModel, Integer ticketId, Integer userId) {
+    public CommentEntity createComment(CommentEntity commentModel, Integer ticketId, Integer userId) {
         TicketEntity ticketEntity = ticketRepository.findById(ticketId).get();
         UserEntity userEntity = userRepository.findById(userId).get();
         CommentEntity tempCommentEntity = new CommentEntity();
@@ -42,19 +40,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentModel> getAllComments() {
+    public List<CommentEntity> getAllComments() {
         List<CommentEntity> commentEntityList = commentRepository.findAll();
-        List<CommentModel> commentModels = commentEntityList
-                .stream()
-                .map(com -> new CommentModel(
-                        com.getCommentId(),
-                        com.getTicketEntity(),
-                        com.getUserEntity(),
-                        com.getContent(),
-                        com.getCreatedAt(),
-                        com.getUpdatedAt()
-                ))
-                .collect(Collectors.toList());
-        return commentModels;
+        return commentEntityList;
     }
 }

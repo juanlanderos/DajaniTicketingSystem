@@ -21,5 +21,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     public UserEntity findByLastName(String lastName);
     public boolean existsByUsername(String username);
     public boolean existsByEmail(String email);
-
+    public UserEntity findByResetPasswordToken(String token);
 }

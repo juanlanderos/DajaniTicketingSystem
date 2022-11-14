@@ -1,6 +1,6 @@
 package com.jpa.dajaniTestDB.controller;
 
-import com.jpa.dajaniTestDB.model.CommentModel;
+import com.jpa.dajaniTestDB.entity.CommentEntity;
 import com.jpa.dajaniTestDB.service.serviceInterface.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -32,7 +32,7 @@ public class CommentController {
                     content = @Content)
     })
     @GetMapping("/comments")
-    public List <CommentModel> getComments(){
+    public List <CommentEntity> getComments(){
         return commentService.getAllComments();
     }
 
@@ -46,16 +46,15 @@ public class CommentController {
                     content = @Content)
     })
     @PostMapping("/comments/{ticketId}/{userId}")
-    public CommentModel createComment(@RequestBody CommentModel commentModel, @PathVariable Integer ticketId,
+    public CommentEntity createComment(@RequestBody CommentEntity commentModel, @PathVariable Integer ticketId,
                                       @PathVariable Integer userId){
 
         return commentService.createComment(commentModel, ticketId, userId);
     }
 
-/*    public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
-        CommentModel commentModel;
-        commentModel = commentService.findByCommentId(id);
-        return ResponseEntity.ok(commentModel);
+/*    public ResponseEntity<CommentEntity> getCommentById(@PathVariable Integer id){
+        CommentEntity commentEntity = commentService.existsById(id);
+        return ResponseEntity.ok(commentEntity);
     }*/
 
 }

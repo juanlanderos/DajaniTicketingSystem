@@ -6,9 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jpa.dajaniTestDB.entity.RoleEntity;
+import com.jpa.dajaniTestDB.entity.TicketEntity;
 import com.jpa.dajaniTestDB.entity.UserEntity;
-import com.jpa.dajaniTestDB.model.TicketModel;
-import com.jpa.dajaniTestDB.model.UserModel;
 import com.jpa.dajaniTestDB.service.serviceInterface.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -50,7 +49,7 @@ public class UserController {
 
     //create a user
     @PostMapping("/users/save")
-    public ResponseEntity<UserModel> saveUser(@RequestBody UserModel tempUserModel){
+    public ResponseEntity<UserEntity> saveUser(@RequestBody UserEntity tempUserModel){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(tempUserModel));
     }
@@ -80,7 +79,7 @@ public class UserController {
                 JWTVerifier verifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = verifier.verify(refresh_token);
                 String username = decodedJWT.getSubject();
-                UserModel userModel = userService.getUserByUsername(username);
+                UserEntity userModel = userService.getUserByUsername(username);
 
                 String access_token = JWT.create()
                         .withSubject(userModel.getUsername())
@@ -114,33 +113,32 @@ public class UserController {
 
     //get a list of ALL users
     @GetMapping("/users")
-    public ResponseEntity<List<UserModel>> getAllUsers(){
+    public ResponseEntity<List<UserEntity>> getAllUsers(){
         return ResponseEntity.ok().body(userService.showAllUsers());
     }
 
     //get a single user by their email
     @GetMapping("/users/email/{email}")
-    public UserModel getUserByEmail(@PathVariable("email") String email){
+    public UserEntity getUserByEmail(@PathVariable("email") String email){
         return userService.getUserByEmail(email);
     }
 
     //get a single user by their username
     @GetMapping("users/username/{username}")
-    public UserModel getUserByUsername(@PathVariable("username") String username){
+    public UserEntity getUserByUsername(@PathVariable("username") String username){
         return userService.getUserByUsername(username);
     }
 
     //get a single user by their userId
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable int id){
-        UserModel tempUserModel = null;
-        tempUserModel = userService.getUserById(id);
+    public ResponseEntity<UserEntity> getUserById(@PathVariable int id){
+        UserEntity tempUserModel = userService.getUserById(id);
         return ResponseEntity.ok(tempUserModel);
     }
 
     //get all tickets that belong to a user by their userId
     @GetMapping("/users/tickets/{userId}")
-    public ResponseEntity<List<TicketModel>> getAllTicketsbyUserId(@PathVariable int userId){
+    public ResponseEntity<List<TicketEntity>> getAllTicketsbyUserId(@PathVariable int userId){
         return ResponseEntity.ok().body(userService.getTicketsByUserId(userId));
     }
 }

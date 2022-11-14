@@ -1,31 +1,36 @@
 package com.jpa.dajaniTestDB.service.serviceInterface;
 
 import com.jpa.dajaniTestDB.entity.RoleEntity;
-import com.jpa.dajaniTestDB.model.TicketModel;
-import com.jpa.dajaniTestDB.model.UserModel;
-import org.springframework.security.core.userdetails.User;
+import com.jpa.dajaniTestDB.entity.TicketEntity;
+import com.jpa.dajaniTestDB.entity.UserEntity;
 
 import java.util.List;
 
 public interface UserService {
 
-    UserModel saveUser(UserModel userModel);
+    UserEntity saveUser(UserEntity UserEntity);
 
     RoleEntity saveRole(RoleEntity role);
 
     void addRoleToUser(String username, String roleName);
 
-    UserModel getUserByUsername(String username);
+    UserEntity getUserByUsername(String username);
 
-    List<UserModel> showAllUsers();
+    List<UserEntity> showAllUsers();
 
-    UserModel getUserById(int id);
+    UserEntity getUserById(int id);
 
-    UserModel getUserByEmail(String email);
+    UserEntity getUserByEmail(String email);
 
-    UserModel getUserByFirstName(String firstName);
+    UserEntity getUserByFirstName(String firstName);
 
-    UserModel getUserByLastName(String lastName);
+    UserEntity getUserByLastName(String lastName);
 
-    List<TicketModel> getTicketsByUserId(int userId);
+    List<TicketEntity> getTicketsByUserId(int userId);
+
+    void updateResetPasswordToken(String token, String email);
+
+    void updatePassword(UserEntity UserEntity, String newPassword);
+
+    UserEntity getByResetPasswordToken(String token);
 }
