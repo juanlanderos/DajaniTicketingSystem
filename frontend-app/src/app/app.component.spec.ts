@@ -1,17 +1,35 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'; //added
+import { HttpClientModule} from '@angular/common/http'; //added
+import { HttpClient } from '@angular/common/http';
+import { TicketViewComponent } from './Components/ticket-view/ticket-view.component'; //added
+import { TicketService } from 'src/app/Services/ticket.service'; //added
+import { NgModule } from '@angular/core';
 
 describe('AppComponent', () => {
+  let httpClient:HttpClient; //added
+  let httpMock: HttpTestingController; //added
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientTestingModule,
+        HttpClientModule, //added
+        NgModule,
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        TicketViewComponent, //added
+        HttpTestingController, //added
       ],
+      providers: [
+      TicketService,
+    ],
     }).compileComponents();
+    httpMock = TestBed.get(HttpClientTestingModule); //added
+    httpClient = TestBed.inject(HttpClient); //added
   });
 
   it('should create the app', () => {

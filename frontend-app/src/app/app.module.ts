@@ -69,7 +69,7 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
     //Russell Import
     AngularMaterialModule,
     //Russell Import
-    AngularEditorModule
+    AngularEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

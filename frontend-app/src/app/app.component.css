@@ -51,7 +51,6 @@
 }
 
 .sidenavButton{
-
 width: 100%;
 background-color: #b0be54;
 }
@@ -81,6 +80,7 @@ background-color: #b0be54;
     
 }
 
+
 .sidenav{
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@ background-color: #b0be54;
     width: 200px;
     background-color: #c0c1c1
 
-}
+} 
 
 /* Image position */
 .image-logo {
