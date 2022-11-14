@@ -21,7 +21,6 @@ import java.util.Set;
         property = "userId")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
