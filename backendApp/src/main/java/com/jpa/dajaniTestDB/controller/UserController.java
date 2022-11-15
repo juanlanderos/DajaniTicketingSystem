@@ -144,18 +144,6 @@ public class UserController {
     public ResponseEntity<List<TicketModel>> getAllTicketsbyUserId(@PathVariable int userId){
         return ResponseEntity.ok().body(userService.getTicketsByUserId(userId));
     }
-
-    //user is logged in and just needs to change their password
-    @PostMapping("/users/changePassword/{username}/{password}")
-    public ResponseEntity<UserModel> changePassword(@PathVariable String username, @PathVariable String password){
-        return ResponseEntity.ok().body(userService.changePassword(username,password));
-    }
-
-    //change the role of a user (preferably done by an admin
-    @PostMapping("/users/changeRole/{username}/{roleName}")
-    public ResponseEntity<UserModel> changeRole(@PathVariable String username, @PathVariable String roleName){
-        return ResponseEntity.ok().body(userService.addRoleToUser(username,roleName));
-    }
 }
 
 @Data

@@ -20,7 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,16 +69,11 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public UserModel addRoleToUser(String username, String roleName) {
-        log.info("Adding role {} to user {} to the database", roleName, username);
+    public void addRoleToUser(String username, String roleName) {
+        log.info("Adding role {} to user {}", roleName, username);
         UserEntity userEntity = userRepository.findByUsername(username);
         RoleEntity roleEntity = roleRepository.findByRoleName(roleName);
-        Set<RoleEntity> roleEntities = new HashSet<>();
-        roleEntities.add(roleEntity);
-        userEntity.setRoles(roleEntities);
-        UserModel tempUserModel = new UserModel();
-        BeanUtils.copyProperties(userEntity, tempUserModel);
-        return tempUserModel;
+        userEntity.getRoles().add(roleEntity);
     }
 
     @Override
@@ -194,17 +191,6 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         UserModel userModel = new UserModel();
         UserEntity tempUserEntity = userRepository.findByResetPasswordToken(token);
         BeanUtils.copyProperties(tempUserEntity, userModel);
-        return userModel;
-    }
-
-    @Override
-    public UserModel changePassword(String username, String password){
-        UserModel userModel = new UserModel();
-        UserEntity userEntity = userRepository.findByUsername(username);
-        String encodedPassword = passwordEncoder.encode(password);
-        userEntity.setPassword(encodedPassword);
-        BeanUtils.copyProperties(userEntity, userModel);
-        userRepository.save(userEntity);
         return userModel;
     }
 }

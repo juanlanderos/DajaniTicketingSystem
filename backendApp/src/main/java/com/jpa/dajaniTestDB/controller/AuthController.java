@@ -41,7 +41,6 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-
     private final JavaMailSender mailSender;
 
     @PostMapping("/login")
@@ -84,9 +83,6 @@ public class AuthController {
     public ResponseEntity<UserModel> newUserRegistration(@RequestBody UserModel tempUserModel) {
         String username = tempUserModel.getUsername();
         String password = tempUserModel.getPassword();
-
-        //log.info("Username is {}", username);
-        //log.info("Password is {}", password);
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/auth/register").toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(tempUserModel));
     }
@@ -148,7 +144,6 @@ public class AuthController {
 
         mailSender.send(message);
     }
-
 }
 
 @Data

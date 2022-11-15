@@ -3,7 +3,7 @@ package com.jpa.dajaniTestDB.controller;
 import com.jpa.dajaniTestDB.model.CommentModel;
 import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
-import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
+import com.jpa.dajaniTestDB.service.ServiceInterface.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -111,6 +111,11 @@ public class TicketController {
     @PostMapping("/tickets/{userId}/{ticketId}")
     public void addUserToTicket(@PathVariable Integer userId, @PathVariable Integer ticketId){
         ticketService.addUserToTicket(userId, ticketId);
+    }
+
+    @PostMapping("/tickets/status/{ticketId}/{status}")
+    public void updateTicketStatus(@PathVariable Integer ticketId, @PathVariable String status){
+        ticketService.updateTicketStatus(ticketId, status);
     }
 
     @Operation(summary = "Deletes ticket based on its ID")

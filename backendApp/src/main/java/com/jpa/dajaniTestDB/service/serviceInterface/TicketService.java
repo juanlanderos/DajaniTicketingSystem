@@ -1,4 +1,4 @@
-package com.jpa.dajaniTestDB.service.serviceInterface;
+package com.jpa.dajaniTestDB.service.ServiceInterface;
 
 import com.jpa.dajaniTestDB.model.CommentModel;
 import com.jpa.dajaniTestDB.model.TicketModel;
@@ -26,4 +26,5 @@ public interface TicketService {
 
     List<CommentModel> getAllCommentsByTicketId(Integer ticketId);
 
+    TicketModel updateTicketStatus(Integer ticketId, String status);
 }

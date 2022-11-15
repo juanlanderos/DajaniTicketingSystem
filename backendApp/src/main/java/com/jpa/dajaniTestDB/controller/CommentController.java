@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,11 +50,4 @@ public class CommentController {
 
         return commentService.createComment(commentModel, ticketId, userId);
     }
-
-/*    public ResponseEntity<CommentModel> getCommentById(@PathVariable Integer id){
-        CommentModel commentModel;
-        commentModel = commentService.findByCommentId(id);
-        return ResponseEntity.ok(commentModel);
-    }*/
-
 }

@@ -6,9 +6,9 @@ import com.jpa.dajaniTestDB.entity.UserEntity;
 import com.jpa.dajaniTestDB.model.CommentModel;
 import com.jpa.dajaniTestDB.model.TicketModel;
 import com.jpa.dajaniTestDB.model.UserModel;
+import com.jpa.dajaniTestDB.service.ServiceInterface.TicketService;
 import com.jpa.dajaniTestDB.service.repository.TicketRepository;
 import com.jpa.dajaniTestDB.service.repository.UserRepository;
-import com.jpa.dajaniTestDB.service.serviceInterface.TicketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -27,15 +27,6 @@ public class TicketServiceImpl implements TicketService {
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
     }
-
-/*    @Override
-    public TicketModel createTicket(TicketModel tempTicketModel){
-        TicketEntity tempTicketEntity = new TicketEntity();
-
-        BeanUtils.copyProperties(tempTicketModel, tempTicketEntity);
-        ticketRepository.save(tempTicketEntity);
-        return tempTicketModel;
-    }*/
 
     @Override
     public List<TicketModel> getAllTickets() {
@@ -180,5 +171,15 @@ public class TicketServiceImpl implements TicketService {
                 .collect(Collectors.toList());
         log.info("made it to the end");
         return commentModels;
+    }
+
+    @Override
+    public TicketModel updateTicketStatus(Integer ticketId, String status) {
+        TicketEntity tempTicketEntity = ticketRepository.findById(ticketId).get();
+        TicketModel tempTicketModel = new TicketModel();
+        tempTicketEntity.setStatus(status);
+        BeanUtils.copyProperties(tempTicketEntity, tempTicketModel);
+        ticketRepository.save(tempTicketEntity);
+        return tempTicketModel;
     }
 }
