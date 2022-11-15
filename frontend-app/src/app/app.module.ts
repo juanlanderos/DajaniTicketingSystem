@@ -31,6 +31,8 @@ import { LoginInfoComponent } from './Components/login-info/login-info.component
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { ChangeRoleComponent } from './Components/change-role/change-role.component';
 
 //Daniel Imports Above this
 
@@ -53,6 +55,8 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
     SignUpComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ChangePasswordComponent,
+    ChangeRoleComponent,
   ],
   imports: [
     BrowserModule,

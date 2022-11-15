@@ -15,6 +15,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { ChangeRoleComponent } from './Components/change-role/change-role.component';
 
 const routes: Routes = [
   {path: "users", component: UserListComponent},
@@ -33,7 +35,9 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "signUp", component: SignUpComponent},
   {path: "forgotPassword", component: ForgotPasswordComponent},
-  {path: "resetPassword", component: ResetPasswordComponent}
+  {path: "resetPassword", component: ResetPasswordComponent},
+  {path: "changePassword", component: ChangePasswordComponent},
+  {path: "changeRole", component: ChangeRoleComponent}
 
 ];
 

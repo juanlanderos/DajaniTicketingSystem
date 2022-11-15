@@ -27,8 +27,8 @@ export class ResetPasswordComponent implements OnInit {
     //call the user service and call endpoint for resetting a password with that token
     this.authService.processResetPassword(this.token,this.password).subscribe(data =>{
       //reset password has been processed and accepted, so route them back to login page
-        this.goToLogin();
-    })
+    });
+    this.goToLogin();
   }
 
   goToLogin(){

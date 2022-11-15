@@ -26,8 +26,8 @@ export class ForgotPasswordComponent implements OnInit {
     //call the user service and call the endpoint for forgetting password
     this.authService.processForgotPassword(this.email).subscribe(data =>{
       //reset password has been processed and accepted, so route them back to login page
-        this.goToLogin();
-    })
+    });
+    this.goToLogin();
   }
 
   goToLogin(){

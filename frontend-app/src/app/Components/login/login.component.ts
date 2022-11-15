@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
     private appComponent: AppComponent) { }
 
   ngOnInit(): void {
+    if(this.appComponent.isLoggedIn == true){
+      localStorage.clear();
+      this.appComponent.toggleNavBar();
+    }
   }
 
   login(){
@@ -46,6 +50,7 @@ export class LoginComponent implements OnInit {
         this.localStorage.set("firstName", this.currentUser.firstName);
         this.localStorage.set("lastName", this.currentUser.lastName);
         this.localStorage.set("role", this.currentUser.roles[0].roleName);
+        this.appComponent.checkCurrentRole(this.localStorage.get("role") as string);
       });
       //before going to the dashboard, toggle on the nav bars
       this.appComponent.toggleNavBar();

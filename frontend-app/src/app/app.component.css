@@ -62,7 +62,8 @@ background-color: #b0be54;
 
 .sidenav{
     height: auto;
-    padding-top: 25px;
+    /*padding-top: 25px;
+    padding-bottom: 25px;*/
     background-color: #000000
 
 }

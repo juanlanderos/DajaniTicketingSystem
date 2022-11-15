@@ -14,7 +14,7 @@ public interface UserService {
 
     RoleEntity saveRole(RoleEntity role);
 
-    void addRoleToUser(String username, String roleName);
+    UserModel addRoleToUser(String username, String roleName);
 
     UserModel getUserByUsername(String username);
 
@@ -35,4 +35,6 @@ public interface UserService {
     void updatePassword(UserModel userModel, String newPassword);
 
     UserModel getByResetPasswordToken(String token);
+
+    UserModel changePassword(String username, String password);
 }

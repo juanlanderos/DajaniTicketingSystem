@@ -10,11 +10,13 @@ export class AppComponent {
   title = 'Dajani Ticketing System';
   isLoggedIn! : boolean;
   currentUser!: string | null;
+  isAdmin!: boolean;
+  isAgent!: boolean;
+  isUser!: boolean; 
   
 
   constructor(private myLocalStorage: LocalStorageService) {  
     this.currentUser = myLocalStorage.get('current_user');
-    console.log(this.currentUser);
     if(this.currentUser != null){
       //user isnt logged in, hide the nav bar
       this.isLoggedIn = true;
@@ -30,5 +32,21 @@ export class AppComponent {
 
   toggleNavBar(){
     this.isLoggedIn = !this.isLoggedIn;
+  }
+
+  checkCurrentRole(role: string){
+    if(role == "ADMIN"){
+      this.isAdmin = true;
+      this.isAgent = false;
+      this.isUser = false;
+    } else if (role == "AGENT"){
+      this.isAdmin = false;
+      this.isAgent = true;
+      this.isUser = false;
+    } else if ( role == "USER"){
+      this.isAdmin = false;
+      this.isAgent = false;
+      this.isUser = true;
+    }
   }
 }

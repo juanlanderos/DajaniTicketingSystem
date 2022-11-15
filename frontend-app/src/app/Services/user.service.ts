@@ -41,4 +41,12 @@ export class UserService {
   getTicketsByUserId(id : number): Observable<Ticket[]>{
     return this.httpClient.get<Ticket[]>(`${this.baseUrl}/tickets/${id}`);
   }
+
+  changePassword(username: string, passsword: string): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/changePassword/${username}/${passsword}`, null);
+  }
+
+  changeUserRole(username: string, newRole: string): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/changeRole/${username}/${newRole}`, null)
+  }
 }

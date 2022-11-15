@@ -19,8 +19,8 @@ import java.util.Set;
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "userId")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
