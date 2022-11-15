@@ -13,14 +13,24 @@ export class AuthService {
   private baseUrl = "http://localhost:9000";
 
   constructor(private http: HttpClient) { }
-
-  //login
+  
+  /* //login OLD
   login(loginForm: LoginForm): Observable<any>{
     return this.http.post(`${this.baseUrl}/api/login`, loginForm);
+  } */
+
+  //login new
+  login(payload: any): Observable<any>{
+    return this.http.post(`${this.baseUrl}/api/login`, payload);
   }
 
-  //new user registration
+  /* //new user registration
   signUp(user: User): Observable<any>{
+    return this.http.post(`${this.baseUrl}/api/auth/register`, user);
+  } */
+
+  //new user registration NEW
+  signUp(user: any): Observable<any>{
     return this.http.post(`${this.baseUrl}/api/auth/register`, user);
   }
 

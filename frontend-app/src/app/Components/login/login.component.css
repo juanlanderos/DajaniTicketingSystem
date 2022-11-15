@@ -1,103 +1,104 @@
-.component{
-    height: 525px;
-}
-
-.signout {
-    position:absolute;
-    top: 5px;
-    right: 5px;
-
-}
-
-.homeButton {
-    position: absolute;
-    top: -3px;
-    right: 85px;
-    color: #b0be54;
-}
-
-.green {
-    color: #b0be54;
-
-}
-
-.signoutColor {
-    background-color: #e9e9e9;
-    color:#b0be54;
-}
-
-.lightGray {
-    background-color:#e9e9e9;
-
-}
-
-.navbar {
-        display: flex;
-        /* align-items: left; */
-        justify-content: left;
-        padding: 5px;
-        color: #b0be54;
-        background-color: #b0be54;
-      }
-
-.nav {
-    color: #b0be54;
-    background-color: #b0be54;
-}
-
-
-.footer {
-    background-color:#b0be54;
-}
-
-.sidenavButton{
-
-width: 100%;
-background-color: #b0be54;
-}
-
-.sidenavButton:hover{
-
-    color: #ffffff;   
-}
-
-.sidenav{
-
-    background-color: #c0c1c1
-
-}
-
-.sidenavButton{
-
-width: 100%;
-background-color: #b0be54;
-
-}
-
-.sidenavButton:hover{
-
-    color: #ffffff;
-    
-}
-
-.sidenav{
-
-    background-color: #c0c1c1
-
-}
-
-/* Image position */
-.image-logo {
-    padding: 0.5px;
-}
-/* Can technically be removed since already in styles.css
-.footer {
+.login-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 70px;
-    background-color: #2e5495;
-    text-align: center;
+    /*background-color: #419633; */
+    height: 100vh;
+
+    background: #419633;
+    background: -webkit-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: -o-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: -moz-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: linear-gradient(-135deg, #b8ddb2, #419633);
+}
+.login-container .login-box {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 8rem 6rem 3rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+}
+@media screen and (max-width: 965px) {
+    .login-container .login-box {
+        padding: 6rem 2rem 2rem;
+   }
+}
+@media screen and (max-width: 767px) {
+    .login-container .login-box {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3rem;
+   }
+}
+.login-container .login-box .logo {
+    width: 17rem;
+    object-fit: contain;
+    margin-right: 7rem;
+}
+@media screen and (max-width: 767px) {
+    .login-container .login-box .logo {
+        margin-right: 0;
+        margin-bottom: 3rem;
+   }
+}
+.login-container .login-box .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-container .login-box .form .heading {
+    margin-bottom: 0.5rem;
+}
+.login-container .login-box .form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+.login-container .login-box .form .form-group:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.login-container .login-box .form .fields {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+}
+.login-container .login-box .form .fields .field {
+    border-radius: 20px;
+    border: none;
+    padding: 0.5rem 2rem;
+    background-color: #e6e6e6;
+    outline: none;
+}
+.login-container .login-box .form .btn-login {
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: #419633;
     color: #fff;
-} */
+    border: none;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+}
+.login-container .login-box .form .btn-login:disabled {
+    background: #d8d8d8;
+    color: #b1adad;
+    cursor: initial !important;
+}
+.login-container .login-box .form .links {
+    font-size: 0.8rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-container .login-box .form a {
+    cursor: pointer;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #212529;
+}
+.login-container .login-box .form input.ng-invalid.ng-touched {
+    border: 1px solid red !important;
+}
+.login-container .login-box .form mat-error {
+    margin-left: 0.5rem;
+}

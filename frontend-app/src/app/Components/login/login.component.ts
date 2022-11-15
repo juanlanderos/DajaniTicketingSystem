@@ -8,6 +8,7 @@ import jwt_decode from "jwt-decode";
 import { UserService } from 'src/app/Services/user.service';
 import { User } from 'src/app/Models/user';
 import { AppComponent } from 'src/app/app.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: LoginForm = new LoginForm();
+  loginForm: FormGroup;
   currentUser!: User;
   tokens!: JwtToken;
 
@@ -24,7 +25,12 @@ export class LoginComponent implements OnInit {
     private localStorage: LocalStorageService,
     private userService: UserService,
     private router: Router,
-    private appComponent: AppComponent) { }
+    private appComponent: AppComponent) { 
+      this.loginForm = new FormGroup({
+        username: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
+      });
+    }
 
   ngOnInit(): void {
     if(this.appComponent.isLoggedIn == true){
@@ -34,17 +40,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.authService.login(this.loginForm).subscribe(data =>{
+    this.authService.login(this.loginForm.value).subscribe(data =>{
       //this runs if the login is valid
       this.tokens = data;
       console.log(this.tokens);
+      const { username } = this.loginForm.value;
       this.localStorage.set("access_token", this.tokens.access_token);
       this.localStorage.set("refresh_token", this.tokens.refresh_token);
-      this.localStorage.set("current_user", this.loginForm.username);
+      this.localStorage.set("current_user", username);
       //let decodeToken = jwt_decode(this.tokens.access_token);
 
       //using the username, get that user and store info into localstorage
-      this.userService.getUserByUsername(this.loginForm.username).subscribe(data => {
+      this.userService.getUserByUsername(username).subscribe(data => {
         this.currentUser = data;
         
         this.localStorage.set("firstName", this.currentUser.firstName);

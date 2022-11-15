@@ -1,0 +1,94 @@
+.signup-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background: -webkit-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: -o-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: -moz-linear-gradient(-135deg, #b8ddb2, #419633);
+    background: linear-gradient(-135deg, #b8ddb2, #419633);
+}
+.signup-container .signup-box {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    width: 30%;
+}
+@media screen and (max-width: 1200px) {
+    .signup-container .signup-box {
+        width: 40%;
+   }
+}
+@media screen and (max-width: 800px) {
+    .signup-container .signup-box {
+        width: 60%;
+   }
+}
+@media screen and (max-width: 600px) {
+    .signup-container .signup-box {
+        width: 80%;
+   }
+}
+.signup-container .signup-box .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.signup-container .signup-box .form .heading {
+    margin-bottom: 0.5rem;
+}
+.signup-container .signup-box .form .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.signup-container .signup-box .form .fields {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    width: 100%;
+}
+.signup-container .signup-box .form .fields .field {
+    border-radius: 4px;
+    border: none;
+    padding: 0.8rem 2rem;
+    background-color: #e6e6e6;
+    outline: none;
+}
+.signup-container .signup-box .form .btn {
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: #419633;
+    color: #fff;
+    border: none;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+}
+.signup-container .signup-box .form .btn:disabled {
+    background: #d8d8d8;
+    color: #b1adad;
+    cursor: initial !important;
+}
+.signup-container .signup-box .form .links {
+    font-size: 0.8rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.signup-container .signup-box .form a {
+    cursor: pointer;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #212529;
+}
+.signup-container .signup-box .form input.ng-invalid.ng-touched {
+    border: 1px solid red !important;
+}
+.signup-container .signup-box .form mat-error {
+    margin-left: 0.5rem;
+}

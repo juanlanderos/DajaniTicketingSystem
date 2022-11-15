@@ -1,28 +1,36 @@
-<div class = "component">
-    <div class="col-md-6 offset-3">
-        <div class="card" >
-            <strong> Login</strong>
-            <br><br>
-            <form (ngSubmit) = "onSubmit()">
-                <div class="form-group pt-1">
-                    <label> Username </label>
-                     <input type="string" class="form-control" id="username"
-                     [(ngModel)] = "loginForm.username" name="username">
-                </div>
-                <div class="form-group pt-1">
-                    <label> Password </label>
-                     <input type="string" class="form-control" id="password"
-                     [(ngModel)] = "loginForm.password" name="password">
-                </div>
-                <br>
-                <button class="btn btn-success" type="submit">Submit</button>
-                <br><br>
-                </form> 
+<div class="login-container">
+	<div class="login-box">
+        <br>
+		<img src="./assets/img/dajanicologo.png" class="logo" alt="Dajani Consulting Ticketing System ">
+		<form [formGroup]="loginForm" class="form">
+			<h2 class="heading">Member login</h2>
+			
+			<div class="fields">
+				<div class="form-group">
+					<input formControlName="username" type="text" placeholder="Username" class="field">
 
-                <p><a routerLink="../signUp" routerLinkActive="active"><button class = "button" mat-raised-button>New User Sign Up</button></a></p>
-                <br>
-                <p><a routerLink="../forgotPassword" routerLinkActive="active"><button class = "button" mat-raised-button>Forgot Password?</button></a></p>
-                
-            </div>
-    </div>
+					<mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+						Username is required
+					</mat-error>
+				</div>
+
+				<div class="form-group">
+					<input formControlName="password" type="password" placeholder="Password" class="field">
+					<mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+						Password is required
+					</mat-error>
+				</div>
+			</div>
+
+			<button class="btn-login" (click)="onSubmit()" [disabled]="loginForm.invalid">Login</button>
+
+			<div class="links">
+				<span>
+					Forgot <a routerLink="/forgotPassword">Password?</a>
+				</span>
+				
+				<a routerLink="/signUp">Create your account -></a>
+			</div>
+		</form>
+	</div>
 </div>
