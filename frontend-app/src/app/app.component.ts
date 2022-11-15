@@ -18,10 +18,10 @@ export class AppComponent {
   constructor(private myLocalStorage: LocalStorageService) {  
     this.currentUser = myLocalStorage.get('current_user');
     if(this.currentUser != null){
-      //user isnt logged in, hide the nav bar
+      //user is logged in
       this.isLoggedIn = true;
     }else{
-      //user is logged in
+      //user is not logged in
       this.isLoggedIn = false;
     }
     window.onbeforeunload = function() {
@@ -30,8 +30,11 @@ export class AppComponent {
     };
   }
 
-  toggleNavBar(){
-    this.isLoggedIn = !this.isLoggedIn;
+  signUserIn(){
+    this.isLoggedIn = true;
+  }
+  signUserOut(){
+    this.isLoggedIn = false;
   }
 
   checkCurrentRole(role: string){

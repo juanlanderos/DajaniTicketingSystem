@@ -19,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     //when you go to this page, make sure to disable the navbars if they are up
     if(this.appComponent.isLoggedIn == true) {
-      this.appComponent.toggleNavBar();
+      this.appComponent.signUserOut();
     }
   }
 
