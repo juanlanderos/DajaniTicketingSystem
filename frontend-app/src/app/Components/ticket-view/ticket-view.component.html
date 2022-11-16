@@ -78,8 +78,18 @@
 					</div>
 					<!-- Waiting on back-end implementation -->
 					<div class="flex flex-col mb-2 w-50">
-						<label for="requesterId" class="label">Status Id:</label>
-						<input id="requesterId" type="text" readonly [value]="ticket.status">
+						<div>
+							<label for="t1">Status<span aria-label="required">*</span></label><br>
+							<input type="text" id="t1" name="statuses" list="l1" required
+							[(ngModel)] = "ticket.status" name="status"
+								   pattern="[Oo]pen|[Ss]olved|[Pp]ending|[Ss]pam">
+							<datalist id="l1">
+							  <option>Open</option>
+							  <option>Solved</option>
+							  <option>Pending</option>
+							  <option>Spam</option>
+							</datalist>
+						</div>
 					</div>
 				</div>
 
@@ -122,4 +132,5 @@
 			</app-html-editor>
 		</div> <!-- Submit button for comment response field -->
 		<button class="mt-3" mat-raised-button color="primary" (click)="onSubmit()">Submit Response</button>
+		<button class="mt-3" mat-raised-button color="primary" (click)="onUpdate()">Update Ticket</button>
 	</div>

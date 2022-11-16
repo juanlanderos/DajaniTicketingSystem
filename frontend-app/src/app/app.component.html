@@ -5,7 +5,7 @@
 <div *ngIf = "isLoggedIn">
   <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container-fluid ">
-      <a href="http://localhost:4200/dashboard"> <img src="./assets/img/dajanicologohome.png" alt=""></a> <!-- Dajani logo with redirect link to My Dashboard Page -->
+      <a href="http://localhost:4200/dashboard"> <img src="../assets/img/Dajanicologohome.png" alt=""></a> <!-- Dajani logo with redirect link to My Dashboard Page -->
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="nav nav-pills">
           <li class="nav-item" *ngIf = "isAdmin">
@@ -13,7 +13,7 @@
             <!--once you click logout, clear local storage and redirect user to login page-->
           </li>	
           <li class="nav-item">
-              <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
+            <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
             <!--once you click logout, clear local storage and redirect user to login page-->
           </li>	
         </ul>		  
@@ -21,23 +21,6 @@
     </div>
   </nav>
 </div>
-
-<!--
-      <li class="nav-item bg-white">
-      <a routerLink="users" routerLinkActive="active" class="nav-link">User List</a>
-    </li>
-    <li class="nav-item bg-white">
-      <a routerLink="create-user" routerLinkActive="active" class="nav-link">Create User</a>
-    </li>
-    <li class="nav-item bg-white">
-      <a routerLink="comments" routerLinkActive="active" class="nav-link">Comment List</a>
-    </li>
-    <li class="nav-item bg-white">
-      <a routerLink="create-comment" routerLinkActive="active" class="nav-link">Create Comment</a>
-    </li>
-<div class = "homeButton"><a routerLink="dashboard" routerLinkActive="active" class="nav-link"><button mat-raised-button color = "lightGray"><mat-icon class = "green" aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> </button> </a></div>
-<div class ="signout"> <button class = 'green' mat-raised-button>Sign Out</button></div>
- -->
 
  <!--Daniel Code Below here-->
 <div *ngIf = "isLoggedIn">
@@ -56,13 +39,13 @@
         </button></p>
       </div>
 
-    <router-outlet></router-outlet>
+	  <router-outlet></router-outlet> <!-- ADDED -->
     </mat-sidenav-content>
 </mat-sidenav-container>
-<div>
+</div>
 
 <div *ngIf="!isLoggedIn">
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
 
 <!--Daniel Code Above here-->
@@ -74,5 +57,4 @@
     </div>
   </footer>
 </div>
-
 

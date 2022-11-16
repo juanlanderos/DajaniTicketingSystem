@@ -110,5 +110,11 @@ export class TicketViewComponent implements OnInit
 		}
 	  });
 	}
+
+	onUpdate(): void {
+		this.ticketService.updateTicketStatus(this.ticket.ticketId, this.ticket.status).subscribe(data => {
+			console.log(data);
+		});
+	}
 }
 

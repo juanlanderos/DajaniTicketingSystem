@@ -71,4 +71,8 @@ export class TicketService {
   getTicketsByUserId(userId: number): Observable<Ticket[]>{
     return this.httpClient.get<Ticket[]>(`${this.baseUrl}/users/${userId}`);
   }
+
+  updateTicketStatus(ticketId: number, status: string): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/status/${ticketId}/${status}`, null);
+  }
 }
