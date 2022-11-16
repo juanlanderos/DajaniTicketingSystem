@@ -9,11 +9,6 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="nav nav-pills">
           <li class="nav-item" *ngIf = "isAdmin">
-            <a routerLink="changeRole" routerLinkActive="active" class="nav-link active">Change User Role</a>
-            <!--once you click logout, clear local storage and redirect user to login page-->
-          </li>	
-          <li class="nav-item">
-            <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
             <button class="mt-3" mat-raised-button color="primary" (click)="signUserOut()">Change Role</button>
             <!--once you click logout, clear local storage and redirect user to login page-->>
           </li>	
@@ -63,4 +58,3 @@
   </footer>
 </div>
 
-</div>
