@@ -99,6 +99,7 @@
 		</div>
 		<!-- If there is no comment for ticket, dont display box, if there is, display the comment box -->
 		<div class="comments box" *ngIf="comments.length > 0">
+			<div class="label-box">Comments</div>
 			<div class="comment box" *ngFor="let comment of comments">
 				<div class="flex flex-col">
 					<!-- email that wrote the comment since db for name isnt up yet -->

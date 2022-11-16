@@ -1,19 +1,19 @@
 <div class ="component">
     <div class="col-md-6 offset-3">
-        <h3> Create Ticket </h3>
+        <h1 class="text-center px-1 py-1"> Create Ticket </h1>
         <form (ngSubmit) = "onSubmit()">
             <div class ="card">
                 <!-- Ticket Title -->
                 <div class="form-group">
                     <label> Title </label>
                     <input type="string" class="form-control" id="title"
-                        [(ngModel)] = "ticket.title" name="title">
+                        [(ngModel)] = "ticket.title" name="title"><br>
                 </div>
                 <!-- Ticket Description -->
                 <div class="form-group">
                     <label> Description </label>
-                    <input type="string" class="form-control" id="description"
-                        [(ngModel)] = "ticket.description" name="description">
+                    <textarea class="form-control" id="description" rows="3"
+                        [(ngModel)] = "ticket.description" name="description"></textarea><br>
                 </div>
                 <!-- Submit button to update user info -->
                 <button class="btn btn-success" type="submit">Submit</button>
