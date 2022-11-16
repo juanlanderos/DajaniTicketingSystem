@@ -49,6 +49,24 @@
 		</div>
 		<!-- Ticket Info box separating ticket details from description -->
 		<div class="ticket-info box">
+			<div class="middle box">
+				<div class="label-box">Agent Details</div>
+				<div class="info" *ngIf="agent; else noUser;">
+					<div class="flex flex-col mb-2">
+						<label for="fullname" class="label">Full Name:</label> 
+						<input id="fullname" type="text" readonly [value]="agent.firstName">
+					</div>
+					<div class="flex flex-col mb-2">
+						<label for="email" class="label">Email:</label> 
+						<!-- Pulling user email associated with ticketId fom DB -->
+						<input id="email" type="text" readonly [value]="agent.email">
+					</div>
+				</div>
+				<ng-template #noUser>
+					<!-- This will appear if there is no user associated with a ticketId) -->
+					<div>No user assigned yet</div>
+				</ng-template>
+			</div>
 			<div class="label-box">Ticket Info</div>
 			<div class="box flex">
 				<div class="left-box">
@@ -75,6 +93,7 @@
 						<input id="updatedAt" type="text" readonly [value]="ticket.updatedAt">
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		<!-- If there is no comment for ticket, dont display box, if there is, display the comment box -->

@@ -69,6 +69,11 @@
 	flex: 0 0 50%;
 	padding: 0.5rem; /* surrounding padding around contents within ticket info */
 }
+/* class for for ticket info middle box */
+.ticket-view .detail .ticket-info .middle-box {
+	flex: 0 0 50%;
+	padding: 0.5rem; /* surrounding padding around contents within ticket info */
+}
 /* class for for ticket info right box */
 .ticket-view .detail .ticket-info .right-box {
 	flex: 0 0 50%;
