@@ -27,29 +27,11 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @Operation(summary = "Fetches all ticketEntities")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched all ticketEntities from DB",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/tickets")
     public List<TicketModel> showAllTickets(){
         return ticketService.getAllTickets();
     }
 
-    @Operation(summary = "Fetches a ticketEntity based on its ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/tickets/{id}")
     public ResponseEntity<TicketModel> showTicketById(@PathVariable int id){
         TicketModel tempTicketModel;
@@ -57,76 +39,40 @@ public class TicketController {
         return ResponseEntity.ok(tempTicketModel);
     }
 
-    @Operation(summary = "Fetches users from a ticket based on its ticketID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity and associated Users from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/ticketUsers/{id}")
     public List<UserModel> getUsersFromTicket(@PathVariable int id){
         return ticketService.getAllUsersByTicketId(id);
     }
 
-    @Operation(summary = "Fetches COMMENTS from a ticket based on its ticketID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Fetched ticketEntity and associated comments from DB based on its ID"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @GetMapping("/ticket-comments/{id}")
     public List<CommentModel> getAllCommentsByTicketId(@PathVariable int id){
         return ticketService.getAllCommentsByTicketId(id);
     }
 
-    @Operation(summary = "Creates a new ticketEntity; saves to DB")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Saved a new ticketEntity to DB"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
+    //users create tickets
     @PostMapping("/tickets/{userId}")
     public TicketModel addTicket(@PathVariable Integer userId, @RequestBody TicketModel ticketModel){
         return ticketService.createNewTicket(userId, ticketModel);
     }
 
-    @Operation(summary = "Adds a user to a ticket")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Saved a new user to a ticket"),
-            //content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
+    //agents and admins get added to tickets
     @PostMapping("/tickets/{userId}/{ticketId}")
     public void addUserToTicket(@PathVariable Integer userId, @PathVariable Integer ticketId){
         ticketService.addUserToTicket(userId, ticketId);
     }
+
+    @PostMapping("/tickets/remove/{ticketId}/{userId}")
+    public void removeUserFromTicket(@PathVariable Integer ticketId, @PathVariable Integer userId){
+        ticketService.removeUserFromTicket(ticketId, userId);
+    }
+
+
 
     @PostMapping("/tickets/status/{ticketId}/{status}")
     public void updateTicketStatus(@PathVariable Integer ticketId, @PathVariable String status){
         ticketService.updateTicketStatus(ticketId, status);
     }
 
-    @Operation(summary = "Deletes ticket based on its ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Deletes ticket by finding its ID in serviceImpl",
-            content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "404",
-                    description = "Not available",
-                    content = @Content)
-    })
     @DeleteMapping("/tickets/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteTicketById(@PathVariable Integer id){
         boolean deleted;

@@ -33,6 +33,7 @@ import { ForgotPasswordComponent } from './Components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 import { ChangeRoleComponent } from './Components/change-role/change-role.component';
+import { AssignTicketAgentComponent } from './Components/assign-ticket-agent/assign-ticket-agent.component';
 
 //Daniel Imports Above this
 
@@ -57,6 +58,7 @@ import { ChangeRoleComponent } from './Components/change-role/change-role.compon
     ResetPasswordComponent,
     ChangePasswordComponent,
     ChangeRoleComponent,
+    AssignTicketAgentComponent,
   ],
   imports: [
     BrowserModule,
