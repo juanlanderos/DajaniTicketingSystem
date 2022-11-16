@@ -25,7 +25,7 @@ export class AppComponent {
       this.isLoggedIn = false;
     }
     window.onbeforeunload = function() {
-      localStorage.clear();
+      //localStorage.clear();
       return '';
     };
   }

@@ -5,6 +5,7 @@ import { Comment } from 'src/app/Models/comment';
 import { Ticket } from 'src/app/Models/ticket';
 import { User } from 'src/app/Models/user';
 import { TicketService } from 'src/app/Services/ticket.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-ticket-view',
@@ -14,7 +15,9 @@ import { TicketService } from 'src/app/Services/ticket.service';
 export class TicketViewComponent implements OnInit 
 {
 	ticket!: Ticket;
+	ticketId!: number;
 	user!: User;
+	agent!: User;
 	ticketSummary = new FormControl();
 	//used for styling and editing fields, buttons, & boxes in FC
 	responseFC = new FormControl('', Validators.required); 
@@ -23,6 +26,7 @@ export class TicketViewComponent implements OnInit
 	comments: Comment[] = [];
   
 	constructor(private ticketService: TicketService,
+				private userService: UserService,
 				private route: ActivatedRoute) 
 	{ }
 
@@ -32,8 +36,8 @@ export class TicketViewComponent implements OnInit
 		2. The value returned from params object is of type string.
 		3. Used parseInt function to convert it to integer.
 	*/
-  	const ticketId = parseInt(this.route.snapshot.params['id'], 10);
-    this.getTicketInfo(ticketId);
+  	this.ticketId = parseInt(this.route.snapshot.params['id'], 10);
+    this.getTicketInfo(this.ticketId);
     }
 
   //getTicketInfo method first gets the array of tickets and then finds the ticket with given ticketId.
@@ -42,6 +46,8 @@ export class TicketViewComponent implements OnInit
 		  this.ticket = resp;
 		  // Once ticket info is received, get User associated with a ticket;
 		  this.getUserInfo(ticketId);
+		  //also get the agent associate with the ticket
+		  this.getAgentInfo();
 	  });
 	}
 	/* Gets the user info associated with that ticket
@@ -59,6 +65,22 @@ export class TicketViewComponent implements OnInit
 				}
 			}
 	  });
+	}
+
+	private getAgentInfo(): void{
+		this.userService.getUserById(this.ticket.agentId).subscribe(data => {
+			console.log(data);
+			this.agent = data;
+		})
+
+	}
+
+	//add an agent to a ticket
+	addAgentToTicket(agentId: number): void{
+		this.ticketService.addUserToTicket(agentId, this.ticketId).subscribe(data => {
+			console.log("Agent added sucessfully");
+			this.getAgentInfo();
+		})
 	}
   //extracts comments associated with that ticket for the user
 	private getUserComments(): void {

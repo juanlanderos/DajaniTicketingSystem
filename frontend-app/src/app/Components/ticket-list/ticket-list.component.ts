@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ticket } from '../../Models/ticket';
 import { TicketService } from '../../Services/ticket.service';
+import { TicketViewComponent } from '../ticket-view/ticket-view.component';
 
 @Component({
   selector: 'app-ticket-list',
@@ -58,6 +59,10 @@ export class TicketListComponent implements OnInit {
     this.router.navigate(['update-tickets', statusId]);
   }
   // Russell Code update tickets
+
+  assignAgent(ticketID: number){
+    //route to a componenet for assigning an agent to a ticket
+  }
   
 //Matts code
 onViewTicketDetails(ticket: Ticket): void {
