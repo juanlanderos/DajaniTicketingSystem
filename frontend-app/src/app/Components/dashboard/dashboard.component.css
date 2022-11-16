@@ -10,6 +10,7 @@
 
 	flex: 1; /* used to keep desc box proportional */
 	padding: 0.5rem; /* Surrounding padding */
+	border-radius: 8px;
 }
 
 /* Space and color between all content and outside borders */
@@ -20,6 +21,7 @@
 
 	display: flex;
 	margin-bottom: 1.0rem;
+	border-radius: 8px;
 }
 
 .dashboard-view .detail .ticket-surround {
@@ -28,7 +30,7 @@
 	align-items: flex-start;
 	padding: 1rem; /* surrounding padding around contents within ticket info */
 	border: 1.7px solid gray; /* color and weight of box line */
-	background: #ffffff; /* Wite background color */
+	background: #ffffff; /* White background color */
 }
 
 /* "User Details" box criteria */
@@ -38,6 +40,7 @@
 	text-align: center;
 	margin-bottom: 0.5rem;
 	font-weight: 600;
+	border-radius: 8px;
 }
 /* Color of ALL box lines */
 .dashboard-view .box {
@@ -51,12 +54,13 @@
 
 #tickets {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 0px 0;
     font-size: 0.9em;
     min-width: 400px; 
     border-radius: 5px 5px 0 0;
     overflow: hidden; 
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);  
+	border-radius: 8px;
 }
 
 #tickets tr:nth-child(even){background-color: #f2f2f2;}
