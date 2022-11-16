@@ -9,7 +9,7 @@
 	margin-left: 1rem;
 
 	flex: 1; /* used to keep desc box proportional */
-	padding: 0.5rem;
+	padding: 0.5rem; /* Surrounding padding */
 }
 
 /* Space and color between all content and outside borders */
@@ -25,7 +25,7 @@
 .dashboard-view .detail .ticket-surround {
 	display: flex;
 	width: 100%;
-
+	align-items: flex-start;
 	padding: 1rem; /* surrounding padding around contents within ticket info */
 	border: 1.7px solid gray; /* color and weight of box line */
 	background: #ffffff; /* Wite background color */

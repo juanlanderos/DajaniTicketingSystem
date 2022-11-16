@@ -1,6 +1,7 @@
 <head>
   <link rel="style" href="app.component.css">
 </head>
+
 <div *ngIf = "isLoggedIn">
   <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container-fluid ">
@@ -9,6 +10,7 @@
         <ul class="nav nav-pills">
           <li class="nav-item" *ngIf = "isAdmin">
             <a routerLink="changeRole" routerLinkActive="active" class="nav-link active">Change User Role</a>
+            <!--once you click logout, clear local storage and redirect user to login page-->
           </li>	
           <li class="nav-item">
               <a routerLink="login" routerLinkActive="active" class="nav-link active">Logout</a>
@@ -53,17 +55,17 @@
           <mat-icon>menu</mat-icon>
         </button></p>
       </div>
-      <p></p>
+
+    <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-</div>
 <div>
-  <router-outlet></router-outlet>
+
+<div *ngIf="!isLoggedIn">
+<router-outlet></router-outlet>
 </div>
 
 <!--Daniel Code Above here-->
-
-
 
 <div *ngIf = "isLoggedIn">
   <footer class ="footer">
