@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Comment } from 'src/app/Models/comment';
 import { Ticket } from 'src/app/Models/ticket';
 import { User } from 'src/app/Models/user';
@@ -23,6 +24,10 @@ export class TicketViewComponent implements OnInit
 	agents: User[] = [];
 	ticketSummary = new FormControl();
 	agentAssigned: boolean = false;
+
+	isAdmin!: boolean;
+	isAgent!: boolean;
+	isUser!: boolean;
 	//used for styling and editing fields, buttons, & boxes in FC
 	responseFC = new FormControl('', Validators.required); 
 	showResponseField = false;
@@ -31,10 +36,14 @@ export class TicketViewComponent implements OnInit
   
 	constructor(private ticketService: TicketService,
 				private userService: UserService,
+				private appComponent: AppComponent,
 				private route: ActivatedRoute) 
 	{ }
 
-  ngOnInit(): void {	
+  ngOnInit(): void {
+	this.isAdmin = this.appComponent.isAdmin;
+	this.isAgent = this.appComponent.isAgent;
+	this.isUser = this.appComponent.isUser;	
     /* 
 		1. ActivatedRoute service used to get ticketId from route.
 		2. The value returned from params object is of type string.

@@ -26,8 +26,8 @@ export class AppComponent {
       //user is not logged in
       this.isLoggedIn = false;
     }
+    this.checkCurrentRole(myLocalStorage.get('role') as string);
     window.onbeforeunload = function() {
-      //localStorage.clear();
       return '';
     };
   }

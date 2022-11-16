@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/Models/user';
+import { UserService } from 'src/app/Services/user.service';
 import { Ticket } from '../../Models/ticket';
 import { TicketService } from '../../Services/ticket.service';
 import { TicketViewComponent } from '../ticket-view/ticket-view.component';
@@ -12,9 +14,12 @@ import { TicketViewComponent } from '../ticket-view/ticket-view.component';
 export class TicketListComponent implements OnInit {
 
   tickets: Ticket[] = [];
+  agents: User[] = [];
+  requesters: User[] = [];
   
 
   constructor(private ticketService: TicketService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -53,16 +58,6 @@ export class TicketListComponent implements OnInit {
     return true;
   }
   // Russell Code
-  
-  // Russell Code update tickets
-  updateTickets(statusId: String){
-    this.router.navigate(['update-tickets', statusId]);
-  }
-  // Russell Code update tickets
-
-  assignAgent(ticketID: number){
-    //route to a componenet for assigning an agent to a ticket
-  }
   
 //Matts code
 onViewTicketDetails(ticket: Ticket): void {

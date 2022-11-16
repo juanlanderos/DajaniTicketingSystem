@@ -23,9 +23,8 @@
             <th>Updated At</th>
             <th >Completed At</th>
             <th>Status ID</th>
-            <th>Assignee ID</th>
-            <th>Requester ID</th>
-            <th>Update</th>
+            <th>AssigneeID</th>
+            <th>RequesterID</th>
         </tr>
     </thead>
     <tbody>
@@ -41,7 +40,6 @@
                 <td> {{ticket.status}} </td>
                 <td> {{ticket.agentId}} </td>
                 <td> {{ticket.requesterId}} </td>
-                <td> <button (click)="updateTickets(ticket.status)" class = "btn btn-info"></button>> </td>
             </tr>
         </ng-container>
     </tbody>

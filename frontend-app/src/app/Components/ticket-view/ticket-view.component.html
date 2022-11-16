@@ -32,8 +32,8 @@
 				<div class="label-box">User Details</div>
 				<div class="info" *ngIf="user">
 					<div class="flex flex-col mb-2">
-						<label for="fullname" class="label">Full Name:</label> <!-- Waiting on back-end implementation -->
-						<input id="fullname" type="text" readonly [value]="user.firstName">
+						<label for="fullname" class="label">Username:</label> <!-- Waiting on back-end implementation -->
+						<input id="fullname" type="text" readonly [value]="user.username">
 					</div>
 					<div class="flex flex-col mb-2">
 						<label for="email" class="label">Email:</label> 
@@ -49,8 +49,8 @@
 				<div class="label-box">Agent Details</div>
 				<div class="info" *ngIf="agent; else noAgent;">
 					<div class="flex flex-col mb-2">
-						<label for="fullname" class="label">Full Name:</label> 
-						<input id="fullname" type="text" readonly [value]="agent.firstName">
+						<label for="fullname" class="label">Username:</label> 
+						<input id="fullname" type="text" readonly [value]="agent.username">
 					</div>
 					<div class="flex flex-col mb-2">
 						<label for="email" class="label">Email:</label> 
@@ -59,14 +59,19 @@
 					</div>
 				</div>
 				<ng-template #noAgent>
-					<mat-form-field appearance="fill">
-						<mat-label>List of Agents</mat-label>
-						<mat-select [(ngModel)]="selectedAgent"  name="selectedAgent" (selectionChange)="addAgentToTicket()">
-						  <mat-option *ngFor="let currentAgent of agents" [value]="currentAgent">
-							{{currentAgent.username}}
-						  </mat-option>
-						</mat-select>
-					  </mat-form-field>
+					<div *ngIf = "isAdmin || isAgent; else userDisplay">
+						<mat-form-field appearance="fill">
+							<mat-label>List of Agents</mat-label>
+							<mat-select [(ngModel)]="selectedAgent"  name="selectedAgent" (selectionChange)="addAgentToTicket()">
+							  <mat-option *ngFor="let currentAgent of agents" [value]="currentAgent">
+								{{currentAgent.username}}
+							  </mat-option>
+							</mat-select>
+						  </mat-form-field>
+					</div>
+				</ng-template>
+				<ng-template #userDisplay>
+					<div> Pending Agent Review </div>
 				</ng-template>
 			</div>
 			<br>

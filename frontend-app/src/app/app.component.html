@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="nav nav-pills">
           <li class="nav-item" *ngIf = "isAdmin">
-            <button class="mt-3" mat-raised-button color="primary" (click)="signUserOut()">Change Role</button>
+            <button class="mt-3" mat-raised-button color="primary" (click)="changeUserRole()">Change Role</button>
             <!--once you click logout, clear local storage and redirect user to login page-->>
           </li>	
           <li class="nav-item">
@@ -26,10 +26,8 @@
 <div *ngIf = "isLoggedIn">
   <mat-sidenav-container>
     <mat-sidenav #sidenav class="sidenav" mode = "side" opened>
-      <p><button class = "sidenavButton" mat-raised-button>View Active Tickets</button></p><!--Will show all tickets that are not resolved or closed, function will return all tickets that are in the active states, ie not resolved/closed-->
       <p><a routerLink="dashboard" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View My Dashboard</button></a></p><!--Will show all tickets assigned to sign in user, function will return all tickets assigned to this specific user-->
-      <p><button class = "sidenavButton" mat-raised-button>View Unassigned Tickets</button></p><!--Will show all tickets that aren't yet assigned, function will return all tickets with an empty 'assigneeId' attribute-->
-      <p><a routerLink="tickets" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View All Tickets</button></a></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
+      <p *ngIf="!isUser"><a routerLink="tickets" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>View All Tickets</button></a></p><!--Will show all tickets that are not archived, Will call every ticket in the database-->
       <p><a routerLink="create-ticket" routerLinkActive="active"><button class = "sidenavButton" mat-raised-button>Create Ticket</button></a></p>                                                                                                                                 <!--This is the only one with a page currently^-->
     </mat-sidenav>
     <mat-sidenav-content>

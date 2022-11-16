@@ -48,10 +48,10 @@ export class CreateTicketComponent implements OnInit {
 
   onSubmit(){
     var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-    this.ticket.createdAt = date + ' :: ' + time;
-    this.ticket.updatedAt = date + ' :: ' + time;
+    this.ticket.createdAt = date + ' @ ' + time;
+    this.ticket.updatedAt = date + ' @ ' + time;
     this.ticket.completedAt = '---';
     this.ticket.status = "Open";
 

@@ -5,6 +5,7 @@ import { User } from 'src/app/Models/user';
 import { TicketService } from 'src/app/Services/ticket.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
 import { UserService } from 'src/app/Services/user.service';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -19,11 +20,13 @@ export class DashboardComponent implements OnInit {
 
 	constructor(private ticketService: TicketService,
 				private userService: UserService,
-				private localStorage: LocalStorageService) 
+				private localStorage: LocalStorageService,
+				private appComponent: AppComponent) 
 	{ }
 
 	ngOnInit(): void {
 		this.getLoggedInUserInfo();
+		this.appComponent.checkCurrentRole(this.localStorage.get("role") as string);
 	}
 
 	getLoggedInUserInfo(): void {

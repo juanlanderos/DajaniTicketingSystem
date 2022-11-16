@@ -1,15 +1,14 @@
 <div class = "component">
-    <div class="col-md-6 offset-3">
-        <div class="card" >
-            <strong> Login</strong>
-            <br><br>
-            <form (ngSubmit) = "onSubmit()">
-                <div class="form-group pt-1">
+    <div class="col-md-6 offset-3 fp-box">
+        <h1 class="text-center px-1 py-1"> Change Another User's Role </h1>
+        <form (ngSubmit) = "onSubmit()">
+            <div class="card" >
+                <div class="form-group">
                     <label> Which user do you wish to change role? Provide their username: </label>
                      <input type="string" class="form-control" id="username"
                      [(ngModel)] = "username" name="username">
                 </div>
-                <div class="form-group pt-1">
+                <div class="form-group pt-3">
                     <label> What new role should they have? (USER, AGENT, ADMIN)</label>
                      <input type="string" class="form-control" id="password"
                      [(ngModel)] = "newRole" name="password">
@@ -17,7 +16,7 @@
                 <br>
                 <button class="btn btn-success" type="submit">Submit</button>
                 <br><br>
-                </form> 
-            </div>
+             </div>
+        </form> 
     </div>
 </div>

@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
         this.localStorage.set("firstName", this.currentUser.firstName);
         this.localStorage.set("lastName", this.currentUser.lastName);
         this.localStorage.set("role", this.currentUser.roles[0].roleName);
+        //check the current role and save boolean instance of it
         this.appComponent.checkCurrentRole(this.localStorage.get("role") as string);
       });
       //before going to the dashboard, toggle on the nav bars by signing the user in
