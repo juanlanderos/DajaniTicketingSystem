@@ -17,8 +17,12 @@ export class TicketViewComponent implements OnInit
 	ticket!: Ticket;
 	ticketId!: number;
 	user!: User;
+	selectedAgent!: User;
 	agent!: User;
+	users: User[] = [];
+	agents: User[] = [];
 	ticketSummary = new FormControl();
+	agentAssigned: boolean = false;
 	//used for styling and editing fields, buttons, & boxes in FC
 	responseFC = new FormControl('', Validators.required); 
 	showResponseField = false;
@@ -37,7 +41,11 @@ export class TicketViewComponent implements OnInit
 		3. Used parseInt function to convert it to integer.
 	*/
   	this.ticketId = parseInt(this.route.snapshot.params['id'], 10);
+	if(this.agent == null){
+		this.getAgents();
+	}
     this.getTicketInfo(this.ticketId);
+	
     }
 
   //getTicketInfo method first gets the array of tickets and then finds the ticket with given ticketId.
@@ -46,8 +54,9 @@ export class TicketViewComponent implements OnInit
 		  this.ticket = resp;
 		  // Once ticket info is received, get User associated with a ticket;
 		  this.getUserInfo(ticketId);
-		  //also get the agent associate with the ticket
+		  //if the agent has been assigned, get the info from the backend
 		  this.getAgentInfo();
+
 	  });
 	}
 	/* Gets the user info associated with that ticket
@@ -65,6 +74,20 @@ export class TicketViewComponent implements OnInit
 				}
 			}
 	  });
+	} 
+
+	//get the list of Agents and Admins
+	private getAgents(){
+		this.userService.getUsersList().subscribe(data => {
+			this.users = data;
+			for(let i = 0; i < this.users.length; i++){
+				//if the current user is an AGENT or ADMIN, add them to the list of agents
+				if(this.users[i].roles[0].roleName == "AGENT" || this.users[i].roles[0].roleName == "ADMIN"){
+					this.agents.push(this.users[i]);
+				}
+			}
+			console.log(this.agents);
+		});
 	}
 
 	private getAgentInfo(): void{
@@ -76,10 +99,11 @@ export class TicketViewComponent implements OnInit
 	}
 
 	//add an agent to a ticket
-	addAgentToTicket(agentId: number): void{
-		this.ticketService.addUserToTicket(agentId, this.ticketId).subscribe(data => {
+	addAgentToTicket(): void{
+		this.ticketService.addUserToTicket(this.selectedAgent.userId, this.ticketId).subscribe(data => {
 			console.log("Agent added sucessfully");
-			this.getAgentInfo();
+			this.agentAssigned = true;
+			this.getTicketInfo(this.ticketId);
 		})
 	}
   //extracts comments associated with that ticket for the user

@@ -110,6 +110,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         return userModels;
     }
 
+
     @Override
     public UserModel getUserById(int id) {
         UserEntity tempUserEntity = userRepository.findById(id).get();

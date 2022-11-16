@@ -37,4 +37,5 @@ public interface UserService {
     UserModel getByResetPasswordToken(String token);
 
     UserModel changePassword(String username, String password);
+
 }

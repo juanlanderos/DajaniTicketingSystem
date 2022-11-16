@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalStorageService } from './Services/local-storage.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class AppComponent {
   isUser!: boolean; 
   
 
-  constructor(private myLocalStorage: LocalStorageService) {  
+  constructor(private myLocalStorage: LocalStorageService,
+              private router: Router) {  
     this.currentUser = myLocalStorage.get('current_user');
     if(this.currentUser != null){
       //user is logged in
@@ -35,6 +37,11 @@ export class AppComponent {
   }
   signUserOut(){
     this.isLoggedIn = false;
+    this.router.navigate(['/login']);
+  }
+
+  changeUserRole(){
+    this.router.navigate(['/changeRole']);
   }
 
   checkCurrentRole(role: string){

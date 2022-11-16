@@ -50,6 +50,11 @@
     height: 3rem; 
 }
 
+.logoutButton{
+    height: 100%;
+    
+}
+
 .sidenavButton{
 width: 100%;
 background-color: #b0be54;
