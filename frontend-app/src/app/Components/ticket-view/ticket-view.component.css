@@ -8,6 +8,7 @@
 	padding: 1rem; /* surrounding padding around contents within ticket info */
 	border: 1.7px solid gray; /* color and weight of box line */
 	background: #ffffff; /* Wite background color */
+	border-radius: 8px;
 }
 
 /* Color of heading title "Deatils for ticket #..." */
@@ -17,6 +18,7 @@
 	text-align: center;
 	padding: 0.5rem 0;
 	border: 1.7px solid gray; /* color and weight of box line */
+	border-radius: 8px;
 }
 /* Space and color between all content and outside borders */
 .ticket-view .detail {
