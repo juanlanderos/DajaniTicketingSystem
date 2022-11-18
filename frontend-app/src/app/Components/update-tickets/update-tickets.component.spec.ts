@@ -1,14 +1,14 @@
+import { AppComponent } from 'src/app/app.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UpdateTicketsComponent } from './update-tickets.component';
 
-describe('UpdateTicketsComponent', () => {
+fdescribe('UpdateTicketsComponent', () => {
   let component: UpdateTicketsComponent;
   let fixture: ComponentFixture<UpdateTicketsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateTicketsComponent ]
+      declarations: [ UpdateTicketsComponent, AppComponent ]
     })
     .compileComponents();
 

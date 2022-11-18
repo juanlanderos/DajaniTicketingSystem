@@ -1,14 +1,18 @@
+import { AppComponent } from './../../app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ForgotPasswordComponent } from './forgot-password.component';
+import { FormsModule } from '@angular/forms';
 
-describe('ForgotPasswordComponent', () => {
+fdescribe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForgotPasswordComponent ]
+      declarations: [ ForgotPasswordComponent ],
+	  imports: [HttpClientModule, FormsModule],
+	  providers: [AppComponent]
     })
     .compileComponents();
 

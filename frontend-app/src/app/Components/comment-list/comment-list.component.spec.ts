@@ -1,14 +1,15 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CommentListComponent } from './comment-list.component';
 
-describe('CommentListComponent', () => {
+fdescribe('CommentListComponent', () => {
   let component: CommentListComponent;
   let fixture: ComponentFixture<CommentListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommentListComponent ]
+      declarations: [ CommentListComponent ],
+	  imports: [HttpClientModule]
     })
     .compileComponents();
 

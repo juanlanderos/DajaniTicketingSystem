@@ -1,14 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AssignTicketAgentComponent } from './assign-ticket-agent.component';
+import { HttpClientModule } from '@angular/common/http';
 
-describe('AssignTicketAgentComponent', () => {
+fdescribe('AssignTicketAgentComponent', () => {
   let component: AssignTicketAgentComponent;
   let fixture: ComponentFixture<AssignTicketAgentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AssignTicketAgentComponent ]
+      declarations: [ AssignTicketAgentComponent ],
+      imports: [HttpClientModule
+      ]
     })
     .compileComponents();
 

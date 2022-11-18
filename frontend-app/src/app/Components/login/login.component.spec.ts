@@ -1,15 +1,23 @@
-/*import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppComponent } from './../../app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
+import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
+      declarations: [ LoginComponent, AppComponent ],
+	  imports: [HttpClientModule],
+	  providers: [AppComponent],
+    schemas: [
+      CUSTOM_ELEMENTS_SCHEMA,
+      NO_ERRORS_SCHEMA,
+      ]
+ })
     .compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
@@ -22,8 +30,8 @@ describe('LoginComponent', () => {
   });
 });
 
-*/
 
+/*
 //IN PROGRESS......
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -90,3 +98,4 @@ describe('LoginComponent', () => {
     expect(location.path()).toBe('./sign-up');
   });
 });
+*/

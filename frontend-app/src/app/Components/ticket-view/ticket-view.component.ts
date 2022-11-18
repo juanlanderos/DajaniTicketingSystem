@@ -54,11 +54,10 @@ export class TicketViewComponent implements OnInit
 		this.getAgents();
 	}
     this.getTicketInfo(this.ticketId);
-	
     }
 
   //getTicketInfo method first gets the array of tickets and then finds the ticket with given ticketId.
-	private getTicketInfo(ticketId: number): void {
+	public getTicketInfo(ticketId: number): void { //!!!!!!!!!CHANGE BACK TO PRIVATE ONCE TESTING IS DONE!!!!!!!!!
 	  this.ticketService.getTicketById(ticketId).subscribe(resp => {
 		  this.ticket = resp;
 		  // Once ticket info is received, get User associated with a ticket;
@@ -73,13 +72,13 @@ export class TicketViewComponent implements OnInit
 	   if there is no user assigned for that ticket
 	   Also extracts comments associated with that userId and ticketId
 	*/
-  	private getUserInfo(ticketId: number): void {
+  	public getUserInfo(ticketId: number): void { //!!!!!!!!!CHANGE BACK TO PRIVATE ONCE TESTING IS DONE!!!!!!!!!
 	  this.ticketService.getUsersFromTicket(ticketId).subscribe({
 			next: (resp: any) => {
 				if (resp.length > 0) {
 					this.user = resp[0];
 					// Once user info is received, get comments associated with the user;
-					this.getUserComments();
+					this.getUserComments(ticketId);
 				}
 			}
 	  });
@@ -104,7 +103,6 @@ export class TicketViewComponent implements OnInit
 			console.log(data);
 			this.agent = data;
 		})
-
 	}
 
 	//add an agent to a ticket
@@ -116,8 +114,8 @@ export class TicketViewComponent implements OnInit
 		})
 	}
   //extracts comments associated with that ticket for the user
-	private getUserComments(): void {
-		this.ticketService.getCommentsFromTicket(this.ticket.ticketId).subscribe(data => {
+	public getUserComments(ticketId: number): void { //!!!!!!!!!CHANGE BACK TO PRIVATE ONCE TESTING IS DONE!!!!!!!!!
+		this.ticketService.getCommentsFromTicket(ticketId).subscribe(data => {
 			console.log(data);
 			this.comments = data;
 		});
@@ -139,7 +137,7 @@ export class TicketViewComponent implements OnInit
 		next: resp => {
 			// Reset the html editor content;
 			this.responseFC.reset();
-			this.getUserComments();
+			this.getUserComments(this.ticket.ticketId);
 		}
 	  });
 	}
@@ -150,4 +148,3 @@ export class TicketViewComponent implements OnInit
 		});
 	}
 }
-

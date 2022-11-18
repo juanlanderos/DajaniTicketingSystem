@@ -1,14 +1,16 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ChangeRoleComponent } from './change-role.component';
+import { FormsModule } from '@angular/forms';
 
-describe('ChangeRoleComponent', () => {
+fdescribe('ChangeRoleComponent', () => {
   let component: ChangeRoleComponent;
   let fixture: ComponentFixture<ChangeRoleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangeRoleComponent ]
+      declarations: [ ChangeRoleComponent ],
+	  imports: [ HttpClientTestingModule, FormsModule ]
     })
     .compileComponents();
 

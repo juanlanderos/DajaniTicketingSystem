@@ -4,7 +4,6 @@ import { User } from 'src/app/Models/user';
 import { UserService } from 'src/app/Services/user.service';
 import { Ticket } from '../../Models/ticket';
 import { TicketService } from '../../Services/ticket.service';
-import { TicketViewComponent } from '../ticket-view/ticket-view.component';
 
 @Component({
   selector: 'app-ticket-list',
@@ -17,7 +16,6 @@ export class TicketListComponent implements OnInit {
   agents: User[] = [];
   requesters: User[] = [];
   
-
   constructor(private ticketService: TicketService,
     private userService: UserService,
     private router: Router) { }
