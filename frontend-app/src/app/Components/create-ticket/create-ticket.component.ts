@@ -42,9 +42,10 @@ export class CreateTicketComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  goToIndividualTicket(){
-    this.router.navigate(['/tickets, ticket.ticketId']);
-  }
+  //this function not needed?
+  // goToIndividualTicket(){
+  //   this.router.navigate(['/tickets, ticket.ticketId']);
+  // }
 
   onSubmit(){
     var today = new Date();
@@ -55,7 +56,6 @@ export class CreateTicketComponent implements OnInit {
     this.ticket.completedAt = '---';
     this.ticket.status = "Open";
 
-    //
     console.log(this.ticket);
     this.saveTicket();
   }
