@@ -1,101 +1,84 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './../../app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AuthService } from 'src/app/Services/auth.service';
+import { from } from 'rxjs';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
+import { User } from 'src/app/Models/user';
+
+class RouterStub {
+	navigate(params: any) { }
+}
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+	let authService: AuthService;
+	let userService: UserService;
+	let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent, AppComponent ],
-	  imports: [HttpClientModule],
-	  providers: [AppComponent],
-    schemas: [
-      CUSTOM_ELEMENTS_SCHEMA,
-      NO_ERRORS_SCHEMA,
-      ]
- })
+			imports: [HttpClientModule],
+			providers: [AppComponent, { provide: Router, useClass: RouterStub }],
+			schemas: [
+				CUSTOM_ELEMENTS_SCHEMA,
+				NO_ERRORS_SCHEMA,
+			]
+		})
     .compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+		authService = TestBed.inject(AuthService);
+		userService = TestBed.inject(UserService);
+		router = TestBed.inject(Router);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+	it('should create a form with 2 fields', () => {
+		expect(component.loginForm.contains('username')).toBeTruthy();
+		expect(component.loginForm.contains('password')).toBeTruthy();
+	});
+
+	it('should make the username field required', () => {
+		const control = component.loginForm.get('username');
+		control?.setValue('');
+		expect(control?.valid).toBeFalse();
+	});
+
+	it('should make the password field required', () => {
+		const control = component.loginForm.get('password');
+		control?.setValue('');
+		expect(control?.valid).toBeFalse();
+	});
+
+	it('should set access_token in local storage and navigate user to dashboard after successfully logged In', () => {
+		const tokens = { access_token: 'abc' };
+		const user: User = { firstName: 'farid', lastName: '', commentEntityList: [], email: '', password: '', roles: [{roleName: 'Admin', roleId: 1}], ticketEntities: [], userId: 1, username: '' };
+		const username = 'farid';
+
+		spyOn(authService, 'login').and.callFake(({}) => {
+			return from([tokens]);
+		});
+		spyOn(userService, 'getUserByUsername').and.callFake((username) => {
+			return from([user]);
+		});
+		const routerSpy = spyOn(router, 'navigate');
+
+		component.login();
+
+		expect(component.tokens.access_token).toBe(tokens.access_token);
+		expect(component.currentUser).toBe(user);
+		expect(routerSpy).toHaveBeenCalledWith(['/dashboard']);
+	});
 });
-
-
-/*
-//IN PROGRESS......
-
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { of } from 'rxjs';
-import { Router } from '@angular/router';
-import { By } from '@angular/platform-browser';
-import { Location } from "@angular/common";
-import { LoginComponent } from 'src/app/Components/login/login.component';
-import { NgModule } from '@angular/core';
-import { UserService } from 'src/app/Services/user.service';
- 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-  let userService: jasmine.SpyObj<UserService>;
-  let router: Router;
-
-  beforeEach(async () => {
-    userService = jasmine.createSpyObj<UserService>('UserService', ['getUserByUsername']);
-    userService.getUserByUsername.and.returnValue(of());
-
-    router = jasmine.createSpyObj('Router', ['navigate'], {
-      url: './sign-up',
-      routeReuseStrategy: { shouldReuseRoute: false },
-
-    });
-    await TestBed.configureTestingModule({
-      imports: [FormsModule, Router, NgModule, ],
-      declarations: [LoginComponent ],
-      providers: [{ provide: UserService, useValue: userService },]
-    })
-    .compileComponents();
-
-    router = TestBed.inject(Router);
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
- 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
- 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
- 
-  it('should be able to login by entering email and password and submitting form', () => {
-    component.currentUser['email'] = 'test@test.com';
-    component.currentUser['password'] = '123456789';
-    const loginBtn = fixture.debugElement.query(By.css('button.login-btn')).nativeElement;
-    loginBtn.click();
-    expect(component.onSubmit).toBeTrue;
-  });
- 
- 
-  it('should route to register page by clicking “Sign Up here” link', () => {
-    const location: Location = TestBed.inject(Location);
-    const link =fixture.debugElement.query(By.css('a')).nativeElement;
-    link.click();
-    expect(location.path()).toBe('./sign-up');
-  });
-});
-*/

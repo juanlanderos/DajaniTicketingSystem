@@ -7,7 +7,7 @@ import { TicketService } from 'src/app/Services/ticket.service';
 import { TicketViewComponent } from './ticket-view.component';
 import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('TicketViewComponent', () => {
+fdescribe('TicketViewComponent', () => {
   let component: TicketViewComponent;
   let fixture: ComponentFixture<TicketViewComponent>;
   let service: TicketService;
@@ -33,7 +33,8 @@ describe('TicketViewComponent', () => {
   it('should create Ticket view app', () => {
     expect(component).toBeTruthy();
   });
-
+  
+  //This is where the issue is lying.... Somewhere here.
   it('should get Ticket by ticket id from server and set it in ticket variable', () => {
 	const service = TestBed.inject(TicketService);
 	const ticket: any = { ticketId: 1 };
@@ -41,7 +42,7 @@ describe('TicketViewComponent', () => {
 	const ticketId = 1;
 	spyOn(service, 'getTicketById').and.callFake((ticketId) => {
 		return from([ ticket ]);
-	});
+	}); 
 
 	component.getTicketInfo(ticketId);
 
@@ -60,6 +61,7 @@ describe('TicketViewComponent', () => {
 
 	expect(component.user).toBe(users[0]);
   });
+  
   it('should get all the comments associated with the ticket from server', () => {
 	const comments: any[] = [1, 2, 3];
 	const ticketId = 1;
