@@ -4,7 +4,7 @@ import { HttpClientModule} from '@angular/common/http'; //added
 import { TicketViewComponent } from './Components/ticket-view/ticket-view.component'; //added
 import { TicketService } from 'src/app/Services/ticket.service'; //added
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [

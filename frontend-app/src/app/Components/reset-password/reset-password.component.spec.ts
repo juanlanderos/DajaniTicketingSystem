@@ -12,7 +12,7 @@ class RouterStub {
 	navigate(params: any) { }
 }
 
-fdescribe('ResetPasswordComponent', () => {
+describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
   let fixture: ComponentFixture<ResetPasswordComponent>;
 	let authService: AuthService;

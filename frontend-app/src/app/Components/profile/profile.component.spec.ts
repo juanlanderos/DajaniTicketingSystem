@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileComponent } from './profile.component';
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 

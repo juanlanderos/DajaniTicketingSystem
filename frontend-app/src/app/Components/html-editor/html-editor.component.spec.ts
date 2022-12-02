@@ -3,7 +3,7 @@ import { HtmlEditorComponent } from './html-editor.component';
 import { AppComponent } from 'src/app/app.component';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-fdescribe('HtmlEditorComponent', () => {
+describe('HtmlEditorComponent', () => {
   let component: HtmlEditorComponent;
   let fixture: ComponentFixture<HtmlEditorComponent>;
 

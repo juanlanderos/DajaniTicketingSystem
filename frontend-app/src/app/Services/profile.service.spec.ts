@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ProfileService } from './profile.service';
 
-fdescribe('ProfileService', () => {
+describe('ProfileService', () => {
   let service: ProfileService;
 
   beforeEach(() => {

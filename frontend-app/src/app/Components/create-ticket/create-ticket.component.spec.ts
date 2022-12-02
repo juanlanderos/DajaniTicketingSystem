@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './../../app.component';
 
 
-fdescribe('CreateTicketComponent', () => {
+describe('CreateTicketComponent', () => {
   let component: CreateTicketComponent;
   let fixture: ComponentFixture<CreateTicketComponent>;
   let router: Router;

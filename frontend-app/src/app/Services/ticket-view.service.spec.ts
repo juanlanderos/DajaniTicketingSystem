@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { TicketViewService } from './ticket-view.service';
 
-fdescribe('TicketViewService', () => {
+describe('TicketViewService', () => {
   let service: TicketViewService;
 
   beforeEach(() => {

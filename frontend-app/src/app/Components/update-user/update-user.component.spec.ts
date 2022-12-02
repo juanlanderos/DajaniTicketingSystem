@@ -4,7 +4,7 @@ import { UpdateUserComponent } from './update-user.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-fdescribe('UpdateUserComponent', () => {
+describe('UpdateUserComponent', () => {
   let component: UpdateUserComponent;
   let fixture: ComponentFixture<UpdateUserComponent>;
 

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreateUserComponent } from './create-user.component';
 import { FormsModule } from '@angular/forms';
 
-fdescribe('CreateUserComponent', () => {
+describe('CreateUserComponent', () => {
   //Arranging
   let component: CreateUserComponent; //creating a component of type createUserComponent
   let fixture: ComponentFixture<CreateUserComponent>; //creatign a fixture of type componentFixture

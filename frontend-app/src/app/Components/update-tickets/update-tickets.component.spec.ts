@@ -2,7 +2,7 @@ import { AppComponent } from 'src/app/app.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UpdateTicketsComponent } from './update-tickets.component';
 
-fdescribe('UpdateTicketsComponent', () => {
+describe('UpdateTicketsComponent', () => {
   let component: UpdateTicketsComponent;
   let fixture: ComponentFixture<UpdateTicketsComponent>;
 

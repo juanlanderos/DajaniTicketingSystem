@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TicketService } from './ticket.service';
 
-fdescribe('TicketService', () => {
+describe('TicketService', () => {
   let service: TicketService;
 
   beforeEach(() => {

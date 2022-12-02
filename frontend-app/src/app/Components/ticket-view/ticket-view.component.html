@@ -74,6 +74,7 @@
 					<div> Pending Agent Review </div>
 				</ng-template>
 			</div>
+			
 			<br>
 			<div class="label-box">Ticket Info</div>
 			<div class="box flex">
@@ -113,6 +114,7 @@
 				</div>
 				
 			</div>
+			<button class="mt-3" mat-raised-button color="primary" (click)="onUpdate()">Update Ticket</button>
 		</div>
 		<!-- If there is no comment for ticket, dont display box, if there is, display the comment box -->
 		<div class="comments box" *ngIf="comments.length > 0">
@@ -139,5 +141,4 @@
 			</app-html-editor>
 		</div> <!-- Submit button for comment response field -->
 		<button class="mt-3" mat-raised-button color="primary" (click)="onSubmit()">Submit Response</button>
-		<button class="mt-3" mat-raised-button color="primary" (click)="onUpdate()">Update Ticket</button>
 	</div>

@@ -10,7 +10,7 @@ class RouterStub {
 	navigate(params: any) { }
 }
 
-fdescribe('SignUpComponent', () => {
+describe('SignUpComponent', () => {
   let component: SignUpComponent;
   let fixture: ComponentFixture<SignUpComponent>;
   let authService: AuthService;

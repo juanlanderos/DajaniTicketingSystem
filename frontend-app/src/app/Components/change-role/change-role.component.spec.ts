@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChangeRoleComponent } from './change-role.component';
 import { FormsModule } from '@angular/forms';
 
-fdescribe('ChangeRoleComponent', () => {
+describe('ChangeRoleComponent', () => {
   let component: ChangeRoleComponent;
   let fixture: ComponentFixture<ChangeRoleComponent>;
 

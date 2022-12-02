@@ -14,7 +14,7 @@ class RouterStub {
 	navigate(params: any) { }
 }
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 	let authService: AuthService;

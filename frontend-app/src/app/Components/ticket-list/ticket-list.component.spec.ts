@@ -12,7 +12,7 @@ import { AngularMaterialModule } from 'src/app/angular-material/angular-material
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-fdescribe('TicketListComponent', () => {
+describe('TicketListComponent', () => {
   let component: TicketListComponent;
   let fixture: ComponentFixture<TicketListComponent>;
   let ticketService: jasmine.SpyObj<TicketService>;

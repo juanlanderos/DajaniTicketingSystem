@@ -15,7 +15,7 @@ import { Comment } from "src/app/Models/comment";
 import { Role } from 'src/app/Models/role';
 import { AppComponent } from './../../app.component';
 
-fdescribe('CreateCommentComponent', () => {
+describe('CreateCommentComponent', () => {
   let component: CreateCommentComponent;
   let fixture: ComponentFixture<CreateCommentComponent>;
   let ticketService: jasmine.SpyObj<TicketService>;

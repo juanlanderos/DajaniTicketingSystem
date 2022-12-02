@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ChangePasswordComponent } from './change-password.component';
 
-fdescribe('ChangePasswordComponent', () => {
+describe('ChangePasswordComponent', () => {
   let component: ChangePasswordComponent;
   let fixture: ComponentFixture<ChangePasswordComponent>;
 

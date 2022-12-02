@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { CommentService } from './comment.service';
 
-fdescribe('CommentService', () => {
+describe('CommentService', () => {
   let service: CommentService;
 
   beforeEach(() => {

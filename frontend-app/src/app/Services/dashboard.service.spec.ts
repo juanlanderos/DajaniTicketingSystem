@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { DashboardService } from './dashboard.service';
 
-fdescribe('DashboardService', () => {
+describe('DashboardService', () => {
   let service: DashboardService;
 
   beforeEach(() => {
