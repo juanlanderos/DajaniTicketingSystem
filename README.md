@@ -33,3 +33,6 @@ Project is created with:
 ## Documentation
 - [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+
+## Contributors
+- Sai Suresh: ssuresh@csus.edu
