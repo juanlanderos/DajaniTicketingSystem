@@ -36,3 +36,4 @@ Project is created with:
 
 ## Contributors
 - Sai Suresh: ssuresh@csus.edu
+- Juan Landeros: juanlanderos@csus.edu
