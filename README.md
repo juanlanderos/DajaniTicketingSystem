@@ -37,5 +37,6 @@ Project is created with:
 ## Contributors
 - Sai Suresh: ssuresh@csus.edu
 - Juan Landeros: juanlanderos@csus.edu
+- Matt Luca: mluca@csus.edu
 - Mohammed Msallam: mohammedmsallam@csus.edu
 - Salar Abadi: sabadi123@csus.edu
