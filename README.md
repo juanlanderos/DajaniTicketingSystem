@@ -42,3 +42,4 @@ Project is created with:
 - Russell Yee: russellyee@csus.edu
 - Salar Abadi: sabadi123@csus.edu
 - Daniel Beauchamp: djbeauchamp@csus.edu
+- Jordan Llopis: jllopis2@csus.edu
