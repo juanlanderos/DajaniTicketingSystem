@@ -39,4 +39,5 @@ Project is created with:
 - Juan Landeros: juanlanderos@csus.edu
 - Matt Luca: mluca@csus.edu
 - Mohammed Msallam: mohammedmsallam@csus.edu
+- Russell Yee: russellyee@csus.edu
 - Salar Abadi: sabadi123@csus.edu
