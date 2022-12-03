@@ -41,3 +41,4 @@ Project is created with:
 - Mohammed Msallam: mohammedmsallam@csus.edu
 - Russell Yee: russellyee@csus.edu
 - Salar Abadi: sabadi123@csus.edu
+- Daniel Beauchamp: djbeauchamp@csus.edu
