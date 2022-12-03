@@ -11,27 +11,18 @@ Project is created with:
 * Spring Boot 2.6.6
 * MySQL 8.0.26
 * Angular 14 + Bootstrap 5 CSS
-* AWS Cognito + Microsoft Azure Active Directory
-* AWS CodePipeline, CodeBuild, Elastic Beanstalk
-
-## Timeline
-- Setup a CI/CD pipeline: Add Docker and other DevOps dependencies
 
 ## Testing
-- Integration/unit testing is planned to be automated via DevOps tools
+- REST services tested via Postman
+- Frontend testing tools: Jasmine & Karma
 
 ## Deployment
-- Containerize in Docker
-- Maven as build tool
+- Create environment in AWS Elastic Beanstalk, and package backend app as .war
+- Deploy the .war to this environment; AWS RDS instance can be configured here or seperately in RDS console, just update the datasource properties to match
 
 ## Developer Instructions
-- Security: replace oauth client ID and secret in application.properties with your client ID/secret
+- Security: replace email config, datasource, and port number in application.properties to desired values
 
 ## Documentation
 - [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 - [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
-
-
-## Prototype ERD
-![image](https://drive.google.com/uc?export=view&id=1ibhYAdo-AO46mM2XA1NBq2tuXvB1CC0d)
-
