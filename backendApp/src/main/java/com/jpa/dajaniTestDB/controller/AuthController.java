@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -47,9 +48,8 @@ public class AuthController {
     public ResponseEntity<UserTokens> userLogin(@RequestBody UserLogin userLogin) {
         String username = userLogin.getUsername();
         String password = userLogin.getPassword();
-
         log.info("Username is {}", username);
-        log.info("Password is {}", password);
+        //log.info("Password is {}", password);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication attempt = authenticationManager.authenticate(authenticationToken);
@@ -98,17 +98,21 @@ public class AuthController {
             userService.updateResetPasswordToken(token, email);
             sendEmail(email, "http://localhost:4200/resetPassword");
             log.info("updateResetPasswordToken reached");
-            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/auth/forgot_password/{email}").toUriString());
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/auth/forgot_password/{email}").toUriString());
             return ResponseEntity.ok(confirmation);
         }
         catch(UsernameNotFoundException e){
-            log.info("error while sending email");
-            return null;
+            log.info("Invalid email detected");
+            //String invalidEmail = "Invalid email detected";
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            //return null;
         }
     }
 
     @PostMapping("/auth/reset_password/{token}/{password}")
-    public  ResponseEntity<String> processResetPassword(@PathVariable("token")String token, @PathVariable("password") String password){
+    public  ResponseEntity<String> processResetPassword(@PathVariable("token")String token,
+                                                        @PathVariable("password") String password){
         UserModel tempUser = userService.getByResetPasswordToken(token);
         if(tempUser != null){
             userService.updatePassword(tempUser, password);

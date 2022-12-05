@@ -151,7 +151,7 @@ public class UserController {
         return ResponseEntity.ok().body(userService.changePassword(username,password));
     }
 
-    //change the role of a user (preferably done by an admin
+    //change the role of a user (preferably done by an admin)
     @PostMapping("/users/changeRole/{username}/{roleName}")
     public ResponseEntity<UserModel> changeRole(@PathVariable String username, @PathVariable String roleName){
         return ResponseEntity.ok().body(userService.addRoleToUser(username,roleName));

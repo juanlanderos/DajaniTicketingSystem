@@ -66,8 +66,6 @@ public class TicketController {
         ticketService.removeUserFromTicket(ticketId, userId);
     }
 
-
-
     @PostMapping("/tickets/status/{ticketId}/{status}")
     public void updateTicketStatus(@PathVariable Integer ticketId, @PathVariable String status){
         ticketService.updateTicketStatus(ticketId, status);
